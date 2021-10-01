@@ -5,9 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\UserDetail;
+use App\Models\UserBusinessDetail;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Config;
+use AppHelper;
 
 class RegisterController extends Controller
 {
@@ -50,7 +54,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'firstname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
@@ -67,33 +71,35 @@ class RegisterController extends Controller
         $user_type_id = array_key_exists('company', $data) ? Config::get('constants.UserTypeIds.Company') : Config::get('constants.UserTypeIds.User');
 
         $user = User::create([
-            'name' => $data['name'],
+            'name' => $data['firstname'].' '.$data['lastname'],
             'email' => $data['email'],
             'user_type_id' => $user_type_id,
             'password' => Hash::make($data['password']),
         ]);
 
-        if($user_type_id == Config::get('constants.UserTypeIds.Company')){
-
-            Company::create([
-                'user_id'=>$user->id,
-                'name'=>$data["name"],
-                "contact_no"=>$data['number'],
-                "isActive"=>1,
-            ]);
-
-            $user->assignRole('Company');
-
-        }
-
         if($user_type_id == Config::get('constants.UserTypeIds.User')){
+
+            $location = AppHelper::getIpData();
 
             UserDetail::create([
                 'user_id'=>$user->id,
-                'name'=>$data["name"],
-                "contact_no"=>$data['number'],
-                "isActive"=>1,
+                'firstname'=>$data["firstname"],
+                'lastname'=>$data["lastname"],
+                'email' => $data['email'],
+                'country' => $location->countryName,
+                'city' => $location->cityName,
+                'state' => $location->regionName,
+                'zipcode' => $location->zipCode,
             ]);
+
+
+            if($data['business_name'] != null){
+
+                UserBusinessDetail::create([
+                    'user_id'=>$user->id,
+                    'business_name'=>$data['business_name'],
+                ]);
+            }
 
             $user->assignRole('User');
 

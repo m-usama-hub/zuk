@@ -9,19 +9,23 @@
                     <!-- User Profile-->
                     <div class="user-profile d-flex no-block dropdown m-t-20 col-12">
                         <div class="user-pic col-3">
-                            <img src="{{ asset(Auth::user()->GetProfilePic()) }}" alt="users" class="rounded-circle" width="40" />
+                            <img src="{{ asset(Auth::user()->GetProfilePic()) }}" alt="users" class="rounded-circle"
+                                width="40" />
 
                         </div>
                         <div class="user-content hide-menu m-l-10 col-9">
-                            <a href="javascript:void(0)" class="" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <h5 class="m-b-0 user-name font-medium">{{auth()->user()->name}}
+                            <a href="javascript:void(0)" class="" id=" Userdd" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <h5 class="m-b-0 user-name font-medium">{{ auth()->user()->name }}
                                     <br>
-                                    {{-- ({{auth()->user()->UserType->user_type_name}})  --}}
-                                    <iclass="fa fa-angle-down"></i></h5>
-                                <span class="op-5 user-email">Role: {{Auth::user()->getRoleNames()[0]}}</span><br>
+                                    {{-- ({{auth()->user()->UserType->user_type_name}}) --}}
+                                    <iclass="fa fa-angle-down"></i>
+                                </h5>
+                                <span class="op-5 user-email">Role: {{ Auth::user()->getRoleNames()[0] }}</span><br>
                                 @if (Auth::user()->isUserLoggedIn())
 
-                                <span class="op-5 user-email">Profile: {{Auth::user()->UserDetail->viewAsAnonymous == 1 ? "Private" : "Public"}}</span>
+                                    <span class="op-5 user-email">Profile:
+                                        {{ Auth::user()->UserDetail->viewAsAnonymous == 1 ? 'Private' : 'Public' }}</span>
                                 @endif
                             </a>
                             {{-- <div class="dropdown-menu dropdown-menu-right" aria-labelledby="Userdd">
@@ -53,20 +57,83 @@
                 <!-- User Profile-->
 
                 @can('role-list')
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="{{ route('role.index') }}" aria-expanded="false"><i
-                        class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Roles</span></a></li>
-                        @endcan
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('role.index') }}" aria-expanded="false"><i
+                                class="mdi mdi-account-settings-variant"></i><span class="hide-menu">Roles</span></a>
+                    </li>
+                @endcan
                 @can('permission-list')
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="{{ route('create-permission.index') }}" aria-expanded="false"><i
-                        class="mdi mdi-lock"></i><span class="hide-menu">Permissions</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('create-permission.index') }}" aria-expanded="false"><i
+                                class="mdi mdi-lock"></i><span class="hide-menu">Permissions</span></a></li>
                 @endcan
                 @can('user-list')
-                <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                    href="{{ route('user.index') }}" aria-expanded="false"><i
-                        class="mdi mdi-account-multiple"></i><span class="hide-menu">Users</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('user.index') }}" aria-expanded="false"><i
+                                class="mdi mdi-account-multiple"></i><span class="hide-menu">Users</span></a></li>
                 @endcan
+                @can('can-chat')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('chat') }}" aria-expanded="false"><i class="fas fa-comments"></i>
+                            <span class="hide-menu">Chat</span></a></li>
+                @endcan
+                @can('can-manage-cms')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('setting.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Content Management</span></a></li>
+                @endcan
+                @can('seo-settings')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('setting.index') }}?seo_management=true" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">SEO Management</span></a></li>
+                @endcan
+                @can('category-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('category.index') }}?category_of=pro" aria-expanded="false"><i
+                                class="fas fa-columns"></i>
+                            <span class="hide-menu">Professional Categories</span></a></li>
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('category.index') }}?category_of=item" aria-expanded="false"><i
+                                class="fas fa-columns"></i>
+                            <span class="hide-menu">Item Categories</span></a></li>
+                @endcan
+
+                @can('business-profile-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('business.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Business Professionals</span></a></li>
+                @endcan
+
+                @can('business-items-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('items.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Business Items</span></a></li>
+                @endcan
+
+                @can('business-properties-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('properties.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Business Properties</span></a></li>
+                @endcan
+
+                @can('business-projects-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('projects.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Business Projects</span></a></li>
+                @endcan
+
+                @can('business-housemates-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('housemates.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Business Housemates</span></a></li>
+                @endcan
+
+                @can('business-messages-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('messages.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Business Messages</span></a></li>
+                @endcan
+
                 {{-- @can('company-list')
                 <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                     href="{{ route('company.index') }}" aria-expanded="false"><i

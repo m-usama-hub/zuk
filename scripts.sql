@@ -1,0 +1,10 @@
+ALTER TABLE business_messages ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE business_housemates ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE business_items ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE business_reviews ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE business_properties ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE business_projects ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE business_categories ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE users ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE user_business_details ADD deleted_at timestamp null AFTER updated_at;
+ALTER TABLE user_details ADD deleted_at timestamp null AFTER updated_at;

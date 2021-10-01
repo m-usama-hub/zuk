@@ -1,0 +1,281 @@
+<?php
+
+namespace App\Helpers;
+
+use Auth;
+use Config;
+use DB;
+use Storage;
+use Stevebauman\Location\Facades\Location;
+use Illuminate\Http\Request;
+use App\Models\SystemConfig;
+use Str;
+use Route;
+use App\Models\UserBusinessDetail;
+use App\Models\BusinessCategory;
+use App\Models\UserDetail;
+
+class AppHelper
+{
+
+    public static function SaveFileAndGetPath($Attachment, $AttachmentPath){
+        $ErrorMsg = "";
+        try
+        {
+            // return $Attachment->getClientOriginalExtension();
+            if ($Attachment == null) {
+                return null;
+            }
+
+            if ($ErrorMsg == "")
+            {
+                $AttachmentPath = $AttachmentPath.date("Y").'/'.date("F");
+                $extension = $Attachment->getClientOriginalExtension();
+                $move_file_path = public_path() . $AttachmentPath;
+                $move_file_name = Str::random() . date("Ymdhisu") . '.' . $extension;
+                $SavingFilePath = $AttachmentPath."/".$move_file_name;
+                $FileMoved = $Attachment->move($move_file_path, $move_file_name);
+            }
+        }
+        catch (\Throwable $e)
+        {
+            $ErrorMsg = "Error Occured while uploading file. Exception Msg: " . $e->getMessage();
+            return array("reply"=> 0 ,"status"=> false ,"msg" => $ErrorMsg);
+        }
+        if ($ErrorMsg == "")
+        {
+            return array("reply"=> 1 ,"status"=> true ,"msg" => "File Uploaded Successfully.", "path" => $SavingFilePath);
+        }
+        else
+        {
+            return array("reply"=> 0 ,"status"=> false ,"msg" => $ErrorMsg);
+        }
+
+    }
+
+    public static function getIpData(){
+
+        if(\Request::ip() == '127.0.0.1'){
+
+            return  Location::get();
+         }
+         else{
+
+             return Location::get(\Request::ip());
+         }
+
+    }
+
+    public static function SendSms($from_number){
+        $basic  = new \Vonage\Client\Credentials\Basic("e4797606", "wLsZEhQvQn24M5dZ");
+        $client = new \Vonage\Client(new \Vonage\Client\Credentials\Container($basic));
+
+
+        $request = new \Vonage\Verify\Request($from_number, "Homzs",6);
+        $response = $client->verify()->start($request);
+
+
+        if ($response)
+        {
+            return $response->getRequestId();
+        }
+    }
+
+    public static function VerifySms($request_id, $code){
+
+        $basic  = new \Nexmo\Client\Credentials\Basic("e4797606", "wLsZEhQvQn24M5dZ");
+        $client = new \Nexmo\Client($basic);
+
+        $result = $client->verify()->check($request_id, $code);
+
+        return $result->status == 0 ? true : false;
+
+    }
+
+    public static function SystemConfig($key){
+        $config =  SystemConfig::where('config_key',$key)->first();
+        if($config != null){
+
+            return $config->config_value;
+        }
+
+        return null;
+    }
+
+    public static function getDataBasesOnPage(){
+
+        $data = [];
+        $currentRouteName = Route::currentRouteName();
+
+        if($currentRouteName == 'indexProfessional'){
+
+            $data['heading'] = "Find the right Professional for your job";
+            $data['LinkHtmlText'] = "Post an Professional";
+            $data['ModalId'] = "#mydetails";
+
+        }else if($currentRouteName == 'indexProperty'){
+
+            $data['heading'] = "Find the right Property";
+            $data['LinkHtmlText'] = "Post an Property";
+            $data['ModalId'] = "#buisness_property";
+
+        }else if($currentRouteName == 'indexItem'){
+
+            $data['heading'] = "Find the right Item";
+            $data['LinkHtmlText'] = "Post an Item to Sell";
+            $data['ModalId'] = "#itemtosell";
+
+        }else if($currentRouteName == 'indexHousemate'){
+
+            $data['heading'] = "Find the right Housemate";
+            $data['LinkHtmlText'] = "Post an Housemate";
+            $data['ModalId'] = "#posthousemate";
+
+        }else if($currentRouteName == 'indexMessage'){
+
+            $data['heading'] = "Find the right Message";
+            $data['LinkHtmlText'] = "Post an Message";
+            $data['ModalId'] = "#postmessage";
+
+        }else{
+
+            $data['heading'] = "Find Everything on you needs";
+            $data['LinkHtmlText'] = "";
+            $data['ModalId'] = "";
+        }
+
+        if(Auth::user()){
+            if(!Auth::user()->UserHasBusinessProfile()){
+                unset($data['LinkHtmlText']);
+                unset($data['ModalId']);
+            }
+        }else{
+                unset($data['LinkHtmlText']);
+                unset($data['ModalId']);
+        }
+
+        return $data;
+    }
+
+    public static function getMyposts(){
+
+        if(Auth::user() && Auth::user()->UserHasBusinessProfile()){
+
+            $allposts = UserBusinessDetail::where('user_id',Auth::user()->id)
+                                ->with('BusinessProperties:id,business_id,cover_image,title,description,contact_no,created_at,status')
+                                ->with('BusinessItems:id,business_id,cover_image,title,description,contact_no,created_at,status')
+                                ->with('BusinessProjects:id,business_id,cover_image,title,description,contact_no,created_at,status')
+                                ->with('BusinessMessages:id,business_id,cover_image,title,message as description,contact_no,created_at,status')
+                                ->with('BusinessHousemates:id,business_id,cover_image,title,description,contact_no,created_at,status')
+                                ->get();
+
+            $data = array();
+
+            if(count($allposts->pluck('BusinessProperties')) > 0){
+
+                foreach ($allposts->pluck('BusinessProperties') as $key => $property) {
+
+                    array_push($data,$property);
+                }
+
+            }
+
+            if(count($allposts->pluck('BusinessItems')) > 0){
+
+                foreach ($allposts->pluck('BusinessItems') as $key => $item) {
+
+                    array_push($data,$item);
+                }
+
+            }
+
+            if(count($allposts->pluck('BusinessProjects')) > 0){
+
+                foreach ($allposts->pluck('BusinessProjects') as $key => $project) {
+
+                    array_push($data,$project);
+                }
+
+            }
+
+            if(count($allposts->pluck('BusinessMessages')) > 0){
+
+                foreach ($allposts->pluck('BusinessMessages') as $key => $message) {
+
+                    array_push($data,$message);
+                }
+
+            }
+
+            if(count($allposts->pluck('BusinessHousemates')) > 0){
+
+                foreach ($allposts->pluck('BusinessHousemates') as $key => $housemate) {
+
+                    array_push($data,$housemate);
+                }
+
+            }
+
+
+
+            return collect($data)->flatten()->sortBy('created_at')->reverse();
+        }
+
+        return array();
+
+    }
+
+    public static function professionalCategories(){
+
+        return BusinessCategory::where('category_of','pro')->get();
+
+    }
+
+    public static function getMyfavourites(){
+
+        $data = array();
+
+        if(Auth::user() ){
+
+            $UserFav = UserDetail::where('user_id',Auth::user()->id)->with('UserFavorites')->first();
+
+            if (count($UserFav->UserFavorites) > 0) {
+
+                foreach ($UserFav->UserFavorites as $key => $fav) {
+
+                    if($fav->model == 'BusinessDetail'){
+
+                        $path = 'App\Models\User'.$fav->model;
+                    }else{
+
+                        $path = 'App\Models\Business'.$fav->model;
+                    }
+
+
+                    if($path == 'App\Models\BusinessMessage'){
+
+                       $getData = $path::where('id',$fav->record_id)->select('id','business_id','cover_image','title','message as description','contact_no','created_at')->get();
+
+                    }else if($path == 'App\Models\UserBusinessDetail'){
+
+                       $getData = $path::where('id',$fav->record_id)->select('id','id as business_id','business_profile_pic as cover_image','business_name as title','business_details as description','business_phone as contact_no','created_at')->get();
+
+                    }
+                    else{
+
+                        $getData = $path::where('id',$fav->record_id)->select('id','business_id','cover_image','title','description','contact_no','created_at')->get();
+
+                    }
+
+                    array_push($data,$getData);
+                }
+
+            }
+
+            return collect($data)->flatten();
+        }
+
+        return array();
+
+    }
+}

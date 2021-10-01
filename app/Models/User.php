@@ -9,11 +9,12 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
 use Auth;
 use Config;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, HasRoles;
-
+    use SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
@@ -24,6 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'user_type_id',
+        'provider',
+        'provider_id',
     ];
 
     /**
@@ -45,6 +48,21 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function UserDetail()
+    {
+        return $this->hasOne('App\Models\UserDetail','user_id');
+    }
+
+    public function UserBusinessDetail()
+    {
+        return $this->hasOne('App\Models\UserBusinessDetail','user_id');
+    }
+
+    public function UserHasBusinessProfile()
+    {
+        return $this->UserBusinessDetail ? true : false;
+    }
+
     public function isSuperAdminLoggedIn()
     {
         if (Auth::user()->user_type_id == Config::get("constants.UserTypeIds.SuperAdmin")) {
@@ -57,15 +75,6 @@ class User extends Authenticatable
     public function isAdminLoggedIn()
     {
         if (Auth::user()->user_type_id == Config::get("constants.UserTypeIds.Admin")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function isCompanyLoggedIn()
-    {
-        if (Auth::user()->user_type_id == Config::get("constants.UserTypeIds.Company")) {
             return true;
         } else {
             return false;
@@ -102,11 +111,9 @@ class User extends Authenticatable
 
     }
 
-
     public function UserType()
     {
         return $this->belongsTo('App\Models\User_type','user_type_id');
     }
-
 
 }

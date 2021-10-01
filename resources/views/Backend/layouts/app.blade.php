@@ -24,12 +24,12 @@
 
 <body>
 
-    {{-- <div class="preloader">
+    <div class="preloader">
         <div class="lds-ripple">
             <div class="lds-pos"></div>
             <div class="lds-pos"></div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Preloader -->
     <div class="preloader" style="display: none;z-index: 100000;position: fixed;">
@@ -67,6 +67,19 @@
 
         <div class="page-wrapper">
 
+
+            @if (session('ServerError'))
+                <div class="modal fade" id="ServerError" style="margin: 0px;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div class="alert alert-danger">{{ session('ServerError') }}</div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            @endif
+
             @yield('content')
             @include('Backend.layouts.partials.footer')
 
@@ -99,6 +112,14 @@
           $('[data-toggle="tooltip"]').tooltip();
         });
         </script>
+
+@if (session('ServerError'))
+    <script>
+        $(document).ready(function(){
+            $('#ServerError').modal('show');
+        });
+    </script>
+@endif
 
     @stack('script')
 

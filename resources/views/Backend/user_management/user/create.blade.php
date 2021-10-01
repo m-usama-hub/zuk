@@ -17,29 +17,29 @@
             <h3 class="text-themecolor">{{ isset($title)?$title:''}}</h3>
             <hr>
             @include('Backend.layouts.message')
-                                          
+
             <form class="m-t-20" method="POST" action="{{route('user.store')}}"  novalidate autocomplete="off" id="frmValidate">
-                @csrf 
-             
+                @csrf
+
                 <div class="row">
                     <div class="col-md-3">
                         <div class="form-group ">
                             <h5>Name <span class="text-danger">*</span></h5>
-                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" required data-validation-required-message="Name is required" autofocus> 
+                            <input type="text" name="name" value="{{ old('name') }}" class="form-control" required data-validation-required-message="Name is required" autofocus>
                             <span class="error">{{ $errors->first('name') }}</span>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <h5>Email <span class="text-danger">*</span></h5>
-                            <input type="email" name="email" value="{{ old('email') }}" class="form-control" required data-validation-required-message="Email field is required"> 
+                            <input type="email" name="email" value="{{ old('email') }}" class="form-control" required data-validation-required-message="Email field is required">
                             <span class="error">{{ $errors->first('email') }}</span>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
                             <h5>Password <span class="text-danger">*</span></h5>
-                            <input type="password" name="password"  class="form-control" required data-validation-required-message="Password is required"> 
+                            <input type="password" name="password"  class="form-control" required data-validation-required-message="Password is required">
                             <span class="error">{{ $errors->first('password') }}</span>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                     <div class="col-md-3">
                         <div class="form-group">
                             <h5>Confirm Password <span class="text-danger">*</span></h5>
-                            <input type="password" name="confirm-password" data-validation-match-match="password" class="form-control" required data-validation-required-message="Confirmed password is required"> 
+                            <input type="password" name="confirm-password" data-validation-match-match="password" class="form-control" required data-validation-required-message="Confirmed password is required">
                             <span class="error">{{ $errors->first('password') }}</span>
                         </div>
                     </div>
@@ -68,10 +68,9 @@
                         <div class="form-group">
                             <h5>UserType</h5>
                             <select name="user_type_id" class="form-control">
-                                <option value="-10025">Admin</option>
+                                <option value="-10024">Admin</option>
                                 <option value="-10021">SuperAdmin</option>
-                                <option value="-10022">Company</option>
-                                <option value="-10023">Individual or Employee</option>
+                                <option value="-10023">User</option>
                             </select>
                             <span class="error">{{ $errors->first('status') }}</span>
                         </div>

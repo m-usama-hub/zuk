@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Config;
+use AppHelper;
+use App\Models\UserDetail;
 
 class HomeController extends Controller
 {
@@ -31,13 +33,10 @@ class HomeController extends Controller
 
         }
 
-        if(Auth::user()->isCompanyLoggedIn()){
-
-            return redirect('/');
-
-        }
 
         if(Auth::user()->isAdminLoggedIn() || Auth::user()->isSuperAdminLoggedIn()){
+
+
 
             return redirect()->route('user.index');
 

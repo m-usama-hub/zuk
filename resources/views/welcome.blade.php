@@ -21,19 +21,9 @@
         </style>
 
         {!! SEOMeta::generate() !!}
-        {!! OpenGraph::generate() !!}
+        {{-- {!! OpenGraph::generate() !!}
         {!! Twitter::generate() !!}
-        {!! JsonLd::generate() !!}
-
-
-        <!-- OR -->
-        {!! SEO::generate() !!}
-
-        <!-- MINIFIED -->
-        {!! SEO::generate(true) !!}
-
-        <!-- LUMEN -->
-        {!! app('seotools')->generate() !!}
+        {!! JsonLd::generate() !!} --}}
 
     </head>
     <body class="antialiased">

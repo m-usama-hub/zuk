@@ -34,9 +34,18 @@ return [
 
     ],
     'attachment_paths' => [
-        'CompetitorAttachment' => "/uploads/competitor/",
-        'CompetitorTypesAttachment' => "/uploads/competitor_type/attachment/",
-        'CompetitorTypesCoverAttachment' => "/uploads/competitor_type/cover/",
+        'UserProfilePic' => '/uploads/users/picture/',
+        'UserProfileVideo' => '/uploads/users/video/',
+        'UserBusinessProfileLogo' => '/uploads/business/logo/',
+        'UserBusinessProfilePic' => '/uploads/business/picture/',
+        'UserBusinessProfileVideo' => '/uploads/business/video/',
+        'HeaderImage' => '/uploads/header/image/',
+        'HeaderVideo' => '/uploads/header/video/',
+        'itemCoverImage' => '/uploads/item/image/',
+        'MessageCoverImage' => '/uploads/message/image/',
+        'HousemateCoverImage' => '/uploads/housemate/image/',
+        'ProjectCoverImage' => '/uploads/Project/image/',
+        'PropertyCoverImage' => '/uploads/property/image/',
     ],
 
     'stripe'=>[

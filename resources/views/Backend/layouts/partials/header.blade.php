@@ -9,9 +9,9 @@
                 <b class="logo-icon">
                     <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                     <!-- Dark Logo icon -->
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="homepage" class="dark-logo" />
+                    {{-- <img src="{{ asset('assets/img/logo.png') }}" alt="homepage" class="dark-logo" />
                     <!-- Light Logo icon -->
-                    <img src="{{ asset('assets/img/logo.png') }}" alt="homepage" class="light-logo" width="200"/>
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="homepage" class="light-logo" width="200"/> --}}
                 </b>
                 <!--End Logo icon -->
                 <!-- Logo text -->
@@ -40,13 +40,13 @@
                 <!-- ============================================================== -->
                 <!-- Search -->
                 <!-- ============================================================== -->
-                <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
+                {{-- <li class="nav-item search-box"> <a class="nav-link waves-effect waves-dark"
                         href="javascript:void(0)"><i class="ti-search"></i></a>
                     <form class="app-search position-absolute">
                         <input type="text" class="form-control" placeholder="Search &amp; enter"> <a
                             class="srh-btn"><i class="ti-close"></i></a>
                     </form>
-                </li>
+                </li> --}}
             </ul>
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
@@ -63,10 +63,6 @@
                     <div class="dropdown-menu dropdown-menu-right user-dd animated">
                         {{-- <a class="dropdown-item" href="{{ route('showprofile') }}"><i class="ti-user m-r-5 m-l-5"></i>
                             My Profile</a> --}}
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-wallet m-r-5 m-l-5"></i>
-                            My Balance</a>
-                        <a class="dropdown-item" href="javascript:void(0)"><i class="ti-email m-r-5 m-l-5"></i>
-                            Inbox</a>
                         <form action="{{route('logout')}}" class="dropdown-item" method="POST">
                             @csrf
                             <i

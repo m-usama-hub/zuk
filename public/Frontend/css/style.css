@@ -1,0 +1,1397 @@
+@font-face {
+    font-family: Aileron-Regular;
+    src: url(../fonts/Aileron-Regular.ttf);
+}
+@font-face {
+    font-family: Aileron-Bold;
+    src: url(../fonts/Aileron-Bold.ttf);
+}
+
+@font-face {
+    font-family: Aileron-SemiBold;
+    src: url(../fonts/Aileron-SemiBold.ttf);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #000;
+    font-family: Aileron-Bold;
+    line-height: 1;
+}
+
+p {
+    font-family: Aileron-Regular;
+}
+.navbar-dark .navbar-toggler-icon {
+    filter: invert(1);
+}
+.card-footer .btn-link a:hover {
+    text-decoration: none;
+}
+.pr-detail2 .detail-box {
+    padding: 25px;
+}
+.sm-size {
+    font-size: 11px;
+    color: #000;
+    font-weight: 400;
+    padding-left: 10px;
+    font-family: "Aileron-Bold";
+}
+.btn-link {
+    background-color: #3a8d9b;
+    color: #fff;
+    padding: 8px 20px;
+}
+.bed-icon p {
+    font-size: 12px;
+    font-family: "Aileron-Bold";
+}
+.bed-icon p i {
+    font-size: 15px;
+    padding-right: 10px;
+}
+.gray {
+    color: #a4a4a4;
+    font-size: 11px;
+    font-family: "Aileron-Bold";
+}
+.green {
+    color: #40b69e;
+}
+.blue {
+    color: #285559;
+}
+.orange {
+    color: #dc5523;
+}
+.l-blue {
+    color: #3a8d9b;
+}
+.bg-light {
+    background-color: #fff !important;
+}
+nav.navbar {
+    box-shadow: 0 2px 5px rgb(0 0 0 / 15%);
+    padding: 9px 0 16px 0;
+}
+.navbar-dark .navbar-nav .nav-link {
+    padding: 0.2rem 0.9rem;
+    font-size: 15px;
+}
+.footer-form .form-group input {
+    box-shadow: 0 4px 5px 0px rgb(0 0 0 / 15%);
+    border: 0;
+}
+
+.login-btn a {
+    color: white !important;
+}
+
+.btn-warning {
+    font-weight: 700;
+    background-color: #ebb033 !important;
+    color: #ffff;
+}
+.navbar-expand-md .navbar-nav .dropdown-menu a {
+    padding: 10px !important;
+    text-align: left;
+}
+/* FOooter Section */
+/*
+.footer {
+    background-image: url(.Frontend/img/footer-bg.png);
+    background-size: 100% 100%;
+} */
+
+/* .footer .container {
+    padding: 120px 0px 80px;
+    color: #fff;
+} */
+
+.footer ul.list-style {
+    padding-left: 0px;
+    padding-top: 10px;
+}
+
+.copy-right .custom_container {
+    margin: 0 auto;
+}
+
+.footer ul.list-style li {
+    list-style: none;
+}
+
+.footer ul.list-style li .text-muted {
+    list-style-type: none;
+    font-size: 14px;
+    color: #000 !important;
+}
+
+.footer .footer_three {
+    padding-top: 0 !important;
+}
+
+.footer h5 {
+    font-size: 18px;
+}
+
+.footer-sub {
+    color: white;
+    font-size: 13px;
+}
+
+p.footer-desc {
+    color: white;
+    padding-top: 10px;
+    font-size: 14px;
+}
+
+.footer .social-links ul {
+    padding-left: 0 !important;
+}
+
+.footer .copy-right {
+    padding: 20px;
+    background: #f5f7fb;
+}
+
+.footer .social-links li {
+    display: inline-block;
+    background-color: #fff;
+    margin: 0px 10px;
+    color: #000;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 50%;
+}
+/*=========================================================*/
+.latest_properties_card .card-body {
+    text-align: left;
+}
+
+.professional_near_card .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.professional_near_card {
+    text-align: left;
+}
+.home_page_slider {
+    position: unset !important;
+}
+.card-in-btn .btn-link:hover {
+    color: #fff;
+}
+.home_page_slider .latest_properties_card .card-in-btn {
+    position: absolute;
+    top: 40px;
+    left: -55px !important;
+}
+.home_page_slider .share {
+    padding: 5px 8px;
+}
+.item_sale_card {
+    text-align: left;
+}
+.home_page_slider .swiper-button-prev {
+    left: -80px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #0000004f;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 20px 20px;
+    top: 300px;
+}
+.home_page_slider .swiper-button-next {
+    right: -80px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #0000004f;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 20px 20px;
+    top: 300px;
+}
+.home .card-footer img {
+    max-width: 100%;
+    height: auto;
+    width: auto;
+}
+.home-sec1 {
+    background-image: url(../img/h-sec1.png);
+    padding: 30px 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.modal-serv-sec h1 {
+    font-weight: 600;
+    font-size: 60px;
+}
+.modal-serv-sec p {
+    max-width: 75%;
+    margin: 0 auto;
+    padding-bottom: 50px;
+}
+.modal-serv-sec {
+    margin: 20px 0;
+}
+.home-sec1 a {
+    color: #fff;
+    font-weight: 500;
+    padding: 0px 15px 0 0;
+    text-decoration: underline;
+}
+.home-sec1 h3 {
+    color: #fff;
+    font-size: 23px;
+}
+
+.home .sec-2 {
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+.home .sec-2 .card {
+    position: relative;
+    padding-bottom: 8px;
+}
+/* == HOME FORM  == */
+.home-sec1 form .form-control::placeholder {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.home-sec1 form {
+    max-width: 100%;
+    border-radius: 10px;
+}
+.home-sec1 form .form-control,
+.home-sec1 form button {
+    height: 50px;
+    width: 100%;
+}
+.home-sec1 form select#inputState {
+    border: 0;
+    font-size: 12px;
+    font-weight: 300;
+}
+.home-sec1 form button {
+    font-size: 13px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.b-form input.form-control {
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+}
+.home-sec1 form .form-control {
+    border: 0;
+    border-right: 1px solid #ccc;
+    border-radius: 0;
+}
+
+.card-in-btn {
+    position: absolute;
+    top: 40px;
+}
+
+.card-in-heart {
+    position: absolute;
+    top: 40px;
+    left: 83%;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+/* .sec-3 .card-map {
+    top: 40%;
+
+} */
+.card-in-btn .btn-link {
+    font-size: 12px;
+}
+.heart {
+    background: #dc5523;
+    padding: 5px 8px;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+.share {
+    background: #fff;
+    padding: 5px 8px;
+    color: #3a8d9b;
+    border-radius: 5px;
+}
+.share2 {
+    background: #fff;
+    padding: 5px 10px;
+    color: #3a8d9b;
+    border-radius: 5px;
+}
+.card-footer {
+    border-top: 1px solid #ccc;
+    padding: 5px;
+    max-width: 90%;
+    margin: 0 auto;
+    padding-top: 15px;
+    background: transparent;
+}
+.home .sec-2 .card {
+    border: 1px solid #d6d6d6;
+}
+.card-map {
+    position: absolute;
+    top: 37%;
+    max-width: 99%;
+}
+.card-map a {
+    color: #fff;
+    font-size: 13px;
+}
+.home .sec-last {
+    background-color: #f5f7fb;
+    padding-top: 2%;
+    padding-bottom: 3%;
+}
+.home .sec-last p.blue {
+    font-family: "Aileron-Bold";
+    font-size: 15px;
+}
+.home .sec-3 {
+    background-color: #f5f7fb;
+}
+.home .sec-last .media h5 {
+    font-size: 15px;
+}
+.home .sec-last .media p {
+    font-size: 11px;
+}
+
+.card-map .fa-star {
+    color: #fed112;
+}
+.footer .footer-form a {
+    font-size: 20px;
+    padding-left: 15px;
+}
+.footer .footer-form a i {
+    color: #3a8d9b;
+}
+.footer .copy-right p {
+    font-size: 13px;
+    max-width: 80%;
+    margin: 0 auto;
+    color: #a4a4a4;
+}
+.footer .list-style li:before {
+    content: "▸";
+    color: #3a8d9b;
+    padding-right: 10px;
+}
+.footer .copy-right p a {
+    color: #1995d3;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/*======= TABS START ============= */
+.home .nav-tabs .nav-item.show .nav-link,
+.home .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #3a8d9b;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+.home .nav-tabs .nav-link {
+    color: #000000;
+}
+.home .nav-tabs {
+    border-bottom: unset;
+}
+
+.home .nav-tabs {
+    border-bottom: unset;
+    margin-bottom: 4%;
+    justify-content: flex-end;
+}
+.home .nav-tabs .nav-link {
+    color: #000000;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px 3px rgb(0 0 0 / 10%);
+    margin-left: 15px;
+    margin-top: -10px;
+    font-size: 15px;
+    font-family: "Aileron-Regular";
+    padding: 8px 30px;
+}
+.card-footer .ab-right a {
+    color: #7e7e7e;
+    font-size: 18px;
+    padding: 8px;
+}
+
+/*====== TABS END ==== */
+.card-footer .btn-link {
+    border: unset;
+    border-radius: 5px;
+    font-size: 15px;
+    font-family: "Aileron-Regular";
+}
+.m-cl {
+    margin-bottom: -30px;
+}
+.home .sec-2 .card i.fas.fa-check.green {
+    font-size: 15px;
+    padding-left: 8px;
+}
+
+/* ======== SWIPPER SLIDER ======= */
+.swiper-pointer-events {
+    overflow: hidden;
+}
+.share_message {
+    margin-top: 8px;
+}
+.home-sec2 {
+    box-shadow: 0 5px 10px rgb(0 0 0 / 15%);
+}
+.home-sec2 .swiper-button-prev:after,
+.home-sec2 .swiper-container-rtl .swiper-button-next:after {
+    content: "prev";
+    font-size: 25px;
+    position: relative;
+    right: 15px;
+    font-weight: bold;
+    color: #3a8d9b;
+}
+.home-sec2 .swiper-button-next:after,
+.home-sec2 .swiper-container-rtl .swiper-button-prev:after {
+    content: "next";
+    font-size: 25px;
+    position: relative;
+    left: 15px;
+    font-weight: bold;
+    color: #3a8d9b;
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.home-sec2 .swp-shadow {
+    box-shadow: 0 0 5px 3px rgb(0 0 0 / 15%);
+    padding: 7px 0 0 0;
+}
+.new_update_slider {
+    position: unset;
+    margin: 0 15px;
+}
+.home-sec2 .swiper-slide {
+    padding: 1% 1%;
+    margin-left: 0px;
+}
+/*.home-sec2 .custom_container {*/
+/*    max-width: 80%;*/
+/*}*/
+.swp-icons {
+    text-align: left;
+}
+
+.swp-icons p {
+    font-size: 8px;
+    margin-right: 8px;
+    margin-bottom: 0;
+    padding-right: 10px;
+    color: #3a8d9b;
+    display: inline-flex;
+}
+
+.swp-icons p i {
+    font-size: 10px;
+    margin-left: -13px;
+    padding-right: 5px;
+}
+
+.swp-icons h6 {
+    color: #3a8d9b;
+    font-size: 10px;
+}
+.home-sec2 .swp-shadow h2 {
+    margin: 0;
+    font-weight: 400;
+    color: #285559;
+    font-size: 23px;
+}
+.home-sec2 .swp-shadow p {
+    color: #827e7e;
+    font-size: 10px;
+    font-weight: 400;
+    margin-bottom: 8px;
+}
+
+/* =========== ABOUT US PAGE ============ */
+.about_s2 h1 {
+    font-size: 40px;
+    margin-bottom: 15px;
+    font-family: "Aileron-Bold";
+}
+.about_s2 {
+    padding-top: 5%;
+}
+.about_s2 p {
+    line-height: 1.3;
+    font-size: 16px;
+}
+
+.ab-right {
+    float: right;
+}
+
+/*Property Detail PAGE*/
+.views {
+    float: right;
+    color: #000;
+}
+.views:hover {
+    text-decoration: none;
+}
+
+.contact-desc a {
+    color: #000;
+    font-size: 15px;
+}
+.pr-description {
+    font-size: 14px;
+}
+.p_detail .card-in-heart {
+    position: absolute;
+    top: 80px;
+    right: 11px;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    left: unset;
+}
+
+.media-body h3 {
+    font-size: 23px;
+}
+.p_detail .share {
+    background: #fff;
+    padding: 5px 8px;
+    color: #3a8d9b;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgb(0 0 0 / 25%);
+}
+.p_detail .heart {
+    background: #dc5523;
+    padding: 5px 8px;
+    color: #fff;
+    border-radius: 5px;
+    margin-bottom: 8px;
+}
+.detail-box {
+    box-shadow: 0 2px 5px 1px rgb(0 0 0 / 25%);
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+.contact-desc0 a {
+    color: #000;
+}
+body a:hover {
+    text-decoration: none !important;
+}
+.p_detail p {
+    font-size: 14px;
+}
+
+.media-body p {
+    margin-bottom: 5px;
+}
+
+.pr-description p {
+    max-width: 85%;
+    font-family: "Aileron-Regular";
+    font-size: 13px;
+}
+
+.media_content {
+    padding-right: 30px;
+    padding-left: 30px;
+    padding-top: 9px;
+}
+
+/* ======= PROFESSIONAL DETAIL PAGE ========== */
+.pf_detail h3 {
+    font-size: 22px;
+}
+
+.pf-shadow {
+    box-shadow: 0 2px 5px 1px rgb(0 0 0 / 25%);
+    padding: 25px;
+    border-radius: 10px;
+}
+.pf-reviews {
+    background: #f6f6f6;
+    padding: 15px 25px;
+    border-radius: 15px;
+}
+.pf-reviews p {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+.cal-size {
+    font-size: 18px;
+}
+@media (min-width: 1200px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container-xl {
+        max-width: 1240px;
+    }
+}
+
+@media (max-width: 375px) {
+    .card .card-map {
+        top: 29%;
+    }
+}
+
+/* =================WK CSS Start===================== */
+.custom_container {
+    max-width: 69%;
+}
+/* Nav Bar CSS Start */
+.navbar-nav li a {
+    font-family: Aileron-Bold;
+    max-width: 97%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 0 2px !important;
+    line-height: 1.1;
+    font-size: 13px !important;
+    color: #000 !important;
+}
+.navbar-brand img {
+    width: 80%;
+}
+.navbar-nav .login-btn a {
+    background-color: #3a8d9b;
+    border-radius: 8px;
+    font-family: "Aileron-Regular";
+    font-size: 13px !important;
+    padding: 7px 23px !important;
+    max-width: 100%;
+    margin: 0 10px 0 25px;
+}
+.navbar-nav .sign_up_btn a {
+    background-color: #3a8d9b;
+    border-radius: 8px;
+    font-family: "Aileron-Regular";
+    font-size: 13px !important;
+    padding: 7px 23px !important;
+    max-width: 100%;
+    color: #fff !important;
+}
+.sign_up_btn.show a.dropdown-item {
+    background-color: unset;
+    color: #000 !important;
+}
+
+.form-row .b-form {
+    flex: 0 0 33%;
+}
+.home-sec1 form .form-row .col {
+    padding: 0;
+}
+.home-sec1 form .form-row {
+    align-items: center;
+}
+.home-sec1 form .form-row .col a {
+    text-decoration: none;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-evenly;
+    margin-left: 10px;
+}
+.home-sec1 form .form-row .col button:hover {
+    color: #fff;
+}
+.home-sec1 form .form-row .col button {
+    text-decoration: none;
+    font-family: "Aileron-Regular";
+}
+.navbar-nav li .dropdown-toggle::after {
+    color: #3a8d9b;
+}
+.navbar-nav .sign_up_btn .dropdown-toggle::after {
+    color: #fff;
+}
+.navbar.navbar-dark .navbar-nav .nav-item.active .nav-link {
+    color: #3a8d9b !important;
+}
+.banner_heading_two {
+    word-spacing: 10px;
+}
+.advance_btn:hover {
+    color: #fff;
+}
+.advance_btn {
+    text-decoration: none !important;
+    margin-top: 7px;
+    padding: 7px 23px;
+    font-size: 13px;
+    font-family: "Aileron-Regular";
+    border-radius: 9px;
+}
+.post_project_anchor {
+    margin-top: 10px;
+}
+.post_project_anchor a:hover {
+    text-decoration: underline !important;
+}
+.post_project_anchor a {
+    font-family: "Aileron-Regular";
+    font-size: 13px;
+    margin-right: 10px;
+}
+.home-sec1 .img-video-btn {
+    padding: 0;
+}
+.home-sec1 .img-video-btn .img-size img {
+    width: 88%;
+}
+.btn-play {
+    color: white;
+    font-size: 20px;
+    height: 55px;
+    width: 55px;
+    border-radius: 30px;
+    background-color: #3a8d9b;
+    padding: 10px;
+}
+.btn-play:hover {
+    color: #f18934;
+}
+.login-btn > a,
+.sign_up_btn > a {
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.language-btn {
+    margin-left: 10px;
+}
+/* Nav Bar CSS End */
+
+/* Footer CSS Start */
+.footer {
+    padding: 35px 0;
+}
+.footer p {
+    color: #afafaf;
+    font-size: 15px;
+    line-height: 1.1;
+}
+.footer-form .form-group input::placeholder {
+    color: #8f8f8f;
+    font-family: "Aileron-Regular";
+    font-size: 14px;
+}
+.subscribe_btn {
+    padding: 5px 30px;
+    border-radius: 9px;
+    font-family: "Aileron-Regular";
+    font-size: 13px;
+}
+.subscribe_btn:hover {
+    text-decoration: none;
+}
+.footer-form > .form-group {
+    margin-bottom: 10px;
+}
+.copy-right p:first-child {
+    font-family: "Aileron-Regular";
+    font-size: 14px;
+    color: #a4a4a4;
+    padding: 20px 0;
+    margin-bottom: 0;
+}
+.copy-right {
+    background-color: #f5f7fb;
+}
+.copy-right p {
+    color: #a4a4a4;
+    font-family: "Aileron-Bold";
+    font-size: 14px;
+    margin-bottom: 0;
+    padding-bottom: 20px;
+}
+.footer img {
+    width: 80%;
+}
+/* Footer CSS End */
+/*  Find a Housemate start  */
+.find_housemate_page .card-map {
+    position: absolute;
+    top: 21.5%;
+    max-width: 100%;
+}
+.find_housemate_page .card-in-heart {
+    top: 12px;
+    right: 0%;
+    left: unset;
+}
+.find_housemate_page .card-body h4 {
+    text-align: left;
+    font-size: 14px;
+}
+.find_housemate_page .card-body {
+    padding: 15px 15px 5px;
+}
+.find_housemate_page .card-body h3 {
+    font-size: 15px;
+    text-align: left;
+}
+.find_housemate_page .card-body h3 .person_profession {
+    font-size: 15px;
+    margin-left: 10px;
+    color: #a4a4a4;
+    font-family: "Aileron-bold";
+}
+.find_housemate_page .card-body p {
+    text-align: left;
+    font-size: 12px;
+}
+.find_housemate_page .card-body p.card-text {
+    margin-top: 20px;
+    font-size: 16px;
+}
+.find_housemate_page .card-body p.card-text .per_month {
+    font-family: "Aileron-Regular";
+    font-weight: 100;
+    font-size: 14px;
+}
+.find_housemate_page .card-body .room_available .custom_border,
+.find_housemate_page .card-body .location_room .custom_border {
+    margin-left: 20px;
+    font-family: "Aileron-Bold";
+    font-size: 13px;
+    position: relative;
+}
+.find_housemate_page .card-body .location_room,
+.find_housemate_page .card-body .room_available {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.find_housemate_page .card-body .location_room .blue,
+.find_housemate_page .card-body .room_available .blue {
+    font-size: 13px;
+    font-family: "Aileron-Bold";
+}
+.find_housemate_page .card-body .room_available .custom_border:before,
+.find_housemate_page .card-body .location_room .custom_border:before {
+    content: "";
+    background-color: #707070;
+    width: 1px;
+    height: 16px;
+    position: absolute;
+    display: block;
+    left: -11px;
+    top: 3px;
+}
+.view_profile {
+    text-align: left;
+    margin-top: 10px;
+    border-top: 1px solid #eaeaea;
+    padding-top: 5px;
+}
+.view_profile a {
+    background-color: #3a8d9b;
+    color: #fff !important;
+    font-family: "Aileron-Regular";
+    padding: 7px 30px;
+    border-radius: 7px;
+    font-size: 15px;
+}
+.newestswiper {
+    position: unset !important;
+}
+.newestswiper .swiper-button-next {
+    right: -80px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #0000004f;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 20px 20px;
+}
+.newestswiper .swiper-button-prev {
+    left: -80px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #0000004f;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 20px 20px;
+}
+.swiper-button-prev:after,
+.swiper-container-rtl .swiper-button-next:after {
+    font-size: 23px !important;
+    color: #000;
+}
+.swiper-button-next:after,
+.swiper-container-rtl .swiper-button-prev:after {
+    font-size: 23px !important;
+    color: #000;
+}
+.find_housemate_page .housemate_heading {
+    font-size: 26px;
+}
+.newest_btn {
+    background-color: #fff !important;
+    color: #000 !important;
+    font-family: "Aileron-Bold";
+    margin-bottom: 7px;
+}
+.find_housemate_page .view_profile {
+    text-align: center;
+}
+
+.find_housemate_page .heart {
+    padding: 0px 3px;
+}
+.share {
+    background: #fff;
+    padding: 0px 3px;
+}
+/*  Find a Housemate end  */
+
+/*  Find a House Mate Detail Start  */
+.housemate_details_page .media-body h3 .ab-right .per_month {
+    font-size: 13px;
+    border-left: 2px solid #285559;
+    margin-left: 3px;
+    padding-left: 3px;
+}
+.media-body .single_room_details {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+.media-body .single_room_details li {
+    padding-right: 20px;
+    font-family: "Aileron-Bold";
+    font-size: 13px;
+}
+.housemate_details_page .card-body {
+    padding: 0;
+    border: 0;
+    margin-bottom: 1rem;
+    display: flex;
+}
+.housemate_details_page .card-body .room_available .custom_border,
+.housemate_details_page .card-body .location_room .custom_border {
+    margin-left: 20px;
+    font-family: "Aileron-Bold";
+    font-size: 13px;
+    position: relative;
+}
+.housemate_details_page .card-body .location_room,
+.housemate_details_page .card-body .room_available {
+    display: flex;
+    align-items: center;
+}
+.housemate_details_page .card-body .location_room .blue,
+.housemate_details_page .card-body .room_available .blue {
+    font-size: 13px;
+    font-family: "Aileron-Bold";
+    color: #3a8d9b;
+}
+.housemate_details_page .card-body .room_available .custom_border:before,
+.housemate_details_page .card-body .location_room .custom_border:before {
+    content: "";
+    background-color: #707070;
+    width: 1px;
+    height: 16px;
+    position: absolute;
+    display: block;
+    left: -11px;
+    top: 3px;
+}
+.housemate_details_page .card-body .room_available {
+    padding-right: 30px;
+}
+.pr-description h4 {
+    font-size: 20px;
+    margin-top: 4px;
+}
+.housemate_details_page .detail-box {
+    margin: 10px 0;
+}
+/* House Mate Detail End */
+
+/*  Find a Property Detail end  */
+.pr-description .smart_realtor {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+.pr-description .smart_realtor li {
+    display: inline-block;
+    padding: 0 8px;
+    font-family: "Aileron-Bold";
+    font-size: 13px;
+}
+.pr-description .smart_realtor li p {
+    max-width: 100%;
+}
+.pr-description .smart_realtor li:first-child {
+    padding: 0;
+}
+.contact-desc a i {
+    font-size: 20px;
+}
+.pr-description .rent_info {
+    margin: 0;
+    padding: 0;
+    list-style: none; /* display: inline-block; */
+}
+.pr-description .rent_info li {
+    display: inline-block;
+    padding-right: 15px;
+    position: relative;
+}
+.pr-description .rent_info li p {
+    max-width: 100%;
+}
+.pr-description .rent_info li:before {
+    content: "";
+    background-color: #707070;
+    position: absolute;
+    width: 1px;
+    height: 55%;
+    display: block;
+    left: -9px;
+    top: 0;
+}
+.pr-description .rent_info li:first-child:before {
+    display: none;
+}
+
+/*  Find a Property Detail end  */
+
+/*  Share a Message Start  */
+.share_message_page .contact-desc ul {
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.share_message_page .contact-desc ul li a i {
+    font-size: 15px;
+    padding-right: 5px !important;
+}
+.share_message_page .contact-desc a {
+    font-size: 11px;
+    font-weight: 600;
+}
+.share_message_page .card-body h3 {
+    text-transform: uppercase;
+}
+.share_message_page .card-body h3 .person_profession {
+    text-transform: capitalize;
+}
+.share_message_page .contact-desc {
+    border-top: 1px solid #ccc;
+    margin-top: 8px;
+    padding-top: 9px;
+}
+.share_message_page .card-map {
+    position: absolute;
+    top: 25%;
+    max-width: 100%;
+}
+.find_housemate_page .card-body h3 {
+    font-size: 13px;
+}
+.share_message_page .card-body h3 .person_profession {
+    font-size: 12px;
+}
+/*  Share a Message End  */
+
+/*  Share a Message Details Start   */
+
+.share_detail_page .media .media-body h3 span {
+    font-family: "Aileron-Regular";
+    font-weight: 600;
+    font-size: 16px;
+}
+.share_detail_page .media .media-body h3 span i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+.share_detail_page .contact-desc ul {
+    padding: 11px 0 0;
+    list-style: none;
+    display: flex;
+    margin: 0;
+}
+.share_detail_page .room_available:after {
+    content: "";
+    width: 2px;
+    height: 17px;
+    position: absolute;
+    right: 35px;
+    top: 4px;
+    bottom: 0;
+}
+.moretext {
+    display: none;
+}
+.custom_like_message {
+    display: flex;
+    justify-content: flex-end;
+}
+.custom_like_message .room_available {
+    margin-right: 10px;
+}
+.custom_like_message i {
+    font-size: 20px;
+}
+.comments_person_details .person_name {
+    font-family: "Aileron-Regular";
+    font-size: 18px;
+    color: #000;
+}
+.custom_comments_box p {
+    font-family: "Aileron-Regular";
+    margin-top: 7px;
+    max-width: 90%;
+}
+.comments_time {
+    float: right;
+}
+.comments_time ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+.comments_time ul li {
+    padding-left: 15px;
+    padding-top: 13px;
+}
+.comments_time ul li span {
+    font-family: "Aileron-Regular";
+    font-size: 18px;
+}
+.custom_comments_box form textarea {
+    border-radius: 15px;
+    padding: 10px 10px;
+    border: 1px solid #000;
+}
+.comments_form .custom_like_message {
+    justify-content: end;
+    align-items: baseline;
+    margin-top: 29px;
+}
+.share_detail_page .comments_form .room_available:after {
+    left: 73px;
+    top: 32px;
+}
+.comments_form .custom_like_message .room_available {
+    margin-right: 35px;
+}
+.send_message_btn {
+    background-color: #3a8d9b;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 15px 28px;
+    font-family: "Aileron-Regular";
+    font-size: 15px;
+    margin-left: 50px;
+    border-radius: 10px;
+    margin-top: 12px;
+}
+.comments_form {
+    margin-bottom: 20px;
+}
+/*  Share a Message Details End   */
+
+/*  Buy sell Details Start   */
+
+.media-body p > span {
+    font-size: 12px;
+}
+.collection:after {
+    content: "|";
+    position: absolute;
+    top: 0;
+    right: -8px;
+}
+.collection {
+    position: relative;
+    margin-right: 10px;
+}
+.buy_sell_detail_page .media-body .single_room_details {
+    display: block;
+}
+.web_site_views {
+    margin-bottom: 10px;
+}
+.web_site_views a {
+    color: #000;
+    font-family: "Aileron-Regular";
+    font-size: 15px;
+}
+.web_site_views a:nth-child(2) {
+    color: #285559;
+}
+.contact-desc a:nth-child(3) {
+    color: #285559;
+}
+.contact-desc a:nth-child(3) i {
+    font-size: 15px;
+}
+.web_site_views a img {
+    margin-right: 6px;
+}
+
+/*  Buy sell Details End   */
+
+/*  More Project Details Start   */
+.more_project-details .media-body .single_room_details li {
+    display: contents;
+}
+.more_project-details .media-body .single_room_details li:last-child {
+    display: block;
+}
+.more_project-details .media .media-body h3 span {
+    font-family: "Aileron-Regular";
+    font-weight: 600;
+    font-size: 16px;
+}
+.more_project-details .media .media-body h3 span i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/*  More Project Details End   */
+
+/* Read More CSS */
+.addReadMore.showlesscontent .SecSec,
+.addReadMore.showlesscontent .readLess {
+    display: none;
+}
+.addReadMore.showmorecontent .readMore {
+    display: none;
+}
+.addReadMore .readMore,
+.addReadMore .readLess {
+    font-weight: bold;
+    margin-left: 2px;
+    color: #000;
+    cursor: pointer;
+}
+.addReadMoreWrapTxt.showmorecontent .SecSec,
+.addReadMoreWrapTxt.showmorecontent .readLess {
+    display: block;
+}
+/* Read More CSS End */
+/* =================WK CSS End===================== */
+
+.publish{
+    background: #04ff04;;
+    padding: 3px;
+    font-size: 9px;
+    border-radius: 5px;
+    border: 1px solid darkgreen;
+    margin-left: 490px;
+    color:black;
+}
+
+.draft{
+    background: gray;
+    padding: 3px;
+    font-size: 9px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-left: 499px;
+    color:white;
+}
+
+/* ================ */
+
+
+.rate_me_btn {
+    border-radius: 6px;
+    border: none;
+}
+.rate_me_btn a {
+    color: white;
+    font-size: 14px;
+}
+.rate_me_btn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 6px 14px;
+}
+
+
+.criteria .rate_me_time {
+    margin-right: 24px;
+}
+.criteria .rate_me_clean {
+    margin-right: 23px;
+}
+
+.criteria .rate_budget {
+    margin-right: 27px;
+}
+
+
+
+
+

@@ -44,38 +44,38 @@
                                     <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="2" class="border">
                                         Permission Name
                                     </th>
-                                    
+
                                     <th scope="col" data-tablesaw-sortable-col data-tablesaw-priority="4" class="border">
                                         Action
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                
+
                                 @if(isset($permissions) && count($permissions) > 0)
-                                
+
                                     @foreach($permissions AS $k => $role)
                                         <tr>
                                             <td>{{ $k+1 }}</td>
                                             <td>{{ $role->name }}</td>
                                             <td class="text-nowrap">
-    
+
                                                 @can('permission-edit')
                                                     <a href="{{ route('create-permission.edit',$role->id) }}" class="btn btn-success zoomer" data-toggle="tooltip" data-original-title="Edit"> <i class="fa fa-pencil text-white m-r-10"></i> Edit </a>
                                                 @endcan
-                                                
+
                                                 @can('permission-delete')
                                                     <a href="" data-toggle="tooltip" class="btn btn-danger zoomer" data-original-title="Delete" onclick="event.preventDefault();  (confirm('Are you sure you want to delete this item?')) ? document.getElementById('delete-form-{{$role->id }}').submit():''">
                                                         <i class="fa fa-trash text-white m-r-10"></i> Delete
                                                     </a>
-                                                    
+
                                                     <form id="delete-form-{{ $role->id }}" action="{{ route('create-permission.destroy',$role->id) }}" method="POST" style="display: none;">
                                                         @csrf @method('delete')
                                                     </form>
                                                 @endcan
-    
+
                                             </td>
-    
+
                                         </tr>
                                     @endforeach
                                 @else
@@ -83,17 +83,17 @@
                                         <td colspan="3" style="text-align: center;font-weight: 400;">Record Not Found</td>
                                     </tr>
                                 @endif
-    
-                                
+
+
                             </tbody>
                         </table>
                         {{-- <div  style="float: right;">
                             {!! $pages !!}
                         </div> --}}
-                        
+
                     </div>
                 </div>
-        </div>    
+        </div>
     </div>
     <!-- ============================================================== -->
     <!-- End PAge Content -->
@@ -101,8 +101,8 @@
 @endsection
 
 @section('page-script')
-    
-   
+
+
     <script>
         $(document).ready(function(){
 
