@@ -40,6 +40,8 @@ Route::get('/message/{slug}', [AnonymousController::class, 'MessageDetail'])->na
 Route::get('/housemate/{slug}', [AnonymousController::class, 'HousemateDetail'])->name('HousemateDetail');
 Route::get('/item/{slug}', [AnonymousController::class, 'ItemDetail'])->name('ItemDetail');
 Route::get('/professional/{slug}', [AnonymousController::class, 'ProfessionalDetail'])->name('ProfessionalDetail');
+Route::get('/project/{slug}', [AnonymousController::class, 'projectDetail'])->name('projectDetail');
+Route::get('/search', [AnonymousController::class, 'search'])->name('searchData');
 
 
 
@@ -75,8 +77,10 @@ Route::group([
 
         Route::post('/addUserInterest', [ProfileController::class,'addUserInterest']);
         Route::post('/addUserBusinessService', [ProfileController::class,'addUserBusinessService']);
+        Route::post('/addUserBusinessCategory', [ProfileController::class,'addUserBusinessCategory']);
         Route::post('/deleteUserInterest', [ProfileController::class,'deleteUserInterest']);
         Route::post('/deleteUserBusinessService', [ProfileController::class,'deleteUserBusinessService']);
+        Route::post('/deleteUserBusinessCategory', [ProfileController::class,'deleteUserBusinessCategory']);
         Route::patch('/updateProfile', [ProfileController::class,'updateProfile'])->name('updateProfile');
         Route::patch('/UpdateBusinessData', [ProfileController::class,'UpdateBusinessData'])->name('UpdateBusinessData');
         Route::post('/UpdatePrivacySettings', [ProfileController::class,'UpdatePrivacySettings']);
@@ -95,6 +99,9 @@ Route::group([
         Route::get('/getPostData', [GeneralController::class,'getPostData']);
         Route::post('/DoUnfav', [GeneralController::class,'DoUnfav']);
         Route::post('/Dofav', [GeneralController::class,'Dofav']);
+        Route::post('/LikeToggle/{id}', [GeneralController::class,'LikeToggle'])->name('liketoggle');
+        Route::post('/Doreply/{id}', [GeneralController::class,'Doreply'])->name('doreply');
+        Route::post('/deleteReply/{id}', [GeneralController::class,'deleteReply'])->name('deleteReply');
 
         Route::post('/postReview', [ProfessionalController::class,'PostReview'])->name('PostReview');
 
@@ -126,6 +133,7 @@ Route::group([
         Route::resource('properties',PropertyController::class);
         Route::resource('messages',MessageController::class);
 
+        Route::post('import',[CmsController::class,'import'])->name('import');
 
     });
 

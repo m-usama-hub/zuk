@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use AppHelper;
 
 class UserBusinessDetail extends Model
 {
@@ -23,6 +24,9 @@ class UserBusinessDetail extends Model
         "business_profile_video",
         "business_logo",
         "business_phone",
+        "address",
+        "lat",
+        "lng",
         "business_details",
         "business_category_id",
         "business_wallet_available",
@@ -33,7 +37,8 @@ class UserBusinessDetail extends Model
     protected $appends = [
         'totalReviewsCount',
         'reviewsAvg',
-        'reviewComment'
+        'reviewComment',
+        'link'
     ];
 
     public function setBusinessNameAttribute($value)
@@ -60,15 +65,26 @@ class UserBusinessDetail extends Model
         return $value == null ? 'Frontend/img/Group413.png' : $value;
     }
 
+    public function getLinkAttribute($value)
+    {
+        return route('ProfessionalDetail',$this->slug);
+    }
+
     public function BusinessUser(){
 
         return $this->belongsTo('App\Models\UserDetail','user_id','user_id');
 
     }
 
-    public function ProfessionalBusinessCategory(){
+    public function User(){
 
-        return $this->belongsTo('App\Models\BusinessCategory','business_category_id');
+        return $this->belongsTo('App\Models\User','user_id');
+
+    }
+
+    public function ProfessionalBusinessCategories(){
+
+        return $this->belongsToMany('App\Models\BusinessCategory','user_business_categories');
 
     }
 
@@ -128,9 +144,9 @@ class UserBusinessDetail extends Model
 
     }
 
-    public function scopeIsProfessional($query){
+    public function scopehasProfessionalCategories($query){
 
-        return $query->where('business_category_id', '!=', null );
+        return $query->where('business_category_id' , '!=', null);
     }
 
     public function scopeNew($query){
@@ -142,6 +158,35 @@ class UserBusinessDetail extends Model
     public function scopeTop($query){
 
         return $query;
+
+    }
+
+    public function scopeSearch($query){
+
+        if(request()->has('address')){
+
+            return $query->where('address', 'like', '%' . request()->address . '%');
+
+        }
+
+        return $query;
+
+    }
+
+    public function scopeNearMeOrRadius($query){
+
+        if(request()->has('radius') && request()->radius != null ){
+
+            $radius = request()->radius;
+
+        }else{
+            
+            $radius = 2;
+        }
+        
+        $kmS = $radius * 1.60934;
+
+        return AppHelper::searchData($query,$kmS);
 
     }
 
@@ -215,6 +260,17 @@ class UserBusinessDetail extends Model
        }
 
        return implode(', ',$serviceArray);
+    }
+
+    public function UserBusinessCategoriesString(){
+
+        $categories = $this->ProfessionalBusinessCategories->pluck('category');
+        $categoryArray = [];
+        foreach ($categories as $key => $service) {
+            array_push($categoryArray, $service);
+        }
+ 
+        return implode(', ',$categoryArray);
     }
 
 

@@ -28,7 +28,7 @@
                                             <div class="professional_near_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">25 Listings</a>
+                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart" id="prof{{ $key }}"
@@ -73,7 +73,7 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->ProfessionalBusinessCategory->category }}</small>
+                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
                                                                 <b>{{ $pro->business_name }}</b>
@@ -117,7 +117,7 @@
                                             <div class="professional_near_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">25 Listings</a>
+                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart"><i
@@ -150,7 +150,7 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->ProfessionalBusinessCategory->category }}</small>
+                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
                                                                 <b>{{ $pro->business_name }}</b>

@@ -69,6 +69,7 @@ class MessageController extends Controller
                 unset($UploadData['_token']);
 
                 $BusinessMessage = BusinessMessage::where('id',$request->id)->first()->toArray();
+                unset($BusinessMessage['business_detail']);
 
                 $newData = array_diff($UploadData,$BusinessMessage);
 

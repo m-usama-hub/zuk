@@ -1,10 +1,12 @@
 <div class="modal fade postmessage" id="postmessage" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog">
+    aria-hidden="true" style="overflow: scroll">
+    <div class="modal-dialog item_modal">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col-md-3 col-12 header_image">
-                    <img src="../Homzs/images/Homzs.png" alt="" class="homzs">
+                    <img src="{{ asset('Frontend/img/Homzs.png') }}" style="    width: 63px;
+                    margin-top: 15px;
+                    margin-bottom: 15px;" class="homzs">
                 </div>
                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit "></i>Post a Message</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
@@ -12,26 +14,28 @@
             <div class="modal-body">
                 <form action="{{ route('message.store') }}" method="post" enctype="multipart/form-data">
                     @csrf
-                    <div class="logo_modal">
-                        <img src="Frontend/img/Homzs.png" alt="" class="homzs">
-                    </div>
                     <div class="col-md-12 col-12 house_mate_pop">
-                        <div class="post_a_house_mate_detail">
+                        <div class="post_a_house_mate_detail" style="    margin-left: 20px; align-items: flex-end;">
                             <div class="person">
-                                <img src="{{ asset(Auth::user()->UserDetail->profile_pic) }}" width="100" alt=""
+                                <img src="{{ asset(Auth::user()->UserDetail->profile_pic) }}" width="85" alt=""
                                     class="img-fluid">
-                                <div class="profile">
-                                    <h5>Profile photo</h5>
-                                </div>
                             </div>
                             <div class="personal_info">
-                                <div class="form-group text_fields">
-                                    <input type="text" required placeholder="Name" name="name" class="text">
-                                    <input type="number" required placeholder="Age" name="age" class="text">
-                                    <input type="number" required placeholder="Phone" name="contact_no"
-                                        class="text">
-                                    <input type="email" required placeholder="Email Address" name="email"
-                                        class="text">
+                                <div class="form-group text_fields" style="    width: 166%;">
+                                    <div class="label_test" style="line-height: 1.1;">
+                                        <div class="label_divs">
+                                            <label for="">Name</label>
+                                            <p style="margin-left: 63px;">{{ Auth::user()->UserDetail->fullname }}</p>
+                                        </div>
+                                        <div class="label_divs">
+                                            <label for="">Private Phone</label>
+                                            <p style="margin-left: 13px;">{{ Auth::user()->UserDetail->contact_no }}</p>
+                                        </div>
+                                        <div class="label_divs">
+                                            <label for="">Email Address</label>
+                                            <p style="margin-left: 15px;">{{ Auth::user()->UserDetail->email }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -39,7 +43,7 @@
                     </div>
                     <div class="col-md-12 col-12 on">
 
-                        <div class="switch_in_flex">
+                        <div class="switch_in_flex" style="margin: 0; margin-left: 25px;">
                             <div class="switches">
                                 <p>Profile photo</p>
                                 <div class="switch_div">
@@ -69,7 +73,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text_fields custom-text-fields">
+                    <div class="text_fields custom-text-fields" style="width: 93%;margin-left: 17px;">
                         <input type="text" required
                             placeholder="Add your message tittle e.g. landscaping group for beginners" name="title"
                             class="text">
@@ -80,13 +84,20 @@
                             </textarea>
 
                     </div>
-                    <div class="col-md-12 col-12 broadcast">
+                    <div class="col-md-12 col-12 broadcast" style="margin-left: 20px;">
 
                         <label for="">Broadcast radius</label>
-                        <input type="number" required class="zip_code" name="zipcode"
-                            placeholder="Zip code, country">
-                        <select name="" class="radius">
+                        <input type="hidden" name="lat" class="latitude" placeholder="Address">
+                        <input type="hidden" name="lng" class='longitude' placeholder="Address">
+                        <input type="text" placeholder="zip_code, country, address" required class="zip_code"
+                            name="address" id="messageAddress" placeholder="Country">
+                        <select name="broadcast_radius" class="radius">
                             <option value="">Radius</option>
+                            <option value="1">1 mile</option>
+                            <option value="2">2 mile</option>
+                            <option value="3">3 mile</option>
+                            <option value="4">4 mile</option>
+                            <option value="5">5 mile</option>
                         </select>
 
 

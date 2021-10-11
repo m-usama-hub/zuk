@@ -1,6 +1,6 @@
 <div class="modal fade add_creadit_popup" id="addcredit" tabindex="-1"
 aria-labelledby="exampleModalLabel" aria-hidden="true" style="overflow: scroll;">
-<div class="modal-dialog">
+<div class="modal-dialog modal_2 modal_body">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i>Add

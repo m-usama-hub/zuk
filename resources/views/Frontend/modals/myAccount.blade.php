@@ -55,7 +55,7 @@
                     </div>
                     <div class="col-md-4 col-12 box" style="cursor: pointer;">
                         <a data-toggle="modal" data-target="#privacy" data-dismiss="modal">
-                            <h4 class="head">My privacy<img src="./img/insurance.png" class="img-fluid">
+                            <h4 class="head">My privacy<img src="{{ asset('Frontend/img/insurance.png') }}" class="img-fluid">
                             </h4>
 
                             <p>Manage your account

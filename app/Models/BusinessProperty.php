@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use AppHelper;
 
 class BusinessProperty extends Model
 {
@@ -17,17 +18,19 @@ class BusinessProperty extends Model
     protected $fillable =[
         'business_id',
         'source_type',
-        'source_name',
-        'source_phone',
+        // 'source_name',
+        // 'source_phone',
         'for_type',
         'title',
         'slug',
-        'email',
-        'contact_no',
+        // 'email',
+        // 'contact_no',
         'property_type',
         'property_beds',
         'property_baths',
         'address',
+        'lat',
+        'lng',
         'town',
         'country',
         'zipcode',
@@ -38,6 +41,15 @@ class BusinessProperty extends Model
         'status',
         'views'
     ];
+
+    protected $appends = [
+        'link'
+    ];
+
+    public function getLinkAttribute()
+    {
+        return route('PropertyDetail',$this->slug??'no-slug');
+    }
 
     public function setTitleAttribute($value)
     {
@@ -98,9 +110,32 @@ class BusinessProperty extends Model
         return $query->where('for_type','Rent');
     }
 
-    public function scopeNearMe($query){
+    public function scopeNearMeOrRadius($query){
+
+        if(request()->has('radius') && request()->radius != null){
+
+            $radius = request()->radius;
+
+        }else{
+            
+            $radius = 2;
+        }
+
+        $kmS = $radius * 1.60934;
+
+        return AppHelper::searchData($query,$kmS);
+    }
+
+    public function scopeSearch($query){
+
+        if(request()->has('address')){
+
+            return $query->where('address', 'like', '%' . request()->address . '%');
+
+        }
 
         return $query;
+
     }
 
 }

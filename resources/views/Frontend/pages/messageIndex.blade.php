@@ -58,7 +58,7 @@
                                                             <a href="" class="camera"><i class="fas fa-camera"></i>
                                                                 1</a>
                                                         </div>
-                                                        <img class="card-img-top" src="Frontend/img/share-msg1.png"
+                                                        <img class="card-img-top" src="{{ asset($message->cover_image) }}"
                                                             alt="Card image cap">
 
                                                         <div class="card-body">
@@ -68,7 +68,7 @@
                                                                         {{ $message->title ?? '' }}</a>
                                                                 </small></h4>
                                                             <h3> {{ $message->name }} <span
-                                                                    class="person_profession">Etobicoke ON</span>
+                                                                    class="person_profession">{{ $message->BusinessDetail->address }}</span>
                                                             </h3>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($message->message ?? '', 0, 150) . '....' }}
@@ -80,7 +80,7 @@
                                                                             <i class="fas fa-thumbs-up"></i>
                                                                         </span>
                                                                         <span class=" custom_border">
-                                                                            12
+                                                                            {{ count($message->Likes) }}
                                                                         </span>
                                                                     </div>
                                                                 </div>
@@ -90,7 +90,7 @@
                                                                             <i class=" orange far fa-comment-alt"></i>
                                                                         </span>
                                                                         <span class=" custom_border">
-                                                                            12
+                                                                            {{ count($message->Replies) }}
                                                                         </span>
                                                                     </div>
                                                                 </div>

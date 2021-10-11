@@ -1,6 +1,6 @@
 <div class="modal fade property" id="buisness_property" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog item_modal">
         <div class="modal-content">
             <div class="modal-header">
                 <div class="col-md-3 col-12"> <img src="Frontend/img/Homzs.png" alt="" class="homzs"> </div>
@@ -8,7 +8,8 @@
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <div class="modal-body">
-                <form action="{{ route('property.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('property.store') }}" method="post" enctype="multipart/form-data"
+                    autocomplete="off">
                     @csrf
                     <div class="col-md-12 col-12 row"> </div>
                     <div class="col-md-12 col-12">
@@ -30,13 +31,13 @@
                                                 <option value="Public">Public</option>
                                             </select>
                                         </div>
-                                        <div class="form-group text_fields">
-                                            <input type="text" required placeholder="Name" name="source_name"
-                                                class="text">
+                                        <div class="form-group text_fields label_test">
+                                            <label for="">Business Name</label>
+                                            <p>{{ Auth::user()->UserBusinessDetail->business_name }}</p>
                                         </div>
-                                        <div class="form-group text_fields">
-                                            <input type="number" required placeholder="Phone" name="source_phone"
-                                                class="text">
+                                        <div class="form-group text_fields label_test">
+                                            <label for="">Business Phone</label>
+                                            <p>{{ Auth::user()->UserBusinessDetail->business_phone }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -47,13 +48,13 @@
                                                 <option value="Sale">For Sale</option>
                                             </select>
                                         </div>
-                                        <div class="form-group text_fields">
-                                            <input type="email" required placeholder="Email Address" name="email"
-                                                class="text">
+                                        <div class="form-group text_fields label_test">
+                                            <label for="">Email Address</label>
+                                            <p>{{ Auth::user()->UserDetail->email }}</p>
                                         </div>
-                                        <div class="form-group text_fields">
-                                            <input type="number" required placeholder="Contact person" name="contact_no"
-                                                class="text">
+                                        <div class="form-group text_fields label_test">
+                                            <label for="">Contact person</label>
+                                            <p>{{ Auth::user()->UserDetail->fullname }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -70,6 +71,7 @@
                                     <select required name="property_type" class="details">
                                         <option value="Flat">Flat</option>
                                         <option value="Apartment">Apartment</option>
+                                        <option value="Other">Other</option>
                                     </select>
                                 </div>
                             </div>
@@ -79,8 +81,16 @@
                                         No. of Bedroom
                                     </h5>
                                     <select required name="property_beds" class="details">
-                                        <option value="3 bedrooms">3 bedrooms</option>
+                                        <option value="1 bedrooms">1 bedrooms</option>
                                         <option value="2 bedrooms">2 bedrooms</option>
+                                        <option value="3 bedrooms">3 bedrooms</option>
+                                        <option value="4 bedrooms">4 bedrooms</option>
+                                        <option value="5 bedrooms">5 bedrooms</option>
+                                        <option value="6 bedrooms">6 bedrooms</option>
+                                        <option value="7 bedrooms">7 bedrooms</option>
+                                        <option value="8 bedrooms">8 bedrooms</option>
+                                        <option value="9 bedrooms">9 bedrooms</option>
+                                        <option value="10 bedrooms">10 bedrooms</option>
                                     </select>
                                 </div>
                             </div>
@@ -90,8 +100,16 @@
                                         No. of Bath
                                     </h5>
                                     <select required name="property_baths" class="details">
+                                        <option value="1 bathrooms">1 bathrooms</option>
                                         <option value="2 bathrooms">2 bathrooms</option>
                                         <option value="3 bathrooms">3 bathrooms</option>
+                                        <option value="4 bathrooms">4 bathrooms</option>
+                                        <option value="5 bathrooms">5 bathrooms</option>
+                                        <option value="6 bathrooms">6 bathrooms</option>
+                                        <option value="7 bathrooms">7 bathrooms</option>
+                                        <option value="8 bathrooms">8 bathrooms</option>
+                                        <option value="9 bathrooms">9 bathrooms</option>
+                                        <option value="10 bathrooms">10 bathrooms</option>
                                     </select>
                                 </div>
                             </div>
@@ -104,7 +122,10 @@
                         <div class="row address">
                             <div class="col-md-6">
                                 <div class="form-group fields">
-                                    <input type="text" required name="address" placeholder="Address">
+                                    <input type="hidden" name="lat" class="latitude" placeholder="Address">
+                                    <input type="hidden" name="lng" class='longitude' placeholder="Address">
+                                    <input type="text" required name="address" id="propertyAddress"
+                                        placeholder="Address">
                                 </div>
                                 <div class="form-group fields">
                                     <input type="text" required name="town" placeholder="Town">

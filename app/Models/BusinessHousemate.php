@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use AppHelper;
 
 class BusinessHousemate extends Model
 {
@@ -14,16 +15,19 @@ class BusinessHousemate extends Model
     use SoftDeletes;
     protected $fillable = [
         'business_id',
-        'name',
-        'email',
-        'age',
-        'contact_no',
+        // 'name',
+        // 'email',
+        // 'age',
+        // 'contact_no',
         'isProfilePhotoPrivate',
         'cover_image',
         'isPhonePrivate',
         'isEmailPrivate',
         'title',
+        'address',
         'slug',
+        'lat',
+        'lng',
         'available_now',
         'available_date',
         'room_capacity',
@@ -34,6 +38,13 @@ class BusinessHousemate extends Model
         'status'
     ];
 
+    protected $appends = [
+        'link',
+        'email',
+        'contact_no',
+        'profile_pic'
+    ];
+
     public function setTitleAttribute($value)
     {
         $this->attributes['title'] = $value;
@@ -41,6 +52,11 @@ class BusinessHousemate extends Model
         $stringForslug = $value . ' ' . Str::random();
 
         $this->attributes['slug'] = Str::slug($stringForslug);
+    }
+
+    public function getLinkAttribute()
+    {
+        return route('HousemateDetail',$this->slug??'no-slug');
     }
 
     public static function getTableName()
@@ -60,19 +76,19 @@ class BusinessHousemate extends Model
 
     public function getEmailAttribute($value){
 
-        return $this->isEmailPrivate ? $value : 'Email is Hidden';
+        return $this->isEmailPrivate ? $this->BusinessDetail->BusinessUser->email : 'Email is Hidden';
 
     }
 
-    // public function getProfilePicAttribute($value){
+    public function getProfilePicAttribute($value){
 
-    //     return $this->isProfilePhotoPrivate ? $value : 'img/default.png';
+        return $this->isProfilePhotoPrivate ? $this->BusinessDetail->BusinessUser->profile_pic : 'img/default.png';
 
-    // }
+    }
 
     public function getContactNoAttribute($value){
 
-        return $this->isPhonePrivate ? $value : 'Phone is Hidden';
+        return $this->isPhonePrivate ? $this->BusinessDetail->BusinessUser->contact_no : 'Phone is Hidden';
 
     }
 
@@ -91,5 +107,31 @@ class BusinessHousemate extends Model
     public function CheckFavourite(){
 
         return $this->IsFavourite;
+    }
+
+    public function scopeNearMeOrRadius($query){
+
+        if(request()->has('radius') && request()->radius != null){
+
+            $radius = request()->radius;
+            $kmS = $radius * 1.60934;
+
+            return AppHelper::searchData($query,$kmS);
+        }
+
+        return $query;
+
+    }
+
+    public function scopeSearch($query){
+
+        if(request()->has('address')){
+
+            return $query->where('address', 'like', '%' . request()->address . '%');
+
+        }
+
+        return $query;
+
     }
 }

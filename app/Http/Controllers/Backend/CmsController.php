@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\SystemConfig;
 use AppHelper;
 use Config;
+use App\Imports\ImportUsersAndBusiness;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CmsController extends Controller
 {
@@ -99,6 +101,21 @@ class CmsController extends Controller
 
         return redirect()->back()->with('message','Successfully Updated');
 
+    }
+
+
+    public function import(Request $request) 
+    {
+        try{
+            $path = $request->file('file');
+            Excel::import(new ImportUsersAndBusiness, $path);
+            return back();
+        }catch(\Throwable $e){
+
+            dd($e->getMessage());
+        }
+
+            
     }
 
     /**

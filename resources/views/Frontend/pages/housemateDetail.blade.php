@@ -13,13 +13,13 @@
                             </div>
                             <div class="col-lg-8 media_content">
                                 <div class="media">
-                                    <img class="mr-3" src="{{ asset($housemate->BusinessDetail->BusinessUser->profile_pic) }}" width="100"
+                                    <img class="mr-3" src="{{ asset($housemate->profile_pic) }}" width="100"
                                         alt="Generic placeholder image">
                                     <div class="media-body">
-                                    <h3 class="mt-0 blue">{{ $housemate->title }} <span
-                                                class="ab-right">$1200<span class="blue per_month">month</span></span>
+                                    <h3 class="mt-0 blue">{{ $housemate->title }} 
+                                        {{-- <span class="ab-right">$1200<span class="blue per_month">month</span></span> --}}
                                         </h3>
-                                        <p class=""><span class=" ab-right gray">My Budget</span></p>
+                                        {{-- <p class=""><span class=" ab-right gray">My Budget</span></p> --}}
                                         <ul class="single_room_details">
                                             <li class="gray">{{ $housemate->name }} </li>
                                             <li class="gray">Professional {{ $housemate->age }}</li>
@@ -63,14 +63,14 @@
                                         </div>
 
 
-                                        <div class="location_room">
+                                        {{-- <div class="location_room">
                                             <span class="blue">
                                                 Looking In
                                             </span>
                                             <span class="orange custom_border">
                                                 California
                                             </span>
-                                        </div>
+                                        </div> --}}
 
                                     </div>
                                 </div>

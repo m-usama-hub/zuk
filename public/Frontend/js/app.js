@@ -277,6 +277,46 @@ $(document).ready(function () {
         }
     });
 
+    $("#add_new_business_category").click(function (e) {
+        $(this).prop("disabled", true);
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        e.preventDefault();
+        var category = $('#business_category_id').find(":selected").val();
+        if (category != null) {
+            $.ajax({
+                url: "/addUserBusinessCategory",
+                type: "POST",
+                data: {
+                    business_category_id: category,
+                },
+                success: function (data) {
+                    if (data.message == "") {
+                        $("#all_business_categories").empty();
+                        console.log(data);
+                        data.categories.professional_business_categories.forEach((category) => {
+                            $("#all_business_categories").append(
+                                `
+                                <i>` +
+                                category.category +
+                                    ` <input type="hidden" class="category_id" value="`+category.id+`"> <i class="fas fa-trash" data-toggle="tooltip" data-original-title="Delete" style="cursor: pointer;"></i></i><br>
+                            `
+                            );
+                        });
+                        $("#add_new_business_category").prop("disabled", false);
+                    } else {
+                        $("#add_new_business_category").prop("disabled", false);
+                        alert(data.message);
+                    }
+                },
+            });
+        }
+    });
+
     $("#all_interset").delegate(".fa-trash", "click", function (e) {
         $.ajaxSetup({
             headers: {
@@ -347,6 +387,41 @@ $(document).ready(function () {
         });
     });
 
+    $("#all_business_categories").delegate(".fa-trash", "click", function (e) {
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        e.preventDefault();
+        var business_category_id = $(this).parent().find('.category_id').val();
+
+        $.ajax({
+            url: "/deleteUserBusinessCategory",
+            type: "POST",
+            data: {
+                business_category_id: business_category_id,
+            },
+            success: function (data) {
+                if (data.message == "") {
+                    $("#all_business_categories").empty();
+                    data.categories.professional_business_categories.forEach((category) => {
+                        $("#all_business_categories").append(
+                            `
+                            <i>` +
+                            category.category +
+                                ` <input type="hidden" class="category_id" value="`+category.id+`"> <i class="fas fa-trash" data-toggle="tooltip" data-original-title="Delete" style="cursor: pointer;"></i></i><br>
+                        `
+                        );
+                    });
+                } else {
+                    alert(data.message);
+                }
+            },
+        });
+    });
+
     $(".update_privacy_settings").click(function (e) {
         var data = {
             id: $(this).attr("name"),
@@ -355,8 +430,7 @@ $(document).ready(function () {
         CallAction("/UpdatePrivacySettings", data);
     });
 
-    if(Auth){
-
+    if (Auth) {
         paypal
             .Buttons({
                 createOrder: function (data, actions) {
@@ -383,7 +457,9 @@ $(document).ready(function () {
                         if (data) {
                             alert("Payment Successfull.");
                         } else {
-                            alert("First create business account to make payments");
+                            alert(
+                                "First create business account to make payments"
+                            );
                         }
                     });
                 },
@@ -393,9 +469,7 @@ $(document).ready(function () {
                 },
             })
             .render("#paypal-button");
-
     }
-
 
     $("#VerifyPhoneNo").click(function (e) {
         $(".media").css("display", "none");
@@ -551,7 +625,7 @@ $(document).ready(function () {
 
         if (form.validate()) {
             form.find("[name='draft']", "[name='publish']").remove();
-    
+
             form.append(
                 '<input type="hidden" name="preview" value="true" />'
             ).submit();
@@ -563,7 +637,7 @@ $(document).ready(function () {
 
         if (form.validate()) {
             form.find("[name='preview']", "[name='publish']").remove();
-    
+
             form.append(
                 '<input type="hidden" name="draft" value="true" />'
             ).submit();
@@ -575,7 +649,7 @@ $(document).ready(function () {
 
         if (form.validate()) {
             form.find("[name='preview']", "[name='draft']").remove();
-    
+
             form.append(
                 '<input type="hidden" name="publish" value="true" />'
             ).submit();
@@ -876,3 +950,132 @@ function OpenRatingModal(company, services, address, business_id) {
     $("#rateme").find("#business_id").val(business_id);
     $("#rateme").modal("show");
 }
+
+$(document).ready(function () {
+    $("#testCoverImages").on("change", function () {
+        var countFiles = $(this)[0].files.length;
+        var image_holder = $("#swiper-wrapper-2af7103c3e0421064d");
+        image_holder.empty();
+        for (var i = 0; i < countFiles; i++) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $(image_holder).append(
+                    `
+                <div class="swiper-slide">
+                    <img src="` +
+                        e.target.result +
+                        `" alt="" class="pr_photo">
+                    <div class="trash"><i class="fas fa-trash"></i>
+                    </div>
+                    <div class="camera"><i class="fas fa-camera"></i>
+                    </div>
+                </div>`
+                );
+            };
+            image_holder.show();
+            reader.readAsDataURL($(this)[0].files[i]);
+        }
+        modalSwiper.initialize();
+    });
+
+    // $(midiaDigital).on("click", ".remove_field1", function (e) {
+    //     //user click on remove text
+    //     e.preventDefault();
+    //     $(this).parent("div").remove();
+    //     img.val = "";
+    //     input.value = null;
+    //     console.log("Input value after remove: ", input.value);
+    // });
+
+    $("#swiper-wrapper-2af7103c3e0421064d")
+        .on("click", ".fa-trash", function (e) {
+            $(this).parent().parent().remove();
+            modalSwiper.initialize();
+        });
+});
+
+
+var messageAddress = new google.maps.places.Autocomplete(document.getElementById('messageAddress'));
+var propertyAddress = new google.maps.places.Autocomplete(document.getElementById('propertyAddress'));
+var itemAddress = new google.maps.places.Autocomplete(document.getElementById('itemAddress'));
+var houseAddress = new google.maps.places.Autocomplete(document.getElementById('houseAddress'));
+var projectAddress = new google.maps.places.Autocomplete(document.getElementById('projectAddress'));
+var professionalAddress = new google.maps.places.Autocomplete(document.getElementById('professionalAddress'));
+
+ google.maps.event.addListener(messageAddress, 'place_changed',   function () {
+
+   var place = messageAddress.getPlace();
+   var lat = place.geometry.location.lat();
+   var long = place.geometry.location.lng();
+
+   $('.longitude').val(long);
+   $('.latitude').val(lat);
+
+   console.log(place);
+
+});
+
+google.maps.event.addListener(professionalAddress, 'place_changed',   function () {
+
+    var place = professionalAddress.getPlace();
+    var lat = place.geometry.location.lat();
+    var long = place.geometry.location.lng();
+ 
+    $('.longitude').val(long);
+    $('.latitude').val(lat);
+ 
+    console.log(place);
+ 
+ });
+
+google.maps.event.addListener(projectAddress, 'place_changed',   function () {
+
+    var place = projectAddress.getPlace();
+    var lat = place.geometry.location.lat();
+    var long = place.geometry.location.lng();
+ 
+    $('.longitude').val(long);
+    $('.latitude').val(lat);
+ 
+    console.log(place);
+ 
+ });
+
+google.maps.event.addListener(propertyAddress, 'place_changed',   function () {
+
+    var place = propertyAddress.getPlace();
+    var lat = place.geometry.location.lat();
+    var long = place.geometry.location.lng();
+ 
+    $('.longitude').val(long);
+    $('.latitude').val(lat);
+ 
+    console.log(place);
+ 
+ });
+
+ google.maps.event.addListener(itemAddress, 'place_changed',   function () {
+
+    var place = itemAddress.getPlace();
+    var lat = place.geometry.location.lat();
+    var long = place.geometry.location.lng();
+ 
+    $('.longitude').val(long);
+    $('.latitude').val(lat);
+ 
+    console.log(place);
+ 
+ });
+
+ google.maps.event.addListener(houseAddress, 'place_changed',   function () {
+
+    var place = houseAddress.getPlace();
+    var lat = place.geometry.location.lat();
+    var long = place.geometry.location.lng();
+ 
+    $('.longitude').val(long);
+    $('.latitude').val(lat);
+ 
+    console.log(place);
+ 
+ });

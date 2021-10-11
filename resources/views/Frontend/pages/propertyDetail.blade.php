@@ -18,7 +18,7 @@
                                     <div class="media-body">
                                         <h3 class="mt-0 blue">{{ $property->property_beds }}
                                             {{ $property->property_type }} <span
-                                                class="ab-right">${{ $property->sale_price }}</span></h3>
+                                                class="ab-right">${{ number_format($property->sale_price) }}</span></h3>
                                         <p class="gray">{{ $property->address }} <span
                                                 class="ab-right">For {{ $property->for_type }}</span></p>
                                     </div>
@@ -71,11 +71,11 @@
                                         {{ $property->BusinessDetail->BusinessUser->fullname }}</a>
                                 </div>
                                 <div class="contact-desc">
-                                    <a href="tel: {{ $property->contact_no }}"><i
+                                    <a href="tel: {{ $property->BusinessDetail->business_phone }}"><i
                                             class="fas fa-phone-alt l-blue pr-2"></i>
-                                        {{ $property->contact_no }}
-                                    </a> <a href="mailto:{{ $property->email }}"><i
-                                            class="fas fa-envelope l-blue pl-2 pr-2"></i> {{ $property->email }}</a>
+                                        {{ $property->BusinessDetail->business_phone  }}
+                                    </a> <a href="mailto:{{ $property->BusinessDetail->BusinessUser->email  }}"><i
+                                            class="fas fa-envelope l-blue pl-2 pr-2"></i> {{ $property->BusinessDetail->BusinessUser->email  }}</a>
                                     <a href="" class="views"><i class="fas fa-eye l-blue"></i> Viewed | {{ $property->views }}</a>
 
                                 </div>

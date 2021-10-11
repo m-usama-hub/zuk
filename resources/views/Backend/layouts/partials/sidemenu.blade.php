@@ -84,7 +84,8 @@
                 @endcan
                 @can('seo-settings')
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            href="{{ route('setting.index') }}?seo_management=true" aria-expanded="false"><i class="fas fa-columns"></i>
+                            href="{{ route('setting.index') }}?seo_management=true" aria-expanded="false"><i
+                                class="fas fa-columns"></i>
                             <span class="hide-menu">SEO Management</span></a></li>
                 @endcan
                 @can('category-list')

@@ -70,6 +70,7 @@ class PropertyController extends Controller
                 unset($UploadData['_token']);
 
                 $BusinessProperty = BusinessProperty::where('id',$request->id)->first()->toArray();
+                unset($BusinessProperty['business_detail']);
 
                 $newData = array_diff($UploadData,$BusinessProperty);
 

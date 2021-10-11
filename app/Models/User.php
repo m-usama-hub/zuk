@@ -83,7 +83,16 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function isUserLoggedIn()
     {
-        if (Auth::user()->user_type_id == Config::get("constants.UserTypeIds.User")) {
+        if (Auth::user()->user_type_id == Config::get("constants.UserTypeIds.User") || Auth::user()->user_type_id == Config::get("constants.UserTypeIds.Professional")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function isProfessionalLoggedIn()
+    {
+        if (Auth::user()->user_type_id == Config::get("constants.UserTypeIds.Professional")) {
             return true;
         } else {
             return false;

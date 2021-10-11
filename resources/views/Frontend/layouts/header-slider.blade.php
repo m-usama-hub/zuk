@@ -7,25 +7,31 @@
         <div class="row align-items-center">
             <div class="col-md-8" data-aos="fade-right" data-aos-duration="1500">
                 <h3 class="pb-3">{{ $data['heading'] ?? '' }}</h3>
-                <form>
+                <form action="" method="get">
                     <div class="form-row">
                         <div class="col b-form">
-                            <input type="text" class="form-control" placeholder="Area Or Postcode">
+                            <input type="text" class="form-control" value="{{ Request::get('address') }}" name="address" placeholder="Area Or Postcode">
                         </div>
                         <div class="col">
-                            <input type="text" class="form-control" placeholder="All Type">
-                        </div>
-                        <div class="col">
-                            <select id="inputState" class="form-control">
-                                <option selected>All Cities</option>
+                            <select id="inputState" name="city" class="form-control">
+                                <option value="" selected>All Cities</option>
                                 <option>...</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <select id="inputState" name="radius" class="form-control">
+                                <option value="1">1 mile</option>
+                                <option value="2">2 miles</option>
+                                <option value="3">3 miles</option>
+                                <option value="4">4 miles</option>
+                                <option value="5">5 miles</option>
                             </select>
                         </div>
                         <div class="col">
                             <button type="submit" class="btn btn-link">Search <i class="fas fa-search"></i></button>
                         </div>
                         <div class="col">
-                            <a href="#!"><i class="fas fa-map-marker-alt"></i>Radius</a>
+                            <button type="submit" style="background: transparent; border: 0; color: white;"><i class="fas fa-map-marker-alt"></i>Radius</button>
                         </div>
                     </div>
                 </form>

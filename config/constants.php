@@ -5,15 +5,14 @@ return [
     'SuperAdminUserId' => 1,
     'UserTypeIds' => [
         'SuperAdmin' => -10021,
-        'Company' => -10022,
+        'Professional' => -10022,
         'User' => -10023,
         'Admin' => -10024,
     ],
     'UserRoleIds' => [
         'SuperAdmin' => 1,
-        'Admin' => 2,
-        'Company' => 3,
-        'User' => 4,
+        'User' => 2,
+        'Admin' => 3,
     ],
     'imagetypes' => [
         'jpeg' => 'jpeg',

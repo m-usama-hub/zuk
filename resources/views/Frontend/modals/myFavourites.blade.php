@@ -1,6 +1,6 @@
 <div class="modal fade my_post_popup" id="myfavourites" tabindex="-1" aria-labelledby="exampleModalLabel"
     aria-hidden="true" style="overflow: scroll">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal_3 modal_body">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit"></i>My
@@ -24,10 +24,10 @@
                                 </div>
                                 <div class="col-lg-8 media_content">
                                     <div class="media">
-                                        <img class="mr-2" src="{{ asset(Auth::user()->GetProfilePic()) }} "
+                                        <img class="mr-2" src="{{ asset(Auth::user()->UserDetail->profile_pic) }} "
                                             width="50" alt="Generic placeholder image">
                                         <div class="media-body">
-                                            <h3 class="mt-0 blue">{{ $post->title }}</h3>
+                                            <h3 class="mt-0 blue"><a href="{{ $post->link }}">{{ $post->title }}</a></h3>
                                             <div class="web_site_views">
                                                 <i class="fas fa-star orange"></i>
                                                 <i class="fas fa-star orange"></i>

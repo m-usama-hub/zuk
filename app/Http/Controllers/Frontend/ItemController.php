@@ -69,6 +69,7 @@ class ItemController extends Controller
                 unset($UploadData['_token']);
 
                 $BusinessItem = BusinessItem::where('id',$request->id)->first();
+                unset($BusinessItem['business_detail']);
 
                 $newData = array_diff($UploadData,$BusinessItem->toArray());
 

@@ -163,6 +163,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Stevebauman\Location\LocationServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -232,6 +234,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Location' => Stevebauman\Location\Facades\Location::class,
         'AppHelper' => App\Helpers\AppHelper::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 
     ],
 

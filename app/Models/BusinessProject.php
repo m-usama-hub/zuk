@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use AppHelper;
+
 
 class BusinessProject extends Model
 {

@@ -12,123 +12,23 @@
                 <div class="col-lg-12">
                     <div class="swiper-container new_update_slider" data-aos="fade-up" data-aos-duration="1500">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
+                            @foreach ($news as $property)
+                            <a href="{{ $property->link }}">
+                                <div class="swiper-slide">
+                                    <div class="col-md-3 swp-shadow">
+                                        <h2>{{ date('d',strtotime($property->created_at)) }}</h2>
+                                        <p>{{ date('M',strtotime($property->created_at)) }}</p>
+                                    </div>
+                                    <div class="col-md-9 swp-icons">
+                                        <h6 class="blue">{{ $property->title }}</h6>
+                                        <div class="col-md-12 d-flex align-items-center">
+                                            <p><i class="fas fa-user"></i> {{ $property->BusinessDetail->BusinessUser->fullname }}</p>
+                                            <p><i class="fas fa-comments"></i> {{ number_format($property->views) }} Views</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="col-md-3 swp-shadow">
-                                    <h2>14</h2>
-                                    <p>APRIL</p>
-                                </div>
-                                <div class="col-md-9 swp-icons">
-                                    <h6 class="blue">Find Your Dream Villa</h6>
-                                    <div class="col-md-12 d-flex align-items-center">
-                                        <p><i class="fas fa-user"></i> Daniel roy</p>
-                                        <p><i class="fas fa-comments"></i> 03 Comments</p>
-                                    </div>
-                                </div>
-                            </div>
+                            </a>
+                            @endforeach
                         </div>
                         <!-- <div class="swiper-pagination"></div> -->
                     </div>
@@ -205,7 +105,7 @@
                                                                     {{ $property->title ?? '' }}
                                                                     <i class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange">
-                                                                <b>${{ $property->sale_price }}</b>
+                                                                <b>${{ number_format($property->sale_price) }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($property->description ?? '', 0, 150) . '....' }}
@@ -214,8 +114,8 @@
                                                                 <p><i class="fas fa-bed pr-2 l-blue"></i>
                                                                     {{ explode(' ', $property->property_beds ?? '')[0] }}
                                                                     <i class="pl-2 pr-2 fas fa-bath l-blue"></i>
-                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}<i
-                                                                        class="pl-2 fas fa-cube l-blue"></i> 510 ft2
+                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}
+                                                                    {{-- <i class="pl-2 fas fa-cube l-blue"></i> 510 ft2 --}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -290,7 +190,7 @@
                                                                     {{ $property->title ?? '' }}
                                                                     <i class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange">
-                                                                <b>${{ $property->sale_price }}</b>
+                                                                <b>${{ number_format($property->sale_price) }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($property->description ?? '', 0, 150) . '....' }}
@@ -299,8 +199,8 @@
                                                                 <p><i class="fas fa-bed pr-2 l-blue"></i>
                                                                     {{ explode(' ', $property->property_beds ?? '')[0] }}
                                                                     <i class="pl-2 pr-2 fas fa-bath l-blue"></i>
-                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}<i
-                                                                        class="pl-2 fas fa-cube l-blue"></i> 510 ft2
+                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}
+                                                                    {{-- <i class="pl-2 fas fa-cube l-blue"></i> 510 ft2 --}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -339,7 +239,7 @@
                 <div class="col-lg-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a href="" class="pt blue">Sort By</a>
+                            <a href="" class="pt blue"></a>
                             <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home2" role="tab"
                                 aria-controls="nav-home" aria-selected="true">Newest</a>
                             <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile2"
@@ -358,7 +258,7 @@
                                                 data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">25 Listings</a>
+                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart" id="prof{{ $key }}"
@@ -402,7 +302,7 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->ProfessionalBusinessCategory->category }}</small>
+                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
                                                                 <b>{{ $pro->business_name }}</b>
@@ -447,7 +347,7 @@
                                                 data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">25 Listings</a>
+                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart" id="prof2{{ $key }}"
@@ -493,7 +393,7 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->ProfessionalBusinessCategory->category }}</small>
+                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
                                                                 <b>{{ $pro->business_name }}</b>
@@ -561,7 +461,7 @@
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href=""
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        <a href="" class="btn btn-link">--------</a>
+                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart" id="item{{ $key }}"
@@ -603,8 +503,8 @@
                                                             <h4 class="card-title blue"><small> {{ $item->title }} <i
                                                                         class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>${{ $item->price_free == 1 ? '0' : $item->price }}</b>
-                                                                <span class="sm-size">Only 3 Left</span>
+                                                                <b>${{ $item->price_free == 1 ? '0' : number_format($item->price) }}</b>
+                                                                {{-- <span class="sm-size">Only 3 Left</span> --}}
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($item->description ?? '', 0, 150) . '....' }}
@@ -612,7 +512,7 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->BusinessDetail->BusinessUser->profile_pic) }}"
+                                                        <img src="{{ asset($item->profile_pic) }}"
                                                             style="width:50px" alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>
@@ -637,7 +537,7 @@
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href=""
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        <a href="" class="btn btn-link">--------</a>
+                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart" id="item2{{ $key }}"
@@ -669,18 +569,18 @@
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
-                                                            <div class="rating_buy_sell">
+                                                            {{-- <div class="rating_buy_sell">
                                                                 <span><i class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i></span>
-                                                            </div>
+                                                            </div> --}}
                                                             <h4 class="card-title blue"><small> {{ $item->title }} <i
                                                                         class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>${{ $item->price_free == 1 ? '0' : $item->price }}</b>
-                                                                <span class="sm-size">Only 3 Left</span>
+                                                                <b>${{ $item->price_free == 1 ? '0' : number_format($item->price) }}</b>
+                                                                {{-- <span class="sm-size">Only 3 Left</span> --}}
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($item->description ?? '', 0, 150) . '....' }}
@@ -688,7 +588,7 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->BusinessDetail->BusinessUser->profile_pic) }}"
+                                                        <img src="{{ asset($item->profile_pic) }}"
                                                             style="width:50px" alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>

@@ -59,7 +59,7 @@
                                                             <a href="" class="camera"><i class="fas fa-camera"></i>
                                                                 1</a>
                                                         </div>
-                                                        <a href=""><img class="card-img-top"
+                                                        <a href="{{ $housemate->link }}" class="anchor_img"><img class="card-img-top"
                                                                 src="{{ asset($housemate->cover_image) }}"
                                                                 alt="Card image cap"></a>
                                                             <div class="card-body">
@@ -69,12 +69,13 @@
                                                                 </h4>
                                                                 <h3> {{ $housemate->name }} <span
                                                                         class="person_profession">({{ $housemate->interested_in }}
-                                                                        {{ $housemate->age }},{{ $housemate->room_type }})</span>
+                                                                        {{-- {{ $housemate->age }}, --}}
+                                                                        {{ $housemate->room_type }})</span>
                                                                 </h3>
-                                                                <p class="card-text orange"><b>$1500<span
+                                                                {{-- <p class="card-text orange"><b>$1500<span
                                                                             class="per_month">/per
-                                                                            month</span></b></p>
-                                                                <p class="pb-3 gray">
+                                                                            month</span></b></p> --}}
+                                                                <p class="pb-3 gray mini_para">
                                                                     {{ substr($housemate->description ?? '', 0, 150) . '....' }}
                                                                 </p>
                                                                 <div class="row no-gutters">
@@ -88,7 +89,7 @@
                                                                             </span>
                                                                         </div>
                                                                     </div>
-                                                                    <div class="col-md-12">
+                                                                    {{-- <div class="col-md-12">
                                                                         <div class="location_room">
                                                                             <span class="blue">
                                                                                 Looking In
@@ -97,7 +98,7 @@
                                                                                 California
                                                                             </span>
                                                                         </div>
-                                                                    </div>
+                                                                    </div> --}}
                                                                     <div class="col-md-12">
                                                                         <div class="view_profile">
                                                                             <a href="{{ route('HousemateDetail', $housemate->slug) }}" class="btn">View

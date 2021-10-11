@@ -14,6 +14,8 @@ use Route;
 use App\Models\UserBusinessDetail;
 use App\Models\BusinessCategory;
 use App\Models\UserDetail;
+use Illuminate\Support\Facades\Http;
+
 
 class AppHelper
 {
@@ -162,11 +164,11 @@ class AppHelper
         if(Auth::user() && Auth::user()->UserHasBusinessProfile()){
 
             $allposts = UserBusinessDetail::where('user_id',Auth::user()->id)
-                                ->with('BusinessProperties:id,business_id,cover_image,title,description,contact_no,created_at,status')
-                                ->with('BusinessItems:id,business_id,cover_image,title,description,contact_no,created_at,status')
-                                ->with('BusinessProjects:id,business_id,cover_image,title,description,contact_no,created_at,status')
-                                ->with('BusinessMessages:id,business_id,cover_image,title,message as description,contact_no,created_at,status')
-                                ->with('BusinessHousemates:id,business_id,cover_image,title,description,contact_no,created_at,status')
+                                ->with('BusinessProperties:id,business_id,cover_image,title,description,created_at,status')
+                                ->with('BusinessItems:id,business_id,cover_image,title,description,created_at,status')
+                                ->with('BusinessProjects:id,business_id,cover_image,title,description,created_at,status')
+                                ->with('BusinessMessages:id,business_id,cover_image,title,message as description,created_at,status')
+                                ->with('BusinessHousemates:id,business_id,cover_image,title,description,created_at,status')
                                 ->get();
 
             $data = array();
@@ -246,6 +248,7 @@ class AppHelper
                     if($fav->model == 'BusinessDetail'){
 
                         $path = 'App\Models\User'.$fav->model;
+
                     }else{
 
                         $path = 'App\Models\Business'.$fav->model;
@@ -254,16 +257,16 @@ class AppHelper
 
                     if($path == 'App\Models\BusinessMessage'){
 
-                       $getData = $path::where('id',$fav->record_id)->select('id','business_id','cover_image','title','message as description','contact_no','created_at')->get();
+                       $getData = $path::where('id',$fav->record_id)->select('id','business_id','cover_image','title','message as description','created_at','slug')->get();
 
                     }else if($path == 'App\Models\UserBusinessDetail'){
 
-                       $getData = $path::where('id',$fav->record_id)->select('id','id as business_id','business_profile_pic as cover_image','business_name as title','business_details as description','business_phone as contact_no','created_at')->get();
-
+                       $getData = $path::where('id',$fav->record_id)->select('id','id as business_id','business_profile_pic as cover_image','business_name as title','business_details as description','business_phone as contact_no','created_at','slug')->get();
+        
                     }
                     else{
 
-                        $getData = $path::where('id',$fav->record_id)->select('id','business_id','cover_image','title','description','contact_no','created_at')->get();
+                        $getData = $path::where('id',$fav->record_id)->select('id','business_id','cover_image','title','description','created_at','slug')->get();
 
                     }
 
@@ -272,10 +275,51 @@ class AppHelper
 
             }
 
-            return collect($data)->flatten();
+            $flatData = collect($data)->flatten();
+
+            // dd($flatData);
+
+            return $flatData;
         }
 
         return array();
 
     }
+
+    public static function searchData($query, $DISTANCE_KILOMETERS){
+
+        
+        // $IpData = self::getIpData();
+
+        // $LATITUDE =  $IpData->latitude;
+        // $LONGITUDE =  $IpData->longitude;
+
+        // $haversine = "(6371 * acos(cos(radians(" . $LATITUDE . ")) 
+        // * cos(radians(`lat`)) 
+        // * cos(radians(`lng`) 
+        // - radians(" . $LONGITUDE . ")) 
+        // + sin(radians(" . $LATITUDE . ")) 
+        // * sin(radians(`lat`))))";
+        
+        // return $query->select()->selectRaw("{$haversine} AS distance")->whereRaw("{$haversine} < ?", [$DISTANCE_KILOMETERS]);
+
+        return $query;
+
+    }
+
+    public static function GetLatLongFromAddress($address){
+
+        // $client = new \GuzzleHttp\Client();
+        // $request = $client->get('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCZf3_pkkppQ2yhnjB2Tb9NapQzZV1CVcg&address='.$address);
+        // $response = $request->getBody();
+
+        // dd($request);
+
+
+        $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCZf3_pkkppQ2yhnjB2Tb9NapQzZV1CVcg&address='.$address);
+
+        return $response->json();
+
+    }
+
 }

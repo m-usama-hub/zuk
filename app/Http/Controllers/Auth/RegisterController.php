@@ -69,7 +69,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $user_type_id = array_key_exists('company', $data) ? Config::get('constants.UserTypeIds.Company') : Config::get('constants.UserTypeIds.User');
-
+        
+        $role = 'User';
+        
         $user = User::create([
             'name' => $data['firstname'].' '.$data['lastname'],
             'email' => $data['email'],
@@ -99,11 +101,14 @@ class RegisterController extends Controller
                     'user_id'=>$user->id,
                     'business_name'=>$data['business_name'],
                 ]);
+
+                $role = 'User';
+
             }
 
-            $user->assignRole('User');
-
         }
+
+        $user->assignRole($role);
 
         return $user;
     }

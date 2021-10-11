@@ -70,6 +70,7 @@ class HousemateController extends Controller
                 unset($UploadData['_token']);
 
                 $businessHousemate = BusinessHousemate::where('id',$request->id)->first()->toArray();
+                unset($businessHousemate['business_detail']);
 
                 $newData = array_diff($UploadData,$businessHousemate);
 

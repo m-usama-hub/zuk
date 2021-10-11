@@ -164,10 +164,6 @@
         @include('Frontend.modals.signUp')
     @endif
 
-
-
-
-
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <!-- Initialize Swiper -->
     <script>
@@ -239,22 +235,29 @@
         });
     </script>
     <script>
-        var swiper = new Swiper(".modalSwiper", {
-            pagination: {
-                el: ".swiper-pagination",
-                type: "fraction",
-            },
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-        });
+        var modalSwiper = {
+            initialize: function() {
+
+                new Swiper(".modalSwiper", {
+                    loop: true,
+                    pagination: {
+                        el: ".swiper-pagination",
+                        type: "fraction",
+                    },
+                    navigation: {
+                        nextEl: ".swiper-button-next",
+                        prevEl: ".swiper-button-prev",
+                    },
+                });
+            }
+        };
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCZf3_pkkppQ2yhnjB2Tb9NapQzZV1CVcg&libraries=places"></script>
 
     <script>
         function AddReadMore() {
@@ -338,6 +341,7 @@
     </script>
 
     @stack('script')
+
 
 </body>
 

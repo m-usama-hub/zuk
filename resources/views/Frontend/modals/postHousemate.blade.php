@@ -1,6 +1,6 @@
-<div class="modal fade house_mate_pop" id="posthousemate" tabindex="-1" aria-labelledby="exampleModalLabel"
+<div class="modal fade house_mate_pop" id="posthousemate" tabindex="-1" aria-labelledby="exampleModalLabel" style="overflow: scroll"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog house_modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit "></i>Post a Housemate</h5>
@@ -22,18 +22,23 @@
                                     </div>
                                 </div>
                                 <div class="personal_info">
-                                    <div class="form-group text_fields">
-                                        <input type="text" required placeholder="Name" name="name"
-                                            class="text">
-                                        <input type="number" required placeholder="Age" name="age"
-                                            class="text">
-                                        <input type="number" required placeholder="Phone" name="contact_no"
-                                            class="text">
-                                        <input type="email" required placeholder="Email Address" name="email"
-                                            class="text">
+                                    <div class="form-group text_fields" style="    width: 166%;">
+                                        <div class="label_test" style="line-height: 1.1;">
+                                            <div class="label_divs">
+                                                <label for="">Name</label>
+                                                <p style="margin-left: 63px;">{{ Auth::user()->UserDetail->fullname }}</p>
+                                            </div>
+                                            <div class="label_divs">
+                                                <label for="">Private Phone</label>
+                                                <p style="margin-left: 13px;">{{ Auth::user()->UserDetail->contact_no }}</p>
+                                            </div>
+                                            <div class="label_divs">
+                                                <label for="">Email Address</label>
+                                                <p style="margin-left: 15px;">{{ Auth::user()->UserDetail->email }}</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -65,12 +70,18 @@
                             </div>
                         </div>
                         <div class="col-md-6 col-12 details">
-                            <div class="date">
+                            {{-- <div class="date">
                                 <input type="date" name="available_date" class="category" id="">
-                            </div>
+                            </div> --}}
                             <div class="col-md-12 col-12 info">
                                 <div class="col-md-12 col-12 text_fields">
-                                    <input type="text" required placeholder="e.g. Brampton" name=""
+
+                                <input type="date" name="available_date" class="text" id="">
+                                </div>
+                                <div class="col-md-12 col-12 text_fields">
+                                    <input type="hidden" name="lat" class="latitude" placeholder="Address">
+                                    <input type="hidden" name="lng" class="longitude" placeholder="Address">
+                                    <input type="text" required placeholder="e.g. Brampton" name="address" id="houseAddress"
                                         class="text">
                                 </div>
                                 <div class="col-md-12 col-12 text_fields">

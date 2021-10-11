@@ -16,7 +16,7 @@
                                     <img class="mr-3" src="{{ asset($pro->BusinessUser->profile_pic) }}"
                                         width="100" alt="Generic placeholder image">
                                     <div class="media-body">
-                                        <h3 class="mt-0 blue">{{ $pro->ProfessionalBusinessCategory->category }}
+                                        <h3 class="mt-0 blue">{{ $pro->UserBusinessCategoriesString() }}
                                             <span class="ab-right"><small><i class="fas fa-star orange"></i>
                                                     {{ $pro->reviewsAvg ?? '0' }}/5</small></span>
                                         </h3>

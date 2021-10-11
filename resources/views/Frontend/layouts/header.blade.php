@@ -8,20 +8,20 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::url() == route('indexProfessional') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('indexProfessional') }}">Find a Professional <span
                                 class="sr-only">(current)</span></a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::url() == route('indexItem') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('indexItem') }}">Buy & Sell Items</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::url() == route('indexProperty') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('indexProperty') }}">Find a Property</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::url() == route('indexHousemate') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('indexHousemate') }}">Find a Housemate</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item {{ Request::url() == route('indexMessage') ? 'active' : '' }}">
                         <a class="nav-link" href="{{ route('indexMessage') }}">Share a Message</a>
                     </li>
                     <li class="nav-item dropdown">

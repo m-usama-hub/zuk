@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use App\Models\User;
 use App\Models\UserInterest;
 use App\Models\UserDetails;
 use App\Models\UserBusinessDetail;
 use App\Models\UserBusinessService;
+use App\Models\UserBusinessCategory;
 use AppHelper;
 use DB;
 use Config;
@@ -65,7 +67,6 @@ class ProfileController extends Controller
         DB::beginTransaction();
         try
         {
-
             if(Auth::user()->isUserLoggedIn()){
 
                 $NewData = $request->all();
@@ -165,7 +166,7 @@ class ProfileController extends Controller
 
                     if (array_key_exists("email",$NewData)){
 
-                        Auth::user()->update([
+                        User::where('id',Auth::user()->id)->update([
                             'email' => $NewData['email'],
                             'email_verified_at' => null
                         ]);
@@ -225,7 +226,12 @@ class ProfileController extends Controller
                 unset($NewData['_method']);
 
                 $UserBusinessDetailData = Auth::user()->UserBusinessDetail == null ? array() : Auth::user()->UserBusinessDetail->toArray();
+                if(Auth::user()->UserBusinessDetail){
+
+                    unset($UserBusinessDetailData['reviews']);
+                }
                 $UpdateUserBusinessDetailData=array_diff($NewData,$UserBusinessDetailData);
+
 
                 $validator = Validator::make($UpdateUserBusinessDetailData, [
                     'business_logo' => 'image',
@@ -290,7 +296,6 @@ class ProfileController extends Controller
                     }
 
                 }
-
                 if($ErrorMsg == ''){
 
                     if(Auth::user()->UserBusinessDetail){
@@ -298,6 +303,8 @@ class ProfileController extends Controller
                         Auth::user()->UserBusinessDetail->update($UpdateUserBusinessDetailData);
 
                     }else{
+
+                        Auth::user()->update('user_type_id', Config::get('constants.UserTypeIds.Professional'));
 
                         UserBusinessDetail::updateOrCreate(['user_id' => Auth::user()->id],$UpdateUserBusinessDetailData);
                     }
@@ -354,6 +361,30 @@ class ProfileController extends Controller
 
     }
 
+    public function addUserBusinessCategory(Request $request){
+
+        $data = [];
+        $data['message'] = '';
+        $newVal = $request->business_category_id;
+        $getUserInterest = Auth::user()->UserBusinessDetail->ProfessionalBusinessCategories->pluck('id');
+
+        if(in_array($newVal, $getUserInterest->toArray())){
+
+             $data['message'] = 'Category Already exsist...!';
+
+        }else{
+
+            UserBusinessCategory::create([
+                'user_business_detail_id' => Auth::user()->UserBusinessDetail->id,
+                'business_category_id' => $newVal
+            ]);
+
+            $data['categories'] = UserBusinessDetail::where('user_id',Auth::user()->id)->with('ProfessionalBusinessCategories')->first();
+        }
+        return $data;
+
+    }
+
     public function deleteUserBusinessService(Request $request){
 
         $data = [];
@@ -363,6 +394,25 @@ class ProfileController extends Controller
         if(UserBusinessService::where('service_name', $delVal)->delete()){
 
             $data['service'] = UserBusinessService::where('user_business_detail_id', Auth::user()->UserBusinessDetail->id)->get();
+
+        }else{
+
+             $data['message'] = 'Cannot delete';
+
+        }
+
+        return $data;
+    }
+
+    public function deleteUserBusinessCategory(Request $request){
+
+        $data = [];
+        $data['message'] = '';
+        $delVal = $request->business_category_id;
+
+        if(UserBusinessCategory::where('business_category_id', $delVal)->delete()){
+
+            $data['categories'] = UserBusinessDetail::where('user_id',Auth::user()->id)->with('ProfessionalBusinessCategories')->first();
 
         }else{
 

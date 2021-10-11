@@ -1,6 +1,6 @@
 <div class="modal fade item_sell_popup" id="itemtosell" tabindex="-1" aria-labelledby="exampleModalLabel" style="overflow: auto"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog item_modal" >
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit "></i>Post an Item to Sell</h5>
@@ -43,8 +43,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-8 col-12 person">
-                            <img src="{{ asset(Auth::user()->UserDetail->profile_pic) }}" width="100" alt=""
+                        {{-- <div class="col-md-8 col-12 person">
+                            <img src="{{ asset(Auth::user()->UserDetail->profile_pic) }}" width="65" alt=""
                                 class="person">
                             <div class="profile">
                                 <h5>Profile photo</h5>
@@ -64,16 +64,51 @@
                                     <div class="form-group text_fields">
                                         <input type="number" required placeholder="Private Phone" name="contact_no"
                                             class="text">
-                                        {{-- <input type="text" required placeholder="Address" name="address" class="text"> --}}
+                                            <label for="">Address</label>
+                                        <input type="text" required placeholder="Address" name="address" class="text">
                                     </div>
 
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
+                        <div class="col-md-8 col-12 person">
+                            <img src="{{ asset(Auth::user()->UserDetail->profile_pic) }}" width="65" alt="" class="person">
+                            <div class="profile">
+                               <h5>Profile photo</h5>
+                            </div>
+                            <div class="row">
+                               <div class="col-md-6 col-12">
+                                  <div class="form-group text_fields">
+                                        <div class="label_test">
+                                           <label for="">First Name</label>
+                                           <p>{{ Auth::user()->UserDetail->firstname }}</p>
+                                           <label for="">Last Name</label>
+                                           <p >{{ Auth::user()->UserDetail->lastname }}</p>
+                                           <label for="">Email Address</label>
+                                           <p>{{ Auth::user()->UserDetail->email }}</p>
+                                        </div>
+                                  </div>
+                               </div>
+                               <div class="col-md-6 col-12">
+                                  <div class="form-group text_fields">
+                                     <div class="test1">
+                                        <div class="label_test">
+                                           <label for="">Private Phone</label>
+                                           <p >{{ Auth::user()->UserDetail->contact_no }}</p>
+                                           <label for="">Address</label>
+                                           <p for="">{{ Auth::user()->UserDetail->address }}</p>
+                                        </div>
+                                    </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
                     </div>
                     <div class="form-group text_fields">
+                        <input type="hidden" name="lat" class="latitude" placeholder="Address">
+                        <input type="hidden" name="lng" class='longitude' placeholder="Address">
                         <input type="text" required placeholder="Add item location e.g. Brampton On"
-                            name="location_address" class="text">
+                            name="location_address" class="text" id="itemAddress">
                     </div>
                     <div class="price">
                         <div class="row">
@@ -87,9 +122,9 @@
 
                             <div class="col-md-4">
                                 <div class="dollars">
-                                    <p>Price</p>
+                                    <p>Price($)</p>
                                     <input type="number" required class="dollar_number" name="price" id="itemPrice"
-                                        placeholder="$0.00">
+                                        placeholder="0.00">
                                 </div>
                             </div>
 
@@ -98,8 +133,9 @@
                                 <div class="selection_box">
                                     <label>Delivery type</label>
                                     <select required name="delivery_type" class="category">
-                                        <option value="COD">COD</option>
-                                        <option value="CC">CC</option>
+                                        <option value="Post">Post</option>
+                                        <option value="Collection">Collection</option>
+                                        <option value="Post or Collection">Post or Collection</option>
                                     </select>
                                 </div>
                             </div>
@@ -146,9 +182,11 @@
                                 <p>Make my ad stand out</p>
                             </div>
                             <div class=" selection_box">
-                                <select required name="isFeatured" class="category">
-                                    <option value="1">Interested</option>
+                                <select required name="isFeatured" class="category" style="    width: 294%;">
                                     <option value="0">Not Interested</option>
+                                    <option value="1">3 days</option>
+                                    <option value="1">7 days</option>
+                                    <option value="1">14 days</option>
                                 </select>
                             </div>
                         </div>
@@ -183,6 +221,11 @@
                                     onchange="loadFile(event,'display_image_message')" style="display: none" />
                             </div>
                         </div>
+
+                        <div class="t_pay text-center mt-3">
+                            <span class="text_fields">Total to pay for your ad <input type="text" placeholder="$0.00" class="text" style="width: 10%;"></span>
+                        </div>
+
                         <div class="col-md-12 col-12 policy">
                             <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of
                                     Use</a> and <a href="" class="terms">Privacy Policy.</a></p>

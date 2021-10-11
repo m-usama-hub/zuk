@@ -1708,10 +1708,15 @@
     margin-top: 5px;
 }
 .item_sell_popup .text_field .free {
-    display: flex;
-    margin-left: -10px;
+    /* display: flex; */
+    /* margin-left: -10px;
     justify-content: end;
-    align-items: center;
+    align-items: center; */
+
+    display: flex;
+    /* margin-left: -10px; */
+    margin-top: 4px;
+    justify-content: space-evenly;
 }
 .item_sell_popup .text_field .free .switch_div {
     margin-left: 13px;
@@ -2836,7 +2841,6 @@
     font-size: 12px;
     padding: 5px 16px;
     border-radius: 10px;
-    width: 31%;
     border: 1px solid #8b8b8b;
 }
 .postmessage .broadcast .radius {
@@ -3397,3 +3401,50 @@
     margin: 8.5% 23% 0% 0%;
 
 }
+
+
+/* / recent-css-starts / */
+.mini_para {
+    min-height: 106px;
+}
+.modal_body {
+    bottom: 50px !important;
+}
+.house_modal {
+    bottom: 213px;
+}
+.item_modal{
+    top:60px;
+}
+.modal_2 {
+    right: 75px;
+}
+.modal_3 {
+    width: 35%;
+    right: 5%;
+}
+/* / recent-css ends / */
+
+
+.label_test label {
+    display: block;
+    font-size: 14px;
+    color: grey;
+    line-height: 1;
+    margin-bottom: 0px;
+}
+
+.label_test p{
+    margin-bottom: 6px;
+    font-size: 14px;
+}
+
+
+.label_divs{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+

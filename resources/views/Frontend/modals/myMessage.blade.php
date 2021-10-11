@@ -1,5 +1,5 @@
 <div class="modal fade messageper" id="personal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal_body modal_2">
         <div class="modal-content">
             <div class="modal-header">
                 <img src="Frontend/img/person.png" alt="">

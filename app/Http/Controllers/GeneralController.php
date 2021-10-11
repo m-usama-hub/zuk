@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\UserFavorite;
+use App\Models\BusinessMessageLike;
+use App\Models\BusinessMessageReply;
 use Auth;
 
 class GeneralController extends Controller
@@ -136,6 +138,44 @@ class GeneralController extends Controller
 
         return $data;
 
+    }
+
+    public function LikeToggle($id,Request $request){
+
+        if($request->like){
+
+            BusinessMessageLike::where('business_message_id',$id)->where('user_id',Auth::user()->id)->delete();
+
+        }else{
+
+            BusinessMessageLike::create([
+                'user_id' => Auth::user()->id,
+                'business_message_id' => $id
+            ]);
+        }
+
+        return redirect()->back();
+
+    }
+
+    public function Doreply($id,Request $request){
+
+        BusinessMessageReply::create([
+            'user_id' => Auth::user()->id,
+            'business_message_id' => $id,
+            'reply' => $request->message
+        ]);
+
+        return redirect()->back();
+        
+    }
+
+    public function deleteReply($id,Request $request){
+
+        BusinessMessageReply::where('id',$id)->delete();
+
+        return redirect()->back();
+        
     }
 
 

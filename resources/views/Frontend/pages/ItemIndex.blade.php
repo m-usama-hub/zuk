@@ -30,7 +30,7 @@
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href=""
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        <a href="" class="btn btn-link">--------</a>
+                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart" id="item{{ $key }}"
@@ -72,8 +72,8 @@
                                                             <h4 class="card-title blue"><small> {{ $item->title }} <i
                                                                         class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>${{ $item->price_free == 1 ? '0' : $item->price }}</b>
-                                                                <span class="sm-size">Only 3 Left</span>
+                                                                <b>${{ $item->price_free == 1 ? '0' : number_format($item->price) }}</b>
+                                                                {{-- <span class="sm-size">Only 3 Left</span> --}}
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($item->description ?? '', 0, 150) . '....' }}
@@ -81,7 +81,7 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->BusinessDetail->BusinessUser->profile_pic) }}"
+                                                        <img src="{{ asset($item->profile_pic) }}"
                                                             style="width:50px" alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>
@@ -106,7 +106,7 @@
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href=""
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        <a href="" class="btn btn-link">--------</a>
+                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="" class="heart"><i
@@ -126,18 +126,18 @@
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
-                                                            <div class="rating_buy_sell">
+                                                            {{-- <div class="rating_buy_sell">
                                                                 <span><i class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i><i
                                                                         class="fas fa-star"></i></span>
-                                                            </div>
+                                                            </div> --}}
                                                             <h4 class="card-title blue"><small> {{ $item->title }} <i
                                                                         class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>${{ $item->price_free == 1 ? '0' : $item->price }}</b>
-                                                                <span class="sm-size">Only 3 Left</span>
+                                                                <b>${{ $item->price_free == 1 ? '0' : number_format($item->price) }}</b>
+                                                                {{-- <span class="sm-size">Only 3 Left</span> --}}
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($item->description ?? '', 0, 150) . '....' }}
@@ -145,7 +145,7 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->BusinessDetail->BusinessUser->profile_pic) }}"
+                                                        <img src="{{ asset($item->profile_pic) }}"
                                                             style="width:50px" alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>

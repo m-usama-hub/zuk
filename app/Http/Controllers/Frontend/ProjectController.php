@@ -69,6 +69,7 @@ class ProjectController extends Controller
                 unset($UploadData['_token']);
 
                 $BusinessProject = BusinessProject::where('id',$request->id)->first()->toArray();
+                unset($BusinessProject['business_detail']);
 
                 $newData = array_diff($UploadData,$BusinessProject);
 

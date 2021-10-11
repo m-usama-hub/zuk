@@ -1,9 +1,9 @@
 <div class="modal fade privacy_popup" id="privacy" tabindex="-1" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
-<div class="modal-dialog">
+<div class="modal-dialog modal_2 modal_body">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"><img src="Frontend/img/insurance.png"
+            <h5 class="modal-title" id="exampleModalLabel"><img src="{{ asset('Frontend/img/insurance.png') }}"
                     class="img-fluid">My privacy</h5>
             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
         </div>

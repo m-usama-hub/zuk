@@ -1395,3 +1395,32 @@ body a:hover {
 
 
 
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+
+
+.pac-container {
+    z-index: 10000 !important;
+}
+
+
+
+
+/* / recernt-css-starts / */
+.anchor_img{
+    min-height:168px;
+}
+.mini_para{
+    min-height: 105px;
+}
+/* / recent-css-ends / */
+

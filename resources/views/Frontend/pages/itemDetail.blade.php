@@ -15,18 +15,18 @@
                             <div class="col-lg-8 media_content">
                                 <div class="media">
                                     <img class="mr-3"
-                                        src="{{ asset($item->BusinessDetail->BusinessUser->profile_pic) }}"
+                                        src="{{ asset($item->profile_pic) }}"
                                         class="img-fluid" alt="Generic placeholder image" width="100">
                                     <div class="media-body">
                                         <h3 class="mt-0 blue">{{ $item->title }} <span
-                                                class="ab-right">{{ $item->price_free == 1 ? '$0.00' : '$' . $item->price }}</span>
+                                                class="ab-right">{{ $item->price_free == 1 ? '$0.00' : '$' . number_format($item->price) }}</span>
                                         </h3>
                                         <p class="gray"> <span
                                                 class="ab-right">{{ $item->category }}</span> <span
                                                 class="ab-right collection">{{ $item->delivery_type }}</span></p>
                                         <ul class="single_room_details">
-                                            <li class="gray">Etobicoke ON</li>
-                                            <li>Sarah B</li>
+                                            <li class="gray">{{ $item->location_address }}</li>
+                                            <li>{{ $item->BusinessDetail->BusinessUser->fullname }}</li>
                                         </ul>
 
                                     </div>

@@ -167,7 +167,7 @@
                     </div>
 
                     <div class="row" style="float: right;">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <button class="btn btn-success" type="submit"> Update Info </button>
                         </div>
                     </div>
@@ -232,7 +232,7 @@
                     </div>
 
                     <div class="row" style="float: right;">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <button class="btn btn-success" type="submit"> Update Links </button>
                         </div>
                     </div>
@@ -256,7 +256,7 @@
                         </script>
                     </div><br>
                     <div class="row" style="float: right;">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <button class="btn btn-success" type="submit"> Update Privacy policy </button>
                         </div>
                     </div>
@@ -280,13 +280,29 @@
                         </script>
                     </div><br>
                     <div class="row" style="float: right;">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <button class="btn btn-success" type="submit"> Update Aboutus </button>
                         </div>
                     </div>
+                    <br>
                 </form>
 
 
+                <form action="{{ route('import') }}" method="post" enctype="multipart/form-data">
+                    @csrf
+
+                    <label for="basic-url">Import Professional CSV</label>
+                    <div>
+
+                        <input type="file" name="file" class="form-control">
+
+                    </div><br>
+                    <div class="row" style="float: right;">
+                        <div class="col-md-6">
+                            <button class="btn btn-success" type="submit"> Import </button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

@@ -78,8 +78,8 @@
                                                                 <p><i class="fas fa-bed pr-2 l-blue"></i>
                                                                     {{ explode(' ', $property->property_beds ?? '')[0] }}
                                                                     <i class="pl-2 pr-2 fas fa-bath l-blue"></i>
-                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}<i
-                                                                        class="pl-2 fas fa-cube l-blue"></i> 510 ft2
+                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}
+                                                                    {{-- <i class="pl-2 fas fa-cube l-blue"></i> 510 ft2 --}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -162,8 +162,8 @@
                                                                 <p><i class="fas fa-bed pr-2 l-blue"></i>
                                                                     {{ explode(' ', $property->property_beds ?? '')[0] }}
                                                                     <i class="pl-2 pr-2 fas fa-bath l-blue"></i>
-                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}<i
-                                                                        class="pl-2 fas fa-cube l-blue"></i> 510 ft2
+                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}
+                                                                    {{-- <i class="pl-2 fas fa-cube l-blue"></i> 510 ft2 --}}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -246,8 +246,8 @@
                                                                 <p><i class="fas fa-bed pr-2 l-blue"></i>
                                                                     {{ explode(' ', $property->property_beds ?? '')[0] }}
                                                                     <i class="pl-2 pr-2 fas fa-bath l-blue"></i>
-                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}<i
-                                                                        class="pl-2 fas fa-cube l-blue"></i> 510 ft2
+                                                                    {{ explode(' ', $property->property_baths ?? '')[0] }}
+                                                                    {{-- <i class="pl-2 fas fa-cube l-blue"></i> 510 ft2 --}}
                                                                 </p>
                                                             </div>
                                                         </div>

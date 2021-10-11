@@ -1,6 +1,6 @@
 <div class="modal fade my_details_popup show" id="mydetails" tabindex="-1" aria-labelledby="exampleModalLabel"
     style="overflow: scroll;" aria-modal="true" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal_body">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">My Details</h5>
@@ -81,13 +81,13 @@
                                     </div>
                                     <div><i class="far fa-edit" id="open_edit" style="cursor: pointer;"></i></div>
                                 </div>
-                                <div class="personal">
+                                {{-- <div class="personal">
                                     <div class="edit_profile">
                                         <img src="{{ asset(Auth::user()->UserDetail->profile_pic) }}" alt=""
                                             class="img-fluid profile_image w-25">
                                     </div>
                                     <div class="profile">Profile photo</div>
-                                </div>
+                                </div> --}}
                                 <div class="photo_heading">
                                     <h4>Profile photos</h4>
                                 </div>
@@ -261,12 +261,18 @@
                                     <input type="number" name="business_phone" class="textarea enable_business_edit"
                                         value="{{ Auth::user()->UserBusinessDetail->business_phone ?? '' }}"
                                         placeholder="123 456 789" disabled required>
+                                    <label for="" class="labels">Business Address</label>
+                                    <input type="hidden" name="lat" class="latitude" placeholder="Address">
+                                    <input type="hidden" name="lng" class='longitude' placeholder="Address">
+                                    <input type="text" name="address" class="textarea enable_business_edit" id="professionalAddress"
+                                        value="{{ Auth::user()->UserBusinessDetail->address ?? '' }}"
+                                        placeholder="zipcode, country, town" disabled required>
                                     <label for="" class="labels">About my business</label>
                                     <textarea name="business_details" id="" class="textarea enable_business_edit"
                                         cols="30" rows="10"
                                         disabled>{{ Auth::user()->UserBusinessDetail->business_details ?? '' }}</textarea>
 
-                                    <label for="" class="labels">Business Category</label>
+                                    {{-- <label for="" class="labels">Business Category</label>
                                     <select id="business_category_id" name="business_category_id" class="textarea"
                                         required disabled="true">
                                         @foreach (AppHelper::professionalCategories() as $item)
@@ -274,7 +280,36 @@
                                                 {{ Auth::user()->UserBusinessDetail ? ($item->id == Auth::user()->UserBusinessDetail->business_category_id ? 'selected' : '') : '' }}>
                                                 {{ $item->category }}</option>
                                         @endforeach
-                                    </select>
+                                    </select> --}}
+
+
+                                    <label for="" class="labels">Business Category</label>
+                                    <div class="textarea" id="all_business_categories" style="font-size: 11px;">
+                                        @foreach (Auth::user()->UserBusinessDetail->ProfessionalBusinessCategories ?? [] as $item)
+                                            
+                                            <i>{{ $item->category }} 
+                                                <input type="hidden" class="category_id" value="{{ $item->id }}">
+                                                <i class="fas fa-trash edit_business_btn"
+                                                    data-toggle="tooltip" data-original-title="Delete"
+                                                    style="cursor: pointer; display:none;"></i></i><br>
+                                        @endforeach
+                                    </div>
+
+                                    <div class="changepass edit_business_btn" style="display: none;">
+                                        <h4>Add a business category <i class="fas fa-plus" id="add_new_business"
+                                                style="cursor: pointer;"></i></h4>
+                                    </div>
+                                    <div id="add_new_business_inputs" style="display:none;">
+                                        <select id="business_category_id" class="textarea">
+                                        @foreach (AppHelper::professionalCategories() as $item)
+                                            <option value="{{ $item->id }}">
+                                                {{ $item->category }}</option>
+                                        @endforeach
+                                        </select>
+                                        <button class="btn btn-sm"
+                                            style="padding: 4px;margin-left: 5px;font-size: 11px;margin-bottom: 5px;border: 1px solid;border-radius: 8px;"
+                                            id="add_new_business_category">Add</button>
+                                    </div>
 
 
                                     <label for="" class="labels">Business services</label>

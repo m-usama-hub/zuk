@@ -13,6 +13,8 @@ use App\Models\BusinessMessage;
 use Artesaos\SEOTools\Facades\SEOTools;
 use AppHelper;
 use Route;
+use Schema;
+use Config;
 
 class AnonymousController extends Controller
 {
@@ -28,8 +30,13 @@ class AnonymousController extends Controller
 
         $data = [];
 
-        $propertiesForSale = BusinessProperty::publish()->sale()->get();
-        $propertiesForRent = BusinessProperty::publish()->rent()->get();
+        $news = BusinessProperty::publish()->inRandomOrder()->limit(20)->select('id','business_id','title','slug','created_at','views')->get();
+
+        $data['news'] = $news;
+
+
+        $propertiesForSale = BusinessProperty::publish()->sale()->search()->nearMeOrRadius()->get();
+        $propertiesForRent = BusinessProperty::publish()->rent()->search()->nearMeOrRadius()->get();
 
         $data['properties'] = [
             'sale' => $propertiesForSale,
@@ -37,16 +44,37 @@ class AnonymousController extends Controller
         ];
 
 
-        $newPro = UserBusinessDetail::isprofessional()->new()->get();
-        $topPro = UserBusinessDetail::isprofessional()->top()->get();
+        $newPro = UserBusinessDetail::whereHas('User', function($q) {
+                                            $q->where('user_type_id', Config::get('constants.UserTypeIds.Professional'));
+                                        })->with('ProfessionalBusinessCategories')->new()->search()->nearMeOrRadius()->get();
+        $newArry = [];
+        foreach ($newPro as $key => $value) {
+            if(count($value->ProfessionalBusinessCategories) > 0){
+                array_push($newArry,$value);
+            }
+        }
+
+        $newPro = $newArry;
+        
+        $topPro = UserBusinessDetail::whereHas('User', function($q) {
+                                            $q->where('user_type_id', Config::get('constants.UserTypeIds.Professional'));
+                                        })->with('ProfessionalBusinessCategories')->top()->search()->nearMeOrRadius()->get();
+
+        $newArry = [];
+        foreach ($topPro as $key => $value) {
+            if(count($value->ProfessionalBusinessCategories) > 0){
+                array_push($newArry,$value);
+            }
+        }
+        $topPro = $newArry;                             
 
         $data['professionals'] = [
             'new' => $newPro,
             'top' => $topPro,
         ];
 
-        $allItems = BusinessItem::publish()->all()->get();
-        $newItems = BusinessItem::publish()->new()->get();
+        $allItems = BusinessItem::publish()->all()->search()->nearMeOrRadius()->get();
+        $newItems = BusinessItem::publish()->new()->search()->nearMeOrRadius()->get();
 
         $data['items'] = [
             'all' => $allItems,
@@ -57,8 +85,7 @@ class AnonymousController extends Controller
 
     }
 
-    public function ajaxLogin(Request $request)
-    {
+    public function ajaxLogin(Request $request){
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
@@ -93,9 +120,35 @@ class AnonymousController extends Controller
 
         $data = [];
 
-        $newPro = UserBusinessDetail::isprofessional()->new()->get();
-        $topPro = UserBusinessDetail::isprofessional()->top()->get();
+        $newPro = UserBusinessDetail::whereHas('User', function($q) {
+            $q->where('user_type_id', Config::get('constants.UserTypeIds.Professional'));
+        })->with('ProfessionalBusinessCategories')->new()->search()->nearMeOrRadius()->get();
 
+        $newArry = [];
+        foreach ($newPro as $key => $value) {
+        if(count($value->ProfessionalBusinessCategories) > 0){
+        array_push($newArry,$value);
+        }
+        }
+
+        $newPro = $newArry;
+
+        $topPro = UserBusinessDetail::whereHas('User', function($q) {
+                    $q->where('user_type_id', Config::get('constants.UserTypeIds.Professional'));
+                })->with('ProfessionalBusinessCategories')->top()->search()->nearMeOrRadius()->get();
+
+        $newArry = [];
+        foreach ($topPro as $key => $value) {
+        if(count($value->ProfessionalBusinessCategories) > 0){
+        array_push($newArry,$value);
+        }
+        }
+        $topPro = $newArry;                             
+
+        $data['professionals'] = [
+        'new' => $newPro,
+        'top' => $topPro,
+        ];
         $data['professionals'] = [
             'new' => $newPro,
             'top' => $topPro,
@@ -104,6 +157,7 @@ class AnonymousController extends Controller
         return view('Frontend.pages.professionalIndex',$data);
 
     }
+
     public function indexItem(){
 
         SEOTools::setTitle(AppHelper::SystemConfig('meta_item_title_home'));
@@ -116,8 +170,8 @@ class AnonymousController extends Controller
 
         $data = [];
 
-        $allItems = BusinessItem::publish()->all()->get();
-        $newItems = BusinessItem::publish()->new()->get();
+        $allItems = BusinessItem::publish()->all()->search()->nearMeOrRadius()->get();
+        $newItems = BusinessItem::publish()->new()->search()->nearMeOrRadius()->get();
 
         $data['items'] = [
             'all' => $allItems,
@@ -127,6 +181,7 @@ class AnonymousController extends Controller
         return view('Frontend.pages.ItemIndex',$data);
 
     }
+
     public function indexProperty(){
 
         SEOTools::setTitle(AppHelper::SystemConfig('meta_Property_title_home'));
@@ -139,9 +194,9 @@ class AnonymousController extends Controller
 
         $data = [];
 
-        $propertiesForSale = BusinessProperty::publish()->sale()->nearMe()->get();
-        $allProperties = BusinessProperty::publish()->all()->nearMe()->get();
-        $propertiesForRent = BusinessProperty::publish()->rent()->nearMe()->get();
+        $propertiesForSale = BusinessProperty::publish()->sale()->search()->nearMeOrRadius()->get();
+        $allProperties = BusinessProperty::publish()->all()->search()->nearMeOrRadius()->get();
+        $propertiesForRent = BusinessProperty::publish()->rent()->search()->nearMeOrRadius()->get();
 
         $data['properties'] = [
             'all' => $allProperties,
@@ -152,7 +207,8 @@ class AnonymousController extends Controller
         return view('Frontend.pages.propertyIndex',$data);
 
     }
-    public function indexHousemate(){
+
+    public function indexHousemate(Request $request){
 
         SEOTools::setTitle(AppHelper::SystemConfig('meta_Housemate_title_home'));
         SEOTools::setDescription(AppHelper::SystemConfig('meta_Housemate_description_home'));
@@ -164,17 +220,16 @@ class AnonymousController extends Controller
 
         $data = [];
 
-        $BusinessHousemate = BusinessHousemate::publish()->get();
+        $BusinessHousemate = BusinessHousemate::publish()->search()->nearMeOrRadius()->get();
 
         $data['housemates'] = [
             'all' => $BusinessHousemate,
         ];
 
-        // dd($data);
-
         return view('Frontend.pages.housemateIndex',$data);
 
     }
+
     public function indexMessage(){
 
         SEOTools::setTitle(AppHelper::SystemConfig('meta_Message_title_home'));
@@ -187,7 +242,7 @@ class AnonymousController extends Controller
 
         $data = [];
 
-        $BusinessMessage = BusinessMessage::publish()->get();
+        $BusinessMessage = BusinessMessage::publish()->search()->nearMeOrRadius()->get();
 
         $data['messages'] = [
             'all' => $BusinessMessage,
@@ -273,5 +328,28 @@ class AnonymousController extends Controller
         SEOTools::jsonLd()->addImage(asset($pro->business_profile_pic));
 
         return view('Frontend.pages.professionalDetail',compact('pro'));
+    }
+
+    public function search(Request $request){
+
+        $data = [];
+
+        $model = 'App\Models\\'.$request->type;
+
+        $modelQuery = $model::query();
+        $modelTable = $model::getTableName();
+
+        if($request->zipcode){
+
+            $hasZipCode = Schema::hasColumn($modelTable, 'zipcode');
+        }
+
+        if($request->city){
+
+            $hasZipCode = Schema::hasColumn($modelTable, 'city');
+        }
+        
+        return view('Frontend.pages.search');
+
     }
 }

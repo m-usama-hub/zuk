@@ -1,5 +1,5 @@
 <div class="modal fade item_sell_popup show" id="postproject" tabindex="-1" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog">
+    <div class="modal-dialog item_modal">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit "></i>Post a Project</h5>
@@ -57,7 +57,9 @@
                                             class="text">
                                         <input type="email" required placeholder="Email Address" name="email"
                                             class="text">
-                                        <input type="text" required name="project_location"
+                                            <input type="hidden" name="lat" class="latitude" placeholder="Address">
+                                            <input type="hidden" name="lng" class='longitude' placeholder="Address">
+                                        <input type="text" required name="project_location" id="projectAddress"
                                             placeholder="Add project location e.g. Brampton On" class="text">
                                     </div>
                                 </div>
@@ -101,7 +103,7 @@
                                 <div class="camera"><i class="upload_icons fas fa-camera"
                                         onclick="UploadUsing(this,'camera')" id="camera"></i></div>
 
-                                <input type="file" required name="cover_image" class="UploadImageElement"
+                                <input type="file" required name="cover_image" id="testCoverImages" multiple class="UploadImageElement"
                                     onchange="loadFile(event,'display_image_project')" style="display: none" />
                             </div>
                         </div>
