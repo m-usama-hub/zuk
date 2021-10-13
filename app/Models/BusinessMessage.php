@@ -51,7 +51,6 @@ class BusinessMessage extends Model
         return $this->hasMany('App\Models\BusinessMessageLike','business_message_id');
     }
 
-
     public function MyLike(){
 
         return $this->hasOne('App\Models\BusinessMessageLike','business_message_id')->where('user_id',Auth::user()->id);
@@ -59,7 +58,12 @@ class BusinessMessage extends Model
 
     public function CheckLike(){
 
-        return $this->MyLike ? true : false;
+        if(Auth::user()){
+            
+            return $this->MyLike ? true : false;
+        }
+
+        return false;
 
     }
 

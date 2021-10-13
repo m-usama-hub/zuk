@@ -178,7 +178,7 @@
                                                 @endcan
 
                                                 @can('user-delete')
-                                                    <a href="" class="btn btn-danger" data-toggle="tooltip"
+                                                    <a href="#!" class="btn btn-danger" data-toggle="tooltip"
                                                         data-original-title="Delete"
                                                         onclick="event.preventDefault();  (confirm('Are you sure you want to delete this User? Each and Every record of this user will be deleted from protal.')) ? document.getElementById('delete-form-{{ $user->id }}').submit():''"
                                                         style="padding:5px 5px;">

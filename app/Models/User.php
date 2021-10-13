@@ -48,6 +48,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function routeNotificationForMail($notification)
+    {
+        return $this->email;
+    }
+
     public function UserDetail()
     {
         return $this->hasOne('App\Models\UserDetail','user_id');

@@ -45,6 +45,16 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+
+    public function showRegistrationForm()
+    {
+        return redirect()->back()->with("RegisterUser","Please Register first.");
+
+        // return view('auth.register');
+    }
+
+
     /**
      * Get a validator for an incoming registration request.
      *

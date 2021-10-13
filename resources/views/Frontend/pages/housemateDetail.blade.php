@@ -33,7 +33,7 @@
                                     <p class="addReadMore showlesscontent">{{ $housemate->description }}</p>
                                     <div class="col-md-12 card-in-heart">
                                         
-                                        <a href="" class="heart" id="heartProp{{ $housemate->id }}"
+                                        <a href="#!" class="heart" id="heartProp{{ $housemate->id }}"
                                             style="background: {{ $housemate->CheckFavourite() ?? '' ? 'white' : '#dc5523' }}; border:{{ $housemate->CheckFavourite() ?? '' ? '1px solid red' : '' }} ">
                                             @if ($housemate->CheckFavourite() ?? '')
                                                 <i class="fas fa-heart"

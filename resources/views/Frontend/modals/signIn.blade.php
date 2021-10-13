@@ -17,8 +17,8 @@
                     </form>
                 </div>
                 <div class="terms_condition">
-                    <p>By signing in with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and
-                        <a href="" class="terms"> Privacy Policy.</a>
+                    <p>By signing in with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and
+                        <a href="#!" class="terms"> Privacy Policy.</a>
                     </p>
                     @if (Route::has('password.request'))
                         <a class="forget_password" href="{{ route('password.request') }}">

@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\UserFavorite;
+use App\Models\User;
 use App\Models\BusinessMessageLike;
 use App\Models\BusinessMessageReply;
+use App\Models\PersonalMessage;
+use App\Notifications\MessageEmailNotification;
 use Auth;
+use Config;
 
 class GeneralController extends Controller
 {
@@ -176,6 +180,77 @@ class GeneralController extends Controller
 
         return redirect()->back();
         
+    }
+
+    public function sendMessage(Request $request){
+
+        $data = [];
+        $data['message'] = '';
+        $data['status'] = false;
+        DB::beginTransaction();
+
+        try{
+
+            $upload = $request->all();
+
+            if($upload['body']){
+                
+                $upload['from_id'] = Auth::user()->id;
+
+                PersonalMessage::create($upload);
+                
+                $user = User::where('id',$upload['to_id'])->first();
+
+                if($user->user_type_id == Config::get('constants.UserTypeIds.Professional') || $user->user_type_id == Config::get('constants.UserTypeIds.User')){
+
+
+                    if($request->table_name == 'BusinessDetail'){
+
+                        $path = 'App\Models\User'.$request->table_name;
+
+                    }else{
+
+                        $path = 'App\Models\Business'.$request->table_name;
+                    }
+
+
+                    if($path == 'App\Models\UserBusinessDetail'){
+
+                        $getData = $path::where('id',$request->table_record_id)->select('id','business_name as title')->first();
+        
+                    }
+                    else{
+
+                        $getData = $path::where('id',$request->table_record_id)->select('id','title')->first();
+
+                    }
+
+                    $EmailData = [
+                        'email' => $user->email,
+                        'title' => $getData->title,
+                        'body' => $request->body,
+                    ];
+
+                    // $delay = now()->addMinutes(10);
+                    // $user->notify((new MessageEmailNotification($EmailData))->delay($delay));
+                    $user->notify(new MessageEmailNotification($EmailData));
+                }
+
+
+                $data['status'] = true;
+
+            }
+
+        }catch(\Throwable $e){
+
+            DB::rollback();
+            $data['message'] = $e->getMessage();
+
+        }
+
+        DB::commit();
+        return $data;
+
     }
 
 

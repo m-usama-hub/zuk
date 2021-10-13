@@ -329,6 +329,22 @@
         </script>
     @endif
 
+    @if (session('UserNotLogged'))
+        <script>
+            $(document).ready(function() {
+                $('#welcome').modal('show');
+            });
+        </script>
+    @endif
+
+    @if (session('RegisterUser'))
+        <script>
+            $(document).ready(function() {
+                $('#signup').modal('show');
+            });
+        </script>
+    @endif
+
     @if (session('message'))
         <script>
             $(document).ready(function() {

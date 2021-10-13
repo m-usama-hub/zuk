@@ -96,8 +96,8 @@
                    </div>
                 </div>
                 <div class="col-md-12 col-12 policy">
-                   <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                   <a href=""></a>
+                   <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                   <a href="#!"></a>
                 </div>
                 <div class="col-md-12 col-12 buttons">
                    <button class="btn">PREVIEW</button>
@@ -267,8 +267,8 @@
                 </div>
              </div>
              <div class="policy">
-                <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                <a href=""></a>
+                <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                <a href="#!"></a>
              </div>
              <div class="buttons">
                 <button class="btn">PREVIEW</button>
@@ -445,8 +445,8 @@
                    </div>
                 </div>
                 <div class="col-md-12 col-12 policy">
-                   <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                   <a href=""></a>
+                   <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                   <a href="#!"></a>
                 </div>
                 <div class="col-md-12 col-12 buttons">
                    <button class="btn">PREVIEW</button>
@@ -566,8 +566,8 @@
                 </div>
              </div>
              <div class="col-md-12 col-12 policy">
-                <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                <a href=""></a>
+                <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                <a href="#!"></a>
              </div>
 
              <div class="col-md-12 col-12 buttons">
@@ -946,7 +946,7 @@
              </div>
              <div class="member">
                 <h4>Already a member?</h4>
-                <a href="" class="login">Login</a>
+                <a href="#!" class="login">Login</a>
 
              </div>
              <div class="cash_amounts">
@@ -985,13 +985,13 @@
              </div>
 
              <div class="col-md-12 col-12 icons">
-                <a href=""> <i class="fab fa-facebook blue"></i></a>
-                <a href=""><i class="fab fa-google red"></i></a>
+                <a href="#!"> <i class="fab fa-facebook blue"></i></a>
+                <a href="#!"><i class="fab fa-google red"></i></a>
              </div>
 
              <div class="col-md-12 col-12">
-                <p>By signing in with Homzs you agree to our <a href="" class="terms">Terms of Use</a>
-                   and <a href="" class="terms"> Privacy Policy.</a></p>
+                <p>By signing in with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a>
+                   and <a href="#!" class="terms"> Privacy Policy.</a></p>
              </div>
 
 

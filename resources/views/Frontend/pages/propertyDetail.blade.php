@@ -41,7 +41,7 @@
                                         {{ $property->description }}
                                     </p>
                                     <div class="col-md-12 card-in-heart">
-                                        <a href="" class="heart" id="heartProp{{ $property->id }}"
+                                        <a href="#!" class="heart" id="heartProp{{ $property->id }}"
                                             style="background: {{ $property->CheckFavourite() ?? '' ? 'white' : '#dc5523' }}; border:{{ $property->CheckFavourite() ?? '' ? '1px solid red' : '' }} ">
                                             @if ($property->CheckFavourite() ?? '')
                                                 <i class="fas fa-heart"
@@ -55,8 +55,8 @@
                                             @endif
 
                                         </a>
-                                        <a href="" class="share"><i class="fas fa-share-square"></i></a>
-                                        <a href="" class="share mt-2"><i class="far fa-comment-alt"></i></a>
+                                        <a href="#!" class="share"><i class="fas fa-share-square"></i></a>
+                                        <a href="#!" class="share mt-2"><i class="far fa-comment-alt"></i></a>
                                     </div>
                                     @if ($property->other_info)
                                         <h4 class="blue">Other information</h4>
@@ -76,7 +76,7 @@
                                         {{ $property->BusinessDetail->business_phone  }}
                                     </a> <a href="mailto:{{ $property->BusinessDetail->BusinessUser->email  }}"><i
                                             class="fas fa-envelope l-blue pl-2 pr-2"></i> {{ $property->BusinessDetail->BusinessUser->email  }}</a>
-                                    <a href="" class="views"><i class="fas fa-eye l-blue"></i> Viewed | {{ $property->views }}</a>
+                                    <a href="#!" class="views"><i class="fas fa-eye l-blue"></i> Viewed | {{ $property->views }}</a>
 
                                 </div>
                             </div>

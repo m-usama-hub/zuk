@@ -64,7 +64,7 @@ aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <p>This owner of this company is aggressive</p>
                     </div>
                     <div class="report">
-                        <a href="" class="reporting">Reporting</a>
+                        <a href="#!" class="reporting">Reporting</a>
                     </div>
                     <div class="pic_info">
                         <div class="pic">

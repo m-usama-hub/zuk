@@ -199,10 +199,10 @@
                         </div>
                     </div>
                     <div class="policy">
-                        <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of
+                        <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of
                                 Use</a>
-                            and <a href="" class="terms">Privacy Policy.</a></p>
-                        <a href=""></a>
+                            and <a href="#!" class="terms">Privacy Policy.</a></p>
+                        <a href="#!"></a>
                     </div>
                     <div class="buttons">
                         <button class="btn preview_form_data" type="button">PREVIEW</button>

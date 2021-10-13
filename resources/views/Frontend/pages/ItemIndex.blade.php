@@ -28,12 +28,12 @@
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href=""
+                                                        <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="item{{ $key }}"
+                                                        <a href="#!" class="heart" id="item{{ $key }}"
                                                             style="border:{{ $item->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $item->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($item->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -47,15 +47,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top" src="{{ asset($item->cover_image) }}"
@@ -104,22 +102,20 @@
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href=""
+                                                        <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart"><i
+                                                        <a href="#!" class="heart"><i
                                                                 class="far fa-heart"></i></a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top" src="Frontend/img/sofa1.png"

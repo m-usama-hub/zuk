@@ -108,9 +108,9 @@
                             </div>
                         </div>
                         <div class="col-md-12 col-12 policy">
-                            <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of
-                                    Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                            <a href=""></a>
+                            <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of
+                                    Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                            <a href="#!"></a>
                         </div>
                         <div class="col-md-12 col-12 buttons">
                             <button class="btn preview_form_data" type="button">PREVIEW</button>

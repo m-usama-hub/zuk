@@ -31,7 +31,7 @@
                                     <h4 class="blue">Description</h4>
                                     <p class="addReadMore showlesscontent">{{ $message->message }}</p>
                                     <div class="col-md-12 card-in-heart">
-                                        <a href="" class="heart" id="prof{{ $message->id }}"
+                                        <a href="#!" class="heart" id="prof{{ $message->id }}"
                                             style="border:{{ $message->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $message->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                             @if ($message->CheckFavourite() ?? '')
                                                 <i class="fas fa-heart"
@@ -142,7 +142,7 @@
                                 @foreach ($message->Replies as $reply)
                                     <div class="custom_like_message">
 
-                                        @if (Auth::user()->id == $reply->user_id)
+                                        @if (Auth::user() && Auth::user()->id == $reply->user_id)
                                             
                                             <div class="room_available">
                                                 <span class="blue">

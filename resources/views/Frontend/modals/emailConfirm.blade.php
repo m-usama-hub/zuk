@@ -30,7 +30,7 @@
                         Please take a moment to make sure we've got your email address right.
                     </p>
                     <p class="dontsign"> Didn't sign up for Homzs</p>
-                    <a href="" class="tell"> Let us know</a>
+                    <a href="#!" class="tell"> Let us know</a>
                 </div>
                 <div class="col-md-12 col-12 btn">
                     <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">

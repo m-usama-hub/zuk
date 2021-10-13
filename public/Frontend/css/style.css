@@ -60,6 +60,14 @@ p {
     font-size: 11px;
     font-family: "Aileron-Bold";
 }
+/* recernt-css-starts */
+.anchor_img{
+    min-height:168px;
+}
+.mini_para{
+    min-height: 105px;
+}
+/* recent-css-ends */
 .green {
     color: #40b69e;
 }
@@ -1390,12 +1398,6 @@ body a:hover {
 .criteria .rate_budget {
     margin-right: 27px;
 }
-
-
-
-
-
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
@@ -1413,8 +1415,6 @@ input[type=number] {
 }
 
 
-
-
 /* / recernt-css-starts / */
 .anchor_img{
     min-height:168px;
@@ -1423,4 +1423,3 @@ input[type=number] {
     min-height: 105px;
 }
 /* / recent-css-ends / */
-

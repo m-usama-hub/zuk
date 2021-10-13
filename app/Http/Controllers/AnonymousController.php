@@ -9,6 +9,7 @@ use App\Models\UserBusinessDetail;
 use App\Models\BusinessItem;
 use App\Models\BusinessHousemate;
 use App\Models\BusinessMessage;
+use App\Models\BusinessClaim;
 
 use Artesaos\SEOTools\Facades\SEOTools;
 use AppHelper;
@@ -351,5 +352,14 @@ class AnonymousController extends Controller
         
         return view('Frontend.pages.search');
 
+    }
+
+    public function cliamBusiness(Request $request){
+
+        $Upload = $request->all();
+
+        BusinessClaim::create($Upload);
+
+        return redirect()->back();
     }
 }

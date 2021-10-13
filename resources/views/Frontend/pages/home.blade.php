@@ -13,21 +13,23 @@
                     <div class="swiper-container new_update_slider" data-aos="fade-up" data-aos-duration="1500">
                         <div class="swiper-wrapper">
                             @foreach ($news as $property)
-                            <a href="{{ $property->link }}">
-                                <div class="swiper-slide">
-                                    <div class="col-md-3 swp-shadow">
-                                        <h2>{{ date('d',strtotime($property->created_at)) }}</h2>
-                                        <p>{{ date('M',strtotime($property->created_at)) }}</p>
-                                    </div>
-                                    <div class="col-md-9 swp-icons">
-                                        <h6 class="blue">{{ $property->title }}</h6>
-                                        <div class="col-md-12 d-flex align-items-center">
-                                            <p><i class="fas fa-user"></i> {{ $property->BusinessDetail->BusinessUser->fullname }}</p>
-                                            <p><i class="fas fa-comments"></i> {{ number_format($property->views) }} Views</p>
+                                <a href="{{ $property->link }}">
+                                    <div class="swiper-slide">
+                                        <div class="col-md-3 swp-shadow">
+                                            <h2>{{ date('d', strtotime($property->created_at)) }}</h2>
+                                            <p>{{ date('M', strtotime($property->created_at)) }}</p>
+                                        </div>
+                                        <div class="col-md-9 swp-icons">
+                                            <h6 class="blue">{{ $property->title }}</h6>
+                                            <div class="col-md-12 d-flex align-items-center">
+                                                <p><i class="fas fa-user"></i>
+                                                    {{ $property->BusinessDetail->BusinessUser->fullname }}</p>
+                                                <p><i class="fas fa-comments"></i> {{ number_format($property->views) }}
+                                                    Views</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
                             @endforeach
                         </div>
                         <!-- <div class="swiper-pagination"></div> -->
@@ -66,12 +68,12 @@
                                             <div class="latest_properties_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">For
-                                                            {{ $property->for_type ?? '' }}</a> <a href=""
+                                                        <a href="#!" class="btn btn-link">For
+                                                            {{ $property->for_type ?? '' }}</a> <a href="#!"
                                                             class="btn btn-link">{{ $property->property_type ?? '' }}</a>
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="heartProp{{ $key }}"
+                                                        <a href="#!" class="heart" id="heartProp{{ $key }}"
                                                             style="border:{{ $property->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $property->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($property->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -85,15 +87,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"
@@ -146,16 +146,15 @@
 
                                     @foreach ($properties['rent'] as $key => $property)
                                         <div class="swiper-slide">
-                                            <div class="latest_properties_card" data-aos="fade-up"
-                                                data-aos-duration="1500">
+                                            <div class="latest_properties_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">For
-                                                            {{ $property->for_type ?? '' }}</a> <a href=""
+                                                        <a href="#!" class="btn btn-link">For
+                                                            {{ $property->for_type ?? '' }}</a> <a href="#!"
                                                             class="btn btn-link">{{ $property->property_type ?? '' }}</a>
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart"
+                                                        <a href="#!" class="heart"
                                                             id="heartProp2{{ $key }}"
                                                             style="border:{{ $property->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $property->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($property->CheckFavourite() ?? '')
@@ -170,15 +169,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"
@@ -239,11 +236,11 @@
                 <div class="col-lg-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a href="" class="pt blue"></a>
+                            <a href="#!" class="pt blue"></a>
                             <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home2" role="tab"
                                 aria-controls="nav-home" aria-selected="true">Newest</a>
-                            <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile2"
-                                role="tab" aria-controls="nav-profile" aria-selected="false">Top</a>
+                            <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile2" role="tab"
+                                aria-controls="nav-profile" aria-selected="false">Top</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -258,10 +255,10 @@
                                                 data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="prof{{ $key }}"
+                                                        <a href="#!" class="heart" id="prof{{ $key }}"
                                                             style="border:{{ $pro->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $pro->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($pro->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -275,10 +272,8 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#"
@@ -292,7 +287,7 @@
                                                                 @endfor
                                                             </span> {{ $pro->reviewComment }}
                                                         </a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"
@@ -302,10 +297,12 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
+                                                                    {{-- {{ $pro->UserBusinessCategoriesString() }} --}}
+                                                                    {{ $pro->business_name }}
+                                                                </small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>{{ $pro->business_name }}</b>
+                                                                <b>{{ substr($pro->UserBusinessServicesString() ?? '', 0, 25) . '....' }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($pro->business_details ?? '', 0, 150) . '....' }}
@@ -320,8 +317,8 @@
                                                         <img src="{{ asset($pro->BusinessUser->profile_pic) }}" alt=""
                                                             style="width:50px" class="img-fluid">
                                                         <div class="ab-right">
-                                                            <a href=""><i class="fas fa-phone-alt"></i></a>
-                                                            <a href=""><i class="far fa-envelope"></i></a>
+                                                            <a href="tel:{{ $pro->business_phone }}"><i class="fas fa-phone-alt"></i></a>
+                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i class="far fa-envelope"></i></a>
                                                         </div>
                                                     </div>
 
@@ -347,10 +344,10 @@
                                                 data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="prof2{{ $key }}"
+                                                        <a href="#!" class="heart" id="prof2{{ $key }}"
                                                             style="border:{{ $pro->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $pro->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($pro->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -364,10 +361,8 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#"
@@ -383,7 +378,7 @@
                                                             </span> {{ $pro->reviewComment }}
 
                                                         </a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1
                                                         </a>
                                                     </div>
@@ -393,10 +388,12 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
+                                                                    {{-- {{ $pro->UserBusinessCategoriesString() }} --}}
+                                                                    {{ $pro->business_name }}
+                                                                </small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>{{ $pro->business_name }}</b>
+                                                                <b>{{ substr($pro->UserBusinessServicesString() ?? '', 0, 25) . '....' }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($pro->business_details ?? '', 0, 150) . '....' }}
@@ -410,9 +407,8 @@
                                                         <img src="{{ asset($pro->BusinessUser->profile_pic) }}" alt=""
                                                             style="width:50px" class="img-fluid">
                                                         <div class="ab-right">
-                                                            <a href="{{ $pro->business_phone }}"><i
-                                                                    class="fas fa-phone-alt"></i></a>
-                                                            <a href=""><i class="far fa-envelope"></i></a>
+                                                            <a href="tel:{{ $pro->business_phone }}"><i class="fas fa-phone-alt"></i></a>
+                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i class="far fa-envelope"></i></a>
                                                         </div>
                                                     </div>
 
@@ -459,12 +455,12 @@
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href=""
+                                                        <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="item{{ $key }}"
+                                                        <a href="#!" class="heart" id="item{{ $key }}"
                                                             style="border:{{ $item->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $item->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($item->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -478,15 +474,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top" src="Frontend/img/sofa1.png"
@@ -512,8 +506,8 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->profile_pic) }}"
-                                                            style="width:50px" alt="" class="img-fluid">
+                                                        <img src="{{ asset($item->profile_pic) }}" style="width:50px"
+                                                            alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>
                                                     </div>
@@ -535,12 +529,12 @@
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href=""
+                                                        <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
-                                                        {{-- <a href="" class="btn btn-link">--------</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">--------</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="item2{{ $key }}"
+                                                        <a href="#!" class="heart" id="item2{{ $key }}"
                                                             style="border:{{ $item->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $item->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($item->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -554,15 +548,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top" src="Frontend/img/sofa1.png"
@@ -588,8 +580,8 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->profile_pic) }}"
-                                                            style="width:50px" alt="" class="img-fluid">
+                                                        <img src="{{ asset($item->profile_pic) }}" style="width:50px"
+                                                            alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>
                                                     </div>

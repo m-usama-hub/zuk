@@ -37,7 +37,7 @@
                                     <h4 class="blue">Description</h4>
                                     <p class="addReadMore showlesscontent">{{ $item->description }}</p>
                                     <div class="col-md-12 card-in-heart">
-                                        <a href="" class="heart" id="heartProp{{ $item->id }}"
+                                        <a href="#!" class="heart" id="heartProp{{ $item->id }}"
                                             style="background: {{ $item->CheckFavourite() ?? '' ? 'white' : '#dc5523' }}; border:{{ $item->CheckFavourite() ?? '' ? '1px solid red' : '' }} ">
                                             @if ($item->CheckFavourite() ?? '')
                                                 <i class="fas fa-heart"

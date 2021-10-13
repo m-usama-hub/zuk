@@ -30,12 +30,12 @@
                                             <div class="latest_properties_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">For
-                                                            {{ $property->for_type ?? '' }}</a> <a href=""
+                                                        <a href="#!" class="btn btn-link">For
+                                                            {{ $property->for_type ?? '' }}</a> <a href="#!"
                                                             class="btn btn-link">{{ $property->property_type ?? '' }}</a>
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="heartall{{ $key }}"
+                                                        <a href="#!" class="heart" id="heartall{{ $key }}"
                                                             style="border:{{ $property->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $property->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($property->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -49,15 +49,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"
@@ -113,12 +111,12 @@
                                             <div class="latest_properties_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">For
-                                                            {{ $property->for_type ?? '' }}</a> <a href=""
+                                                        <a href="#!" class="btn btn-link">For
+                                                            {{ $property->for_type ?? '' }}</a> <a href="#!"
                                                             class="btn btn-link">{{ $property->property_type ?? '' }}</a>
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart"
+                                                        <a href="#!" class="heart"
                                                             id="heartsale{{ $key }}"
                                                             style="border:{{ $property->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $property->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($property->CheckFavourite() ?? '')
@@ -133,15 +131,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"
@@ -197,12 +193,12 @@
                                             <div class="latest_properties_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        <a href="" class="btn btn-link">For
-                                                            {{ $property->for_type ?? '' }}</a> <a href=""
+                                                        <a href="#!" class="btn btn-link">For
+                                                            {{ $property->for_type ?? '' }}</a> <a href="#!"
                                                             class="btn btn-link">{{ $property->property_type ?? '' }}</a>
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart"
+                                                        <a href="#!" class="heart"
                                                             id="heartProp{{ $key }}"
                                                             style="border:{{ $property->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $property->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($property->CheckFavourite() ?? '')
@@ -217,15 +213,13 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
-                                                        <a href=""><i
+                                                        <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"

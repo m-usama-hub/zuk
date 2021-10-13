@@ -13,7 +13,7 @@
                             Submit a review
                         </h4>
                         <p class="company" id="company">Jason Electricals Inc</p>
-                        <a href="" id="services">Landscaping, Stonework, Deck</a>
+                        <a href="#!" id="services">Landscaping, Stonework, Deck</a>
                         <p id="address">27 Vanguard Drive, Etobicoke ON M9B 5E7</p>
                     </div>
                     <div class="col-md-12 col-12 writing_div">
@@ -136,7 +136,7 @@
                     </div>
                     <div class="col-md-12 submit_review">
                         <p class="head">Submit my review</p>
-                        <p>By submitting this review you agree to our <a href="">Terms of Use
+                        <p>By submitting this review you agree to our <a href="#!">Terms of Use
                                 and Privacy Policy.</a>
                         </p>
                         <button class="rate_me_btn btn-primary" type="submit">Submit Now</button>

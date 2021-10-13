@@ -10,7 +10,7 @@
                 <div class="col-lg-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                            <a href="" class="pt blue">Sort By</a>
+                            <a href="#!" class="pt blue">Sort By</a>
                             <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home2" role="tab"
                                 aria-controls="nav-home" aria-selected="true">Newest</a>
                             <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile2" role="tab"
@@ -28,10 +28,10 @@
                                             <div class="professional_near_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart" id="prof{{ $key }}"
+                                                        <a href="#!" class="heart" id="prof{{ $key }}"
                                                             style="border:{{ $pro->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $pro->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($pro->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -45,10 +45,8 @@
                                                             @endif
 
                                                         </a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#"
@@ -64,7 +62,7 @@
                                                             </span> {{ $pro->reviewComment }}
 
                                                         </a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"
@@ -73,10 +71,12 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
+                                                                    {{-- {{ $pro->UserBusinessCategoriesString() }} --}}
+                                                                    {{ $pro->business_name }}
+                                                                </small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>{{ $pro->business_name }}</b>
+                                                                <b>{{ substr($pro->UserBusinessServicesString() ?? '', 0, 25) . '....' }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($pro->business_details ?? '', 0, 150) . '....' }}
@@ -91,8 +91,8 @@
                                                         <img src="{{ asset($pro->BusinessUser->profile_pic) }}" alt=""
                                                             style="width:50px" class="img-fluid">
                                                         <div class="ab-right">
-                                                            <a href=""><i class="fas fa-phone-alt"></i></a>
-                                                            <a href=""><i class="far fa-envelope"></i></a>
+                                                            <a href="tel:{{ $pro->business_phone }}"><i class="fas fa-phone-alt"></i></a>
+                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i class="far fa-envelope"></i></a>
                                                         </div>
                                                     </div>
 
@@ -117,15 +117,13 @@
                                             <div class="professional_near_card" data-aos="fade-up" data-aos-duration="1500">
                                                 <div class="card">
                                                     <div class="col-md-12 card-in-btn">
-                                                        {{-- <a href="" class="btn btn-link">25 Listings</a> --}}
+                                                        {{-- <a href="#!" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="" class="heart"><i
+                                                        <a href="#!" class="heart"><i
                                                                 class="far fa-heart"></i></a>
-                                                        <a href="" class="share"><i
-                                                                class="fas fa-share-square"></i></a>
-                                                        <a href="" class="share share_message"><i
-                                                                class="far fa-envelope"></i></a>
+                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#"
@@ -141,7 +139,7 @@
                                                             </span> {{ $pro->reviewComment }}
 
                                                         </a>
-                                                        <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                        <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             1</a>
                                                     </div>
                                                     <img class="card-img-top"
@@ -150,10 +148,12 @@
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
                                                             <h4 class="card-title blue"><small>
-                                                                    {{ $pro->UserBusinessCategoriesString() }}</small>
+                                                                    {{-- {{ $pro->UserBusinessCategoriesString() }} --}}
+                                                                    {{ $pro->business_name }}
+                                                                </small>
                                                             </h4>
                                                             <p class="card-text orange d-flex align-items-center">
-                                                                <b>{{ $pro->business_name }}</b>
+                                                                <b>{{ substr($pro->UserBusinessServicesString() ?? '', 0, 25) . '....' }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($pro->business_details ?? '', 0, 150) . '....' }}
@@ -168,9 +168,8 @@
                                                         <img src="{{ asset($pro->BusinessUser->profile_pic) }}" alt=""
                                                             style="width:50px" class="img-fluid">
                                                         <div class="ab-right">
-                                                            <a href="{{ $pro->business_phone }}"><i
-                                                                    class="fas fa-phone-alt"></i></a>
-                                                            <a href=""><i class="far fa-envelope"></i></a>
+                                                            <a href="tel:{{ $pro->business_phone }}"><i class="fas fa-phone-alt"></i></a>
+                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i class="far fa-envelope"></i></a>
                                                         </div>
                                                     </div>
 

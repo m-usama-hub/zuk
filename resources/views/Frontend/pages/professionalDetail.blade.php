@@ -16,7 +16,9 @@
                                     <img class="mr-3" src="{{ asset($pro->BusinessUser->profile_pic) }}"
                                         width="100" alt="Generic placeholder image">
                                     <div class="media-body">
-                                        <h3 class="mt-0 blue">{{ $pro->UserBusinessCategoriesString() }}
+                                        <h3 class="mt-0 blue">
+                                            {{-- {{ $pro->UserBusinessCategoriesString() }} --}}
+                                            {{ $pro->business_name }}
                                             <span class="ab-right"><small><i class="fas fa-star orange"></i>
                                                     {{ $pro->reviewsAvg ?? '0' }}/5</small></span>
                                         </h3>
@@ -31,7 +33,7 @@
                                         {{ $pro->business_details }}
                                     </p>
                                     <div class="col-md-12 card-in-heart">
-                                        <a href="" class="heart" id="prof{{ $pro->id }}"
+                                        <a href="#!" class="heart" id="prof{{ $pro->id }}"
                                             style="border:{{ $pro->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $pro->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                             @if ($pro->CheckFavourite() ?? '')
                                                 <i class="fas fa-heart" id="pro{{ $pro->title . '' . $pro->id }}"
@@ -54,11 +56,17 @@
                                         href="mailto:{{ $pro->BusinessUser->email }}"><i
                                             class="fas fa-envelope l-blue pl-2 pr-2"></i>
                                         {{ $pro->BusinessUser->email }}</a>
+
+                                    @if (!$pro->is_business_owner_created)
+                                        <a href="#" data-toggle="modal" data-target="#claim">
+                                            Claim a Business</a>
+                                    @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <div class="row pt-5 pf-row2">
 
                     @foreach ($pro->Reviews as $review)
@@ -106,4 +114,50 @@
             </div>
         </section>
     </div>
+
+
+    <div class="modal fade abusereport " id="claim" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-exclamation-triangle"></i>Claim
+                        Business</h5>
+                    <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                </div>
+                <div class="modal-body">
+                    <div class="custome_container">
+
+                        <form action="{{ route('cliamBusiness') }}" method="post">
+                            @csrf
+                            <div class="pic_info">
+                                <div class="pic">
+                                    <img src="Frontend/img/Group410.png" alt="" class="image-fluid">
+                                </div>
+                                <div class="name">
+                                    <h3>{{ $pro->business_name }}</h3>
+                                </div>
+                            </div>
+                            <div class="report_title">
+                                <label for="" class="title">
+                                    Enter your email
+                                </label>
+                                <input type="text" name="email" id="text">
+                            </div>
+                            <input type="hidden" name="business_id" value="{{ $pro->id }}">
+                            <div class="report_title">
+                                <label for="" class="title">
+                                    Enter your details here
+                                </label>
+                                <textarea name="details" id="text2" cols="30" rows="10"></textarea>
+                            </div>
+                            <div class="send">
+                                <button type="submit" class="btn sending">Send my report</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 @endsection

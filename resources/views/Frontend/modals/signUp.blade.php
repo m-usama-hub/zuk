@@ -45,8 +45,8 @@
                 </div>
 
                 <div class="col-md-12 col-12">
-                    <p>By signing in with Homzs you agree to our <a href="" class="terms">Terms of Use</a>
-                        and <a href="" class="terms"> Privacy Policy.</a></p>
+                    <p>By signing in with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a>
+                        and <a href="#!" class="terms"> Privacy Policy.</a></p>
                 </div>
 
 

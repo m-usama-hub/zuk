@@ -296,10 +296,10 @@
                                     </div>
 
                                     <div class="changepass edit_business_btn" style="display: none;">
-                                        <h4>Add a business category <i class="fas fa-plus" id="add_new_business"
+                                        <h4>Add a business category <i class="fas fa-plus" id="add_new_business_category"
                                                 style="cursor: pointer;"></i></h4>
                                     </div>
-                                    <div id="add_new_business_inputs" style="display:none;">
+                                    <div id="add_new_business_category_inputs" style="display:none;">
                                         <select id="business_category_id" class="textarea">
                                         @foreach (AppHelper::professionalCategories() as $item)
                                             <option value="{{ $item->id }}">

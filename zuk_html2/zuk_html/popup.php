@@ -36,7 +36,7 @@
                                  <input type="text" name="text" id="text">
                               </div>
                               <div class="report">
-                                 <a href="" class="reporting">Reporting</a>
+                                 <a href="#!" class="reporting">Reporting</a>
                               </div>
                               <div class="pic_info">
                                  <div class="pic">
@@ -189,7 +189,7 @@
                                     <p>This owner of this company is aggressive</p>
                                  </div>
                                  <div class="report">
-                                    <a href="" class="reporting">Reporting</a>
+                                    <a href="#!" class="reporting">Reporting</a>
                                  </div>
                                  <div class="pic_info">
                                     <div class="pic">
@@ -290,7 +290,7 @@
                                  Please take a moment to make sure we've got your email address right.
                               </p>
                               <p class="dontsign"> Didn't sign up for Homzs</p>
-                              <a href="" class="tell"> Let us know</a>
+                              <a href="#!" class="tell"> Let us know</a>
                            </div>
                            <div class="col-md-12 col-12 btn">
                               <button type="submit" class="btn confirm_email">Confirm your email</button>
@@ -385,9 +385,9 @@
                            </div>
                            <div class="notification">
                               <p>This message has been sent through Homzs mail, which keeps your email address
-                                 private. We recommend that you always reply via <a href="" class="sent">Homzs
+                                 private. We recommend that you always reply via <a href="#!" class="sent">Homzs
                                  messenger</a> instead of private email addresses. If there is anything about the
-                                 message that you think is suspicious, do not reply and make sure to <a href=""
+                                 message that you think is suspicious, do not reply and make sure to <a href="#!"
                                     class="sent">report it to us.</a> We want to look out for you so we look into
                                  all reports and get back to you asap.
                               </p>
@@ -403,14 +403,14 @@
                                     selling. We recommend you use a courier to help with delivery.
                                  </li>
                                  <li>Use the PayPal 'Paying for an item or service' option to transfer money
-                                    securely. This is the only option covered by <a href="" class="sent"> PayPal's
+                                    securely. This is the only option covered by <a href="#!" class="sent"> PayPal's
                                     Buyer Protection</a> policy.
                                  </li>
                                  <li>If you're a seller, log into your PayPal account to ensure you have received
                                     payment. Never trust an email confirmation telling you so without verification.
                                  </li>
                                  <li>Be wary of links sent by other users that direct you to login to Homzs. You
-                                    should always access your account via the <a href="" class="sent">Homzs
+                                    should always access your account via the <a href="#!" class="sent">Homzs
                                     homepage</a>
                                  </li>
                               </ul>
@@ -1060,7 +1060,7 @@
                            </div>
                            <div class="member">
                               <h4>Already a member?</h4>
-                              <a href="" class="login">Login</a>
+                              <a href="#!" class="login">Login</a>
                            </div>
                            <div class="cash_amounts">
                               <form action="">
@@ -1093,12 +1093,12 @@
                               <p class="or">OR</p>
                            </div>
                            <div class="col-md-12 col-12 icons">
-                              <a href=""> <i class="fab fa-facebook blue"></i></a>
-                              <a href=""><i class="fab fa-google red"></i></a>
+                              <a href="#!"> <i class="fab fa-facebook blue"></i></a>
+                              <a href="#!"><i class="fab fa-google red"></i></a>
                            </div>
                            <div class="col-md-12 col-12">
-                              <p>By signing in with Homzs you agree to our <a href="" class="terms">Terms of Use</a>
-                                 and <a href="" class="terms"> Privacy Policy.</a>
+                              <p>By signing in with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a>
+                                 and <a href="#!" class="terms"> Privacy Policy.</a>
                               </p>
                            </div>
                         </div>
@@ -1133,7 +1133,7 @@
                               </form>
                            </div>
                            <div class="terms_condition">
-                              <p>By signing in with Homzs you agree to our <a href="" class="terms">Terms of Use</a>  and <a href="" class="terms"> Privacy Policy.</a></p>
+                              <p>By signing in with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a>  and <a href="#!" class="terms"> Privacy Policy.</a></p>
                               <a href="#!" class="forget_password"> Forget Password</a>
                            </div>
                            <div class="sign_in_btn"> 
@@ -1399,8 +1399,8 @@
                                  <span>Total to pay for your ad <input type="text" placeholder="$0.00"></span>
                               </div>
                               <div class="col-md-12 col-12 policy">
-                                 <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                                 <a href=""></a>
+                                 <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                                 <a href="#!"></a>
                               </div>
                               <div class="col-md-12 col-12 buttons">
                                  <button class="btn">PREVIEW</button>
@@ -1472,7 +1472,7 @@
                                        <textarea id="wreview" name="wreview"  class="text" rows="4" cols="50"></textarea>
                                     </div>
                                     <div class="col-md-12 col-12 send">
-                                       <a href="" class="sending">Send my message</a>
+                                       <a href="#!" class="sending">Send my message</a>
                                     </div>
                                     <div class="col-md-12 rate_james">
                                        <div class="star">
@@ -1695,8 +1695,8 @@
                                  </div>
                               </div>
                               <div class="col-md-12 col-12 policy">
-                                 <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                                 <a href=""></a>
+                                 <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                                 <a href="#!"></a>
                               </div>
                               <div class="col-md-12 col-12 buttons">
                                  <button class="btn">PREVIEW</button>
@@ -1727,7 +1727,7 @@
                                  Submit a review
                               </h4>
                               <p class="company">Jason Electricals Inc</p>
-                              <a href="">Landscaping, Stonework, Deck</a>
+                              <a href="#!">Landscaping, Stonework, Deck</a>
                               <p>27 Vanguard Drive, Etobicoke ON M9B 5E7</p>
                            </div>
                            <div class="col-md-12 col-12 writing_div">
@@ -1769,7 +1769,7 @@
                            </div>
                            <div class="col-md-12 submit_review">
                               <p class="head">Submit my review</p>
-                              <p>By submitting this review you agree to our <a href="">Terms of Use
+                              <p>By submitting this review you agree to our <a href="#!">Terms of Use
                                  and Privacy Policy.</a> 
                               </p>
                            </div>
@@ -1879,8 +1879,8 @@
                               </div>
                            </div>
                            <div class="col-md-12 col-12 policy">
-                              <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                              <a href=""></a>
+                              <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                              <a href="#!"></a>
                            </div>
                            <div class="col-md-12 col-12 buttons">
                               <button class="btn">PREVIEW</button>
@@ -1999,8 +1999,8 @@
                                  </div>
                               </div>
                               <div class="col-md-12 col-12 policy">
-                                 <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                                 <a href=""></a>
+                                 <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                                 <a href="#!"></a>
                               </div>
                               <div class="col-md-12 col-12 buttons">
                                  <button class="btn">PREVIEW</button>
@@ -2280,8 +2280,8 @@
                               </div>
                            </div>
                            <div class="policy">
-                              <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                              <a href=""></a>
+                              <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                              <a href="#!"></a>
                            </div>
                            <div class="buttons">
                               <button class="btn">PREVIEW</button>
@@ -2469,8 +2469,8 @@
                               </div>
                            </div>
                            <div class="policy">
-                              <p>By posting this ad with Homzs you agree to our <a href="" class="terms">Terms of Use</a> and <a href="" class="terms">Privacy Policy.</a></p>
-                              <a href=""></a>
+                              <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                              <a href="#!"></a>
                            </div>
                            <div class="buttons">
                               <button class="btn">PREVIEW</button>

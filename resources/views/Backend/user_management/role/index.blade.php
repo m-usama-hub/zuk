@@ -94,7 +94,7 @@
                                             {{-- @endcan --}}
                                             
                                             @can('role-delete')
-                                                <a href="" data-toggle="tooltip" class="btn btn-danger zoomer" data-original-title="Delete" onclick="event.preventDefault();  (confirm('Are you sure you want to delete this item?')) ? document.getElementById('delete-form-{{$role->id }}').submit():''">
+                                                <a href="#!" data-toggle="tooltip" class="btn btn-danger zoomer" data-original-title="Delete" onclick="event.preventDefault();  (confirm('Are you sure you want to delete this item?')) ? document.getElementById('delete-form-{{$role->id }}').submit():''">
                                                     <i class="fa fa-trash text-white m-r-10"></i> Delete
                                                 </a>
                                                 

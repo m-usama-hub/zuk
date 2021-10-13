@@ -14,6 +14,7 @@ use Route;
 use App\Models\UserBusinessDetail;
 use App\Models\BusinessCategory;
 use App\Models\UserDetail;
+use App\Models\PersonalMessage;
 use Illuminate\Support\Facades\Http;
 
 
@@ -319,6 +320,14 @@ class AppHelper
         $response = Http::get('https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyCZf3_pkkppQ2yhnjB2Tb9NapQzZV1CVcg&address='.$address);
 
         return $response->json();
+
+    }
+
+    public static function getMessages(){
+
+        $myMessages  = PersonalMessage::where('to_id', Auth::user()->id)->where('parent_message_id' ,null)->orWhere('from_id', Auth::user()->id)->where('parent_message_id' ,null)->with('MessageReplies')->with('ToUser')->orderby('created_at','DESC')->get();
+
+        return $myMessages;
 
     }
 

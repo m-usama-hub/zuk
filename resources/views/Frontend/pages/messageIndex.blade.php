@@ -32,7 +32,7 @@
                                                 <div class="swiper-slide">
                                                     <div class="card" data-aos="fade-up" data-aos-duration="1500">
                                                         <div class="col-md-12 card-in-heart">
-                                                            <a href="" class="heart"
+                                                            <a href="#!" class="heart"
                                                                 id="message{{ $key }}"
                                                                 style="border:{{ $message->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $message->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                                 @if ($message->CheckFavourite() ?? '')
@@ -47,15 +47,14 @@
                                                                 @endif
 
                                                             </a>
-                                                            <a href="" class="share"><i
-                                                                    class="fas fa-share-square"></i></a>
-                                                            <a href="" class="share share_message"><i
-                                                                    class="far fa-envelope"></i></a>
+                                                            @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                                            @include('Frontend.pages.partials.messageElement',['id' => $message->id, 'title' => $message->title, 'modal' => 'Message','user'  => $message->BusinessDetail->BusinessUser->fullname,'user_id'  => $message->BusinessDetail->User->id])
+                                                        
                                                         </div>
                                                         <div class="card-map col-md-12 d-flex justify-content-between">
-                                                            <a href=""><i
+                                                            <a href="#!"><i
                                                                     class="fas fa-map-marker-alt"></i>{{ $message->address ?? '' }}</a>
-                                                            <a href="" class="camera"><i class="fas fa-camera"></i>
+                                                            <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                                 1</a>
                                                         </div>
                                                         <img class="card-img-top" src="{{ asset($message->cover_image) }}"

@@ -37,4 +37,12 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    public function showLoginForm()
+    {
+        return redirect()->back()->with("UserNotLogged","Please Login first.");
+
+        // return view('admin.auth.login');
+    }
 }

@@ -43,7 +43,7 @@ Route::get('/professional/{slug}', [AnonymousController::class, 'ProfessionalDet
 Route::get('/project/{slug}', [AnonymousController::class, 'projectDetail'])->name('projectDetail');
 Route::get('/search', [AnonymousController::class, 'search'])->name('searchData');
 
-
+Route::post('/claim', [AnonymousController::class, 'cliamBusiness'])->name('cliamBusiness');
 
 Route::post('/ajaxlogin',[AnonymousController::class,'ajaxLogin'])->name('Ajaxlogin');
 
@@ -97,6 +97,7 @@ Route::group([
 
         Route::post('/deletePost', [GeneralController::class,'deletePost']);
         Route::get('/getPostData', [GeneralController::class,'getPostData']);
+        Route::post('/sendMessage', [GeneralController::class,'sendMessage']);
         Route::post('/DoUnfav', [GeneralController::class,'DoUnfav']);
         Route::post('/Dofav', [GeneralController::class,'Dofav']);
         Route::post('/LikeToggle/{id}', [GeneralController::class,'LikeToggle'])->name('liketoggle');

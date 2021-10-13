@@ -202,6 +202,11 @@ $(document).ready(function () {
         $("#add_new_business_inputs").css("display", "flex");
     });
 
+    $("#add_new_business_category").click(function (e) {
+        $("#add_new_business_category_inputs").css("display", "flex");
+    });
+    
+
     $("#add_new").click(function (e) {
         $.ajaxSetup({
             headers: {
@@ -286,7 +291,7 @@ $(document).ready(function () {
         });
 
         e.preventDefault();
-        var category = $('#business_category_id').find(":selected").val();
+        var category = $("#business_category_id").find(":selected").val();
         if (category != null) {
             $.ajax({
                 url: "/addUserBusinessCategory",
@@ -298,15 +303,19 @@ $(document).ready(function () {
                     if (data.message == "") {
                         $("#all_business_categories").empty();
                         console.log(data);
-                        data.categories.professional_business_categories.forEach((category) => {
-                            $("#all_business_categories").append(
-                                `
+                        data.categories.professional_business_categories.forEach(
+                            (category) => {
+                                $("#all_business_categories").append(
+                                    `
                                 <i>` +
-                                category.category +
-                                    ` <input type="hidden" class="category_id" value="`+category.id+`"> <i class="fas fa-trash" data-toggle="tooltip" data-original-title="Delete" style="cursor: pointer;"></i></i><br>
+                                        category.category +
+                                        ` <input type="hidden" class="category_id" value="` +
+                                        category.id +
+                                        `"> <i class="fas fa-trash" data-toggle="tooltip" data-original-title="Delete" style="cursor: pointer;"></i></i><br>
                             `
-                            );
-                        });
+                                );
+                            }
+                        );
                         $("#add_new_business_category").prop("disabled", false);
                     } else {
                         $("#add_new_business_category").prop("disabled", false);
@@ -395,7 +404,7 @@ $(document).ready(function () {
         });
 
         e.preventDefault();
-        var business_category_id = $(this).parent().find('.category_id').val();
+        var business_category_id = $(this).parent().find(".category_id").val();
 
         $.ajax({
             url: "/deleteUserBusinessCategory",
@@ -406,15 +415,19 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.message == "") {
                     $("#all_business_categories").empty();
-                    data.categories.professional_business_categories.forEach((category) => {
-                        $("#all_business_categories").append(
-                            `
+                    data.categories.professional_business_categories.forEach(
+                        (category) => {
+                            $("#all_business_categories").append(
+                                `
                             <i>` +
-                            category.category +
-                                ` <input type="hidden" class="category_id" value="`+category.id+`"> <i class="fas fa-trash" data-toggle="tooltip" data-original-title="Delete" style="cursor: pointer;"></i></i><br>
+                                    category.category +
+                                    ` <input type="hidden" class="category_id" value="` +
+                                    category.id +
+                                    `"> <i class="fas fa-trash" data-toggle="tooltip" data-original-title="Delete" style="cursor: pointer;"></i></i><br>
                         `
-                        );
-                    });
+                            );
+                        }
+                    );
                 } else {
                     alert(data.message);
                 }
@@ -906,41 +919,50 @@ function DoUnfav(id, table, key = null, heartId = null) {
 }
 
 function Dofav(id, table, model) {
-    $.ajaxSetup({
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-        },
-    });
 
-    $.ajax({
-        url: "/Dofav",
-        type: "post",
-        data: {
-            table: table,
-            model: model,
-            id: id,
-        },
-        success: function (data) {
-            if (data.status == true) {
-                // if (key != null) {
-                //     $("#myfav" + key)
-                //         .find(".spinner-border")
-                //         .remove();
-                //     $("#myfav" + key)
-                //         .children()
-                //         .remove();
-                //     $("#myfav" + key).append("<p>" + data.message + "</p>");
-                //     setTimeout(function () {
-                //         $("#myfav" + key).remove();
-                //     }, 3000);
-                // }
+    if(Auth){
 
-                location.reload();
-            } else {
-                alert(data.message);
-            }
-        },
-    });
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+        });
+
+        $.ajax({
+            url: "/Dofav",
+            type: "post",
+            data: {
+                table: table,
+                model: model,
+                id: id,
+            },
+            success: function (data) {
+                if (data.status == true) {
+                    // if (key != null) {
+                    //     $("#myfav" + key)
+                    //         .find(".spinner-border")
+                    //         .remove();
+                    //     $("#myfav" + key)
+                    //         .children()
+                    //         .remove();
+                    //     $("#myfav" + key).append("<p>" + data.message + "</p>");
+                    //     setTimeout(function () {
+                    //         $("#myfav" + key).remove();
+                    //     }, 3000);
+                    // }
+
+                    location.reload();
+                } else {
+                    alert(data.message);
+                }
+            },
+        });
+
+    }else{
+
+        $('#welcome').modal('show');
+    }
+
 }
 
 function OpenRatingModal(company, services, address, business_id) {
@@ -987,95 +1009,201 @@ $(document).ready(function () {
     //     console.log("Input value after remove: ", input.value);
     // });
 
-    $("#swiper-wrapper-2af7103c3e0421064d")
-        .on("click", ".fa-trash", function (e) {
+    $("#swiper-wrapper-2af7103c3e0421064d").on(
+        "click",
+        ".fa-trash",
+        function (e) {
             $(this).parent().parent().remove();
             modalSwiper.initialize();
-        });
+        }
+    );
 });
 
+var messageAddress = new google.maps.places.Autocomplete(
+    document.getElementById("messageAddress")
+);
+var propertyAddress = new google.maps.places.Autocomplete(
+    document.getElementById("propertyAddress")
+);
+var itemAddress = new google.maps.places.Autocomplete(
+    document.getElementById("itemAddress")
+);
+var houseAddress = new google.maps.places.Autocomplete(
+    document.getElementById("houseAddress")
+);
+var projectAddress = new google.maps.places.Autocomplete(
+    document.getElementById("projectAddress")
+);
+var professionalAddress = new google.maps.places.Autocomplete(
+    document.getElementById("professionalAddress")
+);
 
-var messageAddress = new google.maps.places.Autocomplete(document.getElementById('messageAddress'));
-var propertyAddress = new google.maps.places.Autocomplete(document.getElementById('propertyAddress'));
-var itemAddress = new google.maps.places.Autocomplete(document.getElementById('itemAddress'));
-var houseAddress = new google.maps.places.Autocomplete(document.getElementById('houseAddress'));
-var projectAddress = new google.maps.places.Autocomplete(document.getElementById('projectAddress'));
-var professionalAddress = new google.maps.places.Autocomplete(document.getElementById('professionalAddress'));
-
- google.maps.event.addListener(messageAddress, 'place_changed',   function () {
-
-   var place = messageAddress.getPlace();
-   var lat = place.geometry.location.lat();
-   var long = place.geometry.location.lng();
-
-   $('.longitude').val(long);
-   $('.latitude').val(lat);
-
-   console.log(place);
-
-});
-
-google.maps.event.addListener(professionalAddress, 'place_changed',   function () {
-
-    var place = professionalAddress.getPlace();
+google.maps.event.addListener(messageAddress, "place_changed", function () {
+    var place = messageAddress.getPlace();
     var lat = place.geometry.location.lat();
     var long = place.geometry.location.lng();
- 
-    $('.longitude').val(long);
-    $('.latitude').val(lat);
- 
+
+    $(".longitude").val(long);
+    $(".latitude").val(lat);
+
     console.log(place);
- 
- });
+});
 
-google.maps.event.addListener(projectAddress, 'place_changed',   function () {
+google.maps.event.addListener(
+    professionalAddress,
+    "place_changed",
+    function () {
+        var place = professionalAddress.getPlace();
+        var lat = place.geometry.location.lat();
+        var long = place.geometry.location.lng();
 
+        $(".longitude").val(long);
+        $(".latitude").val(lat);
+
+        console.log(place);
+    }
+);
+
+google.maps.event.addListener(projectAddress, "place_changed", function () {
     var place = projectAddress.getPlace();
     var lat = place.geometry.location.lat();
     var long = place.geometry.location.lng();
- 
-    $('.longitude').val(long);
-    $('.latitude').val(lat);
- 
+
+    $(".longitude").val(long);
+    $(".latitude").val(lat);
+
     console.log(place);
- 
- });
+});
 
-google.maps.event.addListener(propertyAddress, 'place_changed',   function () {
-
+google.maps.event.addListener(propertyAddress, "place_changed", function () {
     var place = propertyAddress.getPlace();
     var lat = place.geometry.location.lat();
     var long = place.geometry.location.lng();
- 
-    $('.longitude').val(long);
-    $('.latitude').val(lat);
- 
+
+    $(".longitude").val(long);
+    $(".latitude").val(lat);
+
     console.log(place);
- 
- });
+});
 
- google.maps.event.addListener(itemAddress, 'place_changed',   function () {
-
+google.maps.event.addListener(itemAddress, "place_changed", function () {
     var place = itemAddress.getPlace();
     var lat = place.geometry.location.lat();
     var long = place.geometry.location.lng();
- 
-    $('.longitude').val(long);
-    $('.latitude').val(lat);
- 
+
+    $(".longitude").val(long);
+    $(".latitude").val(lat);
+
     console.log(place);
- 
- });
+});
 
- google.maps.event.addListener(houseAddress, 'place_changed',   function () {
-
+google.maps.event.addListener(houseAddress, "place_changed", function () {
     var place = houseAddress.getPlace();
     var lat = place.geometry.location.lat();
     var long = place.geometry.location.lng();
- 
-    $('.longitude').val(long);
-    $('.latitude').val(lat);
- 
+
+    $(".longitude").val(long);
+    $(".latitude").val(lat);
+
     console.log(place);
- 
- });
+});
+
+$('.chatmessage').find('.fa-minus-circle').click(function(){
+    $('.chatmessage').css('display','none');
+    $(".nomessage").css('display','unset');
+});
+
+{
+
+    let record_id, table ,to_id, parent_id;
+
+    function GetProductDetails(id, title, modal, user, user_id, date) {
+
+        if(Auth){
+
+            record_id = id;
+            table = modal;
+            to_id = user_id;
+
+            $('.chatmessage').css('display','unset');
+            $(".address_area>.note").html(title);
+            $(".receiver>.name").html(user);
+            $(".address_area>.address").html(user + " " + date);
+            $(".nomessage").css('display','none');
+
+            $("#personal").modal("show");
+
+        }else{
+            $('#welcome').modal('show');
+        }
+
+    }
+
+    function sendMessage(){
+
+        message = $('.type_area>#message').val();
+
+        $('.sending').css('display','none');
+        $('.sendingloader').css('display','unset');
+
+        data = {
+            table_record_id:record_id,
+            table_name:table,
+            to_id:to_id,
+            parent_message_id: parent_id ? parent_id : null,
+            body:message
+        };
+
+        CallAction("/sendMessage", data, function(response){
+
+            if(response.status == true){
+
+                location.reload();
+
+                $('.sending').css('display','unset');
+                $('.sendingloader').css('display','none');
+
+                console.log(response);
+
+            }else{
+                console.log(response);
+
+                alert(response.message);
+                $('.sending').css('display','unset');
+                $('.sendingloader').css('display','none');
+            }
+
+        });
+
+    }
+
+    
+
+    $('.clicktoreply').click( function(){
+
+        $(".nomessage").css('display','none');
+        $('.chatmessage').css('display','unset');
+        to_id = $(this).find('.to_id').val();
+        record_id = $(this).find('.table_record_id').val();
+        table = $(this).find('.table_name').val();
+        parent_id = $(this).find('.parent_id').val();
+
+
+        username = $(this).find('.username').text();
+        message = $(this).find('.body').html();
+        
+        $(".address_area>.note").html('Reply to : '+ message);
+        $(".receiver>.name").html(username);
+        $(".address_area>.address").html(username);
+
+    });
+}
+
+function copyURI(evt) {
+    evt.preventDefault();
+    navigator.clipboard.writeText(evt.target.getAttribute('href')).then(() => {
+      /* clipboard successfully set */
+    }, () => {
+      /* clipboard write failed */
+    });
+}

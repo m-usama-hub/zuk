@@ -7,6 +7,8 @@ use Auth;
 use Config;
 use AppHelper;
 use App\Models\UserDetail;
+use App\Notifications\MessageEmailNotification;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $EmailData = [
+        //     'email' => 'Demoemail@gmail.com',
+        //     'title' => 'Demotile',
+        //     'body' => 'Demo Body',
+        // ];
+
+        // // $delay = now()->addMinutes(10);
+        // // $user->notify((new MessageEmailNotification($EmailData))->delay($delay));
+        // Auth::user()->notify(new MessageEmailNotification($EmailData));
+
         if(Auth::user()->isUserLoggedIn()){
 
             return redirect('/');
