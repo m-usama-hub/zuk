@@ -1,5 +1,5 @@
-<div class="modal fade postmessage" id="postmessage" tabindex="-1" aria-labelledby="exampleModalLabel"
-    aria-hidden="true" style="overflow: scroll">
+<div class="modal fade postmessage" id="postmessage" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+    style="overflow: scroll">
     <div class="modal-dialog item_modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -29,7 +29,8 @@
                                         </div>
                                         <div class="label_divs">
                                             <label for="">Private Phone</label>
-                                            <p style="margin-left: 13px;">{{ Auth::user()->UserDetail->contact_no }}</p>
+                                            <p style="margin-left: 13px;">{{ Auth::user()->UserDetail->contact_no }}
+                                            </p>
                                         </div>
                                         <div class="label_divs">
                                             <label for="">Email Address</label>
@@ -102,7 +103,7 @@
 
 
                     </div>
-                    <div class="col-md-12 col-12 cover_photo">
+                    {{-- <div class="col-md-12 col-12 cover_photo">
                         <div class="img_background">
                             <div class="cover">
                                 <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
@@ -122,6 +123,10 @@
                             <input type="file" required name="cover_image" class="UploadImageElement"
                                 onchange="loadFile(event,'display_image')" style="display: none" />
                         </div>
+                    </div> --}}
+                    <div class="col-md-12 col-12">
+
+                    @include("Frontend.modals.partials.slider")
                     </div>
                     <div class="col-md-12 col-12 policy">
                         <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of
@@ -140,7 +145,6 @@
                     </div>
                 </form>
             </div>
-
         </div>
     </div>
 </div>

@@ -90,6 +90,17 @@ class BusinessProperty extends Model
         return $this->belongsTo('App\Models\UserBusinessDetail','business_id');
     }
 
+    public function CoverImages(){
+
+        return $this->hasMany('App\Models\BusinessImage','model_record_id')->where('model','Property')->orderby('sort_order');
+    }
+
+    public function FristCoverImage(){
+
+        return $this->hasOne('App\Models\BusinessImage','model_record_id')->where('model','Property')->orderby('sort_order');
+
+    }
+
     public function scopePublish($query){
 
         return $query->where('status','Publish');

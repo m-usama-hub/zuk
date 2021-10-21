@@ -37,7 +37,7 @@
                                     <h4 class="blue">Description</h4>
                                     <p class="addReadMore showlesscontent">{{ $item->description }}</p>
                                     <div class="col-md-12 card-in-heart">
-                                        <a href="#!" class="heart" id="heartProp{{ $item->id }}"
+                                        <a href="#!" class="heart" id="heartitemp{{ $item->id }}"
                                             style="background: {{ $item->CheckFavourite() ?? '' ? 'white' : '#dc5523' }}; border:{{ $item->CheckFavourite() ?? '' ? '1px solid red' : '' }} ">
                                             @if ($item->CheckFavourite() ?? '')
                                                 <i class="fas fa-heart"
@@ -51,8 +51,8 @@
                                             @endif
 
                                         </a>
-                                        <a href="#!" class="share"><i class="fas fa-share-square"></i></a>
-                                        <a href="#!" class="share mt-2"><i class="far fa-comment-alt"></i></a>
+                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
 
                                     </div>
 

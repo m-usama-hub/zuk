@@ -96,6 +96,7 @@ Route::group([
         Route::resource('message',MessageController::class);
 
         Route::post('/deletePost', [GeneralController::class,'deletePost']);
+        Route::post('/deleteImage', [GeneralController::class,'deleteImage']);
         Route::get('/getPostData', [GeneralController::class,'getPostData']);
         Route::post('/sendMessage', [GeneralController::class,'sendMessage']);
         Route::post('/DoUnfav', [GeneralController::class,'DoUnfav']);

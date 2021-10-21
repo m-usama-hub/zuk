@@ -63,10 +63,10 @@
 
                                                         </a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($pro->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($pro->business_profile_pic) }}"
+                                                        src="{{ asset($pro->FristCoverImage->path ?? $pro->business_profile_pic) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
@@ -140,10 +140,10 @@
 
                                                         </a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($pro->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($pro->business_profile_pic) }}"
+                                                        src="{{ asset($pro->FristCoverImage->path ?? $pro->business_profile_pic) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">

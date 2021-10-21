@@ -10,6 +10,7 @@ use App\Models\UserDetails;
 use App\Models\UserBusinessDetail;
 use App\Models\UserBusinessService;
 use App\Models\UserBusinessCategory;
+use App\Models\BusinessImage;   
 use AppHelper;
 use DB;
 use Config;
@@ -224,6 +225,7 @@ class ProfileController extends Controller
                 $NewData = $request->all();
                 unset($NewData['_token']);
                 unset($NewData['_method']);
+                unset($NewData['cover_image']);
 
                 $UserBusinessDetailData = Auth::user()->UserBusinessDetail == null ? array() : Auth::user()->UserBusinessDetail->toArray();
                 if(Auth::user()->UserBusinessDetail){
@@ -263,22 +265,22 @@ class ProfileController extends Controller
 
                 }
 
-                if($request->has('user_business_pic')){
+                // if($request->has('user_business_pic')){
 
-                    $UploadFile =  AppHelper::SaveFileAndGetPath($request->user_business_pic,Config::get('constants.attachment_paths.UserBusinessProfilePic'));
+                //     $UploadFile =  AppHelper::SaveFileAndGetPath($request->user_business_pic,Config::get('constants.attachment_paths.UserBusinessProfilePic'));
 
-                    if($UploadFile['status']){
+                //     if($UploadFile['status']){
 
-                        $UpdateUserBusinessDetailData['business_profile_pic'] = $UploadFile['path'];
+                //         $UpdateUserBusinessDetailData['business_profile_pic'] = $UploadFile['path'];
 
-                    }
-                    else{
+                //     }
+                //     else{
 
-                        $ErrorMsg = $UploadFile['msg'];
+                //         $ErrorMsg = $UploadFile['msg'];
 
-                    }
+                //     }
 
-                }
+                // }
 
                 if($request->has('user_business_video')){
 
@@ -296,20 +298,57 @@ class ProfileController extends Controller
                     }
 
                 }
+
+
+
                 if($ErrorMsg == ''){
 
                     if(Auth::user()->UserBusinessDetail){
 
                         Auth::user()->UserBusinessDetail->update($UpdateUserBusinessDetailData);
 
+                        $business_id = Auth::user()->UserBusinessDetail->id;
+
                     }else{
 
                         Auth::user()->update('user_type_id', Config::get('constants.UserTypeIds.Professional'));
 
-                        UserBusinessDetail::updateOrCreate(['user_id' => Auth::user()->id],$UpdateUserBusinessDetailData);
+                       $business =UserBusinessDetail::updateOrCreate(['user_id' => Auth::user()->id],$UpdateUserBusinessDetailData);
+
+                       $business_id = $business;
+
                     }
 
 
+                }
+
+                if($request->has('cover_image')){
+
+                    $cover_image_paths = [];
+    
+                    foreach ($request->cover_image as $key => $image) {
+                        
+                        $uploadfile = AppHelper::SaveFileAndGetPath($image, Config::get('constants.attachment_paths.UserBusinessProfilePic'));
+    
+                        if($uploadfile['status']){
+         
+                             array_push($cover_image_paths,[
+                                 'model' => 'BusinessDetail',
+                                 'sort_order' => $key+1,
+                                 'model_record_id' => $business_id,
+                                 'path' => $uploadfile['path']
+                             ]);
+         
+                        }
+                        else{
+         
+                             $ErrorMsg = $uploadfile['msg'];
+                        }
+    
+                    }
+
+                    BusinessImage::insert($cover_image_paths);
+    
                 }
 
             }

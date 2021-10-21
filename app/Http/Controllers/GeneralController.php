@@ -7,11 +7,13 @@ use DB;
 use App\Models\UserFavorite;
 use App\Models\User;
 use App\Models\BusinessMessageLike;
+use App\Models\BusinessImage;
 use App\Models\BusinessMessageReply;
 use App\Models\PersonalMessage;
 use App\Notifications\MessageEmailNotification;
 use Auth;
 use Config;
+use Str;
 
 class GeneralController extends Controller
 {
@@ -47,6 +49,30 @@ class GeneralController extends Controller
 
     }
 
+    public function deleteImage(Request $request){
+
+        $data = [];
+        $data['message'] = '';
+        $data['status'] = false;
+
+        try{
+
+            BusinessImage::where('id',$request->id)->delete();
+
+            $data['message'] = 'Deleted Successfully..!';
+            $data['status'] = true;
+
+        }catch(\Throwable $e){
+
+            $data['message'] = $e->getMessage();
+
+        }
+
+        return $data;
+
+    }
+
+
     public function getPostData(Request $request){
 
         $data = [];
@@ -58,10 +84,12 @@ class GeneralController extends Controller
             $table = $request->table;
             $id = $request->id;
 
-            $response = DB::select('select * from '.$table.' where id = ?', [$id]);
+            $className = 'App\\Models\\' . Str::studly(Str::singular($table));
+
+            $response = $className::where('id',$id)->with('CoverImages')->first();
 
             $data['message'] = 'fetch Successfully..!';
-            $data['response'] = $response[0];
+            $data['response'] = $response;
             $data['status'] = true;
 
         }catch(\Throwable $e){

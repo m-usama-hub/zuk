@@ -902,8 +902,8 @@
 .house_modal {
     bottom: 213px;
 }
-.item_modal{
-    top:60px;
+.item_modal {
+    top: 60px;
 }
 .modal_2 {
     right: 75px;
@@ -3416,11 +3416,9 @@
     width: 65%;
     margin: 0 auto;
 }
-.my_details_popup .professional_details .modal-dialog{
+.my_details_popup .professional_details .modal-dialog {
     margin: 8.5% 23% 0% 0%;
-
 }
-
 
 /* / recent-css-starts / */
 .mini_para {
@@ -3432,8 +3430,8 @@
 .house_modal {
     bottom: 213px;
 }
-.item_modal{
-    top:60px;
+.item_modal {
+    top: 60px;
 }
 .modal_2 {
     right: 75px;
@@ -3444,7 +3442,6 @@
 }
 /* / recent-css ends / */
 
-
 .label_test label {
     display: block;
     font-size: 14px;
@@ -3453,13 +3450,12 @@
     margin-bottom: 0px;
 }
 
-.label_test p{
+.label_test p {
     margin-bottom: 6px;
     font-size: 14px;
 }
 
-
-.label_divs{
+.label_divs {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -3467,3 +3463,150 @@
     align-items: baseline;
 }
 
+* {
+    box-sizing: border-box;
+}
+
+slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+.mySlides {
+    display: none;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.text {
+    /* color: #f2f2f2; */
+    font-size: 15px;
+    padding: 8px 12px;
+    /* position: absolute; */
+    bottom: 8px;
+    width: 100%;
+    /* text-align: center; */
+}
+
+.numbertext {
+    color: black;
+    font-size: 12px;
+    padding: 8px 12px;
+    /* position: absolute;
+    z-index: 9;
+    left: 45.5%;
+    top: 84%; */
+}
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.activeDot,
+.dot:hover {
+    background-color: #717171;
+}
+
+.fadeSlide {
+    -webkit-animation-name: fade;
+    -webkit-animation-duration: 1.5s;
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+
+@-webkit-keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fade {
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.prev_button {
+    color: black !important;
+    font-size: 30px !important;
+    left: 20% !important;
+    background:none !important;
+    top:72% !important;
+
+}
+.next_button {
+    color: black !important;
+    font-size: 30px !important;
+    right: 20% !important;
+    background:none !important;
+    top: 72% !important;
+}
+.mySlides.fade {
+    opacity: 1 !important;
+}
+
+/* buy-pop-up */
+.buy_pop_modal {
+    width: 1313px !important;
+    right:419px !important;
+}
+
+.card_in_heart_1 {
+    padding-top: 50px !important;
+}
+/* find-a-property modal */
+.find_property_pop_up {
+    width: 1313px !important;
+    right: 419px;
+}
+/* find-a-house-mate-modal */
+.housemate_pop_modal {
+    width: 1313px !important;
+    right: 419px !important;
+}
+/* professional pop modal */
+.professional_pop_modal{
+    width:1313px !important;
+    right:419px;
+}

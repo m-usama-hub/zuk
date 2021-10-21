@@ -9,6 +9,7 @@ use Config;
 use AppHelper;
 use Auth;
 use App\Models\BusinessProperty;
+use App\Models\BusinessImage;
 
 class PropertyController extends Controller
 {
@@ -60,7 +61,6 @@ class PropertyController extends Controller
         $UploadData = [];
         try
         {
-
             if($request->has('edit')){
 
                 $UploadData = $request->all();
@@ -68,6 +68,7 @@ class PropertyController extends Controller
                 unset($UploadData['id']);
                 unset($UploadData['edit']);
                 unset($UploadData['_token']);
+                unset($UploadData['cover_image']);
 
                 $BusinessProperty = BusinessProperty::where('id',$request->id)->first()->toArray();
                 unset($BusinessProperty['business_detail']);
@@ -77,31 +78,10 @@ class PropertyController extends Controller
             }else{
 
                 $UploadData = $request->all();
-            }
-
-            if($request->has('cover_image')){
-
-               $uploadfile = AppHelper::SaveFileAndGetPath($request->cover_image, Config::get('constants.attachment_paths.PropertyCoverImage'));
-
-               if($uploadfile['status']){
-
-                    $UploadData['cover_image'] = $uploadfile['path'];
-
-                    if($request->has('edit')){
-
-                        $newData['cover_image'] = $uploadfile['path'];
-                    }
-               }
-               else{
-
-                    $ErrorMsg = $uploadfile['msg'];
-               }
-
+                unset($UploadData['cover_image']);
             }
 
             if($ErrorMsg == ''){
-
-
 
                 if($request->has('preview')){
 
@@ -132,10 +112,44 @@ class PropertyController extends Controller
 
                     BusinessProperty::where('id',$request->id)->update($newData);
 
+                    $property_id = $request->id;
+
                 }else{
                     $UploadData['business_id'] = Auth::user()->UserBusinessDetail->id;
 
-                    BusinessProperty::create($UploadData);
+                    $Property = BusinessProperty::create($UploadData);
+
+                    $property_id = $Property->id;
+                }
+
+                if($request->has('cover_image')){
+
+
+                    $cover_image_paths = [];
+    
+                    foreach ($request->cover_image as $key => $image) {
+                        
+                        $uploadfile = AppHelper::SaveFileAndGetPath($image, Config::get('constants.attachment_paths.PropertyCoverImage'));
+    
+                        if($uploadfile['status']){
+         
+                             array_push($cover_image_paths,[
+                                 'model' => 'Property',
+                                 'sort_order' => $key+1,
+                                 'model_record_id' => $property_id,
+                                 'path' => $uploadfile['path']
+                             ]);
+         
+                        }
+                        else{
+         
+                             $ErrorMsg = $uploadfile['msg'];
+                        }
+    
+                    }
+
+                    BusinessImage::insert($cover_image_paths);
+    
                 }
             }
 

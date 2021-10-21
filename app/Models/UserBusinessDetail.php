@@ -76,6 +76,17 @@ class UserBusinessDetail extends Model
 
     }
 
+    public function CoverImages(){
+
+        return $this->hasMany('App\Models\BusinessImage','model_record_id')->where('model','BusinessDetail');
+    }
+
+    public function FristCoverImage(){
+
+        return $this->hasOne('App\Models\BusinessImage','model_record_id')->where('model','BusinessDetail');
+
+    }
+
     public function User(){
 
         return $this->belongsTo('App\Models\User','user_id');

@@ -137,7 +137,7 @@
                                 placeholder="Add your item description"></textarea>
                         </div>
                         <div class="col-md-12 col-12 cover_photo">
-                            <div class="img_background">
+                            {{-- <div class="img_background">
                                 <div class="cover">
                                     <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
                                     <p>Cover Photo</p>
@@ -157,7 +157,9 @@
                                 <input type="file" name="cover_image" class="UploadImageElement"
                                     onchange="loadFile(event,'display_image_housemate')" style="display: none"
                                     required />
-                            </div>
+                            </div> --}}
+
+                            @include("Frontend.modals.partials.slider")
                         </div>
                         <div class="col-md-12 col-12 policy">
                             <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of

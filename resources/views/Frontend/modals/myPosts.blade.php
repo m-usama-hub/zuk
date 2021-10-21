@@ -24,7 +24,7 @@
 
                             <div class="row" style="margin-top: -25px;">
                                 <div class="col-lg-4">
-                                    <img src="{{ asset($post->cover_image) }}" alt="" class="img-fluid">
+                                    <img src="{{ asset($post->FristCoverImage->path??$post->cover_image) }}" alt="" class="img-fluid">
                                 </div>
                                 <div class="col-lg-8 media_content">
                                     <div class="media">

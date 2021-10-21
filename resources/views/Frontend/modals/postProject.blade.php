@@ -6,7 +6,7 @@
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
             </div>
             <div class="modal-body">
-                <form action="{{ route('project.store') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ route('project.store') }}" method="post" id="ajaxform" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-md-4 col-12">
@@ -57,8 +57,8 @@
                                             class="text">
                                         <input type="email" required placeholder="Email Address" name="email"
                                             class="text">
-                                            <input type="hidden" name="lat" class="latitude" placeholder="Address">
-                                            <input type="hidden" name="lng" class='longitude' placeholder="Address">
+                                        <input type="hidden" name="lat" class="latitude" placeholder="Address">
+                                        <input type="hidden" name="lng" class='longitude' placeholder="Address">
                                         <input type="text" required name="project_location" id="projectAddress"
                                             placeholder="Add project location e.g. Brampton On" class="text">
                                     </div>
@@ -85,8 +85,7 @@
                             <textarea id="item-description" class="description" required name="description" rows="6"
                                 cols="50" placeholder="Add your item description"></textarea>
                         </div>
-                        <div class="col-md-12 col-12 cover_photo">
-                            <div class="img_background">
+                        {{-- <div class="img_background">
                                 <div class="cover">
                                     <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
                                     <p>Cover Photo</p>
@@ -105,18 +104,19 @@
 
                                 <input type="file" required name="cover_image" id="testCoverImages" multiple class="UploadImageElement"
                                     onchange="loadFile(event,'display_image_project')" style="display: none" />
-                            </div>
-                        </div>
-                        <div class="col-md-12 col-12 policy">
-                            <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of
-                                    Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
-                            <a href="#!"></a>
-                        </div>
-                        <div class="col-md-12 col-12 buttons">
-                            <button class="btn preview_form_data" type="button">PREVIEW</button>
-                            <button class="btn draft_form_data" type="button">SAVE DRAFT</button>
-                            <button class="btn publish_form_data" type="button">SAVE & PUBLISH</button>
-                        </div>
+                            </div> --}}
+
+                    </div>
+                    @include("Frontend.modals.partials.slider")
+                    <div class="col-md-12 col-12 policy">
+                        <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of
+                                Use</a> and <a href="#!" class="terms">Privacy Policy.</a></p>
+                        <a href="#!"></a>
+                    </div>
+                    <div class="col-md-12 col-12 buttons">
+                        <button class="btn preview_form_data" type="button">PREVIEW</button>
+                        <button class="btn draft_form_data" type="button">SAVE DRAFT</button>
+                        <button class="btn publish_form_data" type="button">SAVE & PUBLISH</button>
                     </div>
                 </form>
             </div>

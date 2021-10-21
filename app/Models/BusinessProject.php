@@ -88,6 +88,17 @@ class BusinessProject extends Model
 
         return $this->IsFavourite;
     }
+
+    public function CoverImages(){
+
+        return $this->hasMany('App\Models\BusinessImage','model_record_id')->where('model','Project')->orderby('sort_order');
+    }
+
+    public function FristCoverImage(){
+
+        return $this->hasOne('App\Models\BusinessImage','model_record_id')->where('model','Project')->orderby('sort_order');
+
+    }
 }
 
 

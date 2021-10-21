@@ -146,6 +146,7 @@
             @include('Frontend.modals.getVerified')
             @include('Frontend.modals.privacy')
             @include('Frontend.modals.adminAbuse')
+            @include('Frontend.modals.abusereport')
             @include('Frontend.modals.myMessage')
             @include('Frontend.modals.myPosts')
             @include('Frontend.modals.myFavourites')
@@ -155,6 +156,10 @@
             @include('Frontend.modals.postProfessional')
             @include('Frontend.modals.postProject')
             @include('Frontend.modals.postProperty')
+            @include('Frontend.modals.previewHousemate')
+            @include('Frontend.modals.previewItem')
+            @include('Frontend.modals.previewProperty')
+            @include('Frontend.modals.previewMessage')
             @include('Frontend.modals.emailConfirm')
             @include('Frontend.modals.rateMe')
         @endif
@@ -235,22 +240,19 @@
         });
     </script>
     <script>
-        var modalSwiper = {
-            initialize: function() {
 
-                new Swiper(".modalSwiper", {
-                    loop: true,
-                    pagination: {
-                        el: ".swiper-pagination",
-                        type: "fraction",
-                    },
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev",
-                    },
-                });
-            }
-        };
+        var swiper = new Swiper(".modalSwiper", {
+            loop: false,
+            pagination: {
+                el: ".swiper-pagination",
+                type: "progressbar",
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+        });
+
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>

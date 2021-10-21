@@ -199,7 +199,7 @@
                             <textarea required id="item-description" class="description" name="description" rows="6"
                                 cols="50" placeholder="Add your item description"></textarea>
                         </div>
-                        <div class="col-md-12 col-12 cover_photo">
+                        {{-- <div class="col-md-12 col-12 cover_photo">
                             <div class="img_background">
                                 <div class="cover">
                                     <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
@@ -220,7 +220,9 @@
                                 <input type="file" required name="cover_image" class="UploadImageElement"
                                     onchange="loadFile(event,'display_image_message')" style="display: none" />
                             </div>
-                        </div>
+                        </div> --}}
+
+                        @include("Frontend.modals.partials.slider")
 
                         <div class="t_pay text-center mt-3">
                             <span class="text_fields">Total to pay for your ad <input type="text" placeholder="$0.00" class="text" style="width: 10%;"></span>
@@ -232,8 +234,7 @@
                             <a href="#!"></a>
                         </div>
                         <div class="col-md-12 col-12 buttons">
-                            <button class="btn preview_form_data" type="button"
-                                id="previewItem">PREVIEW</button>
+                            <button class="btn preview_form_data" type="button">PREVIEW</button>
                             <button class="btn draft_form_data" type="button">SAVE DRAFT</button>
                             <button class="btn publish_form_data" type="button">SAVE & PUBLISH</button>
                         </div>

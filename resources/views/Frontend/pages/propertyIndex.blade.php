@@ -56,10 +56,10 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($property->CoverImages) }}</a> 
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($property->cover_image ?? '') }}"
+                                                        src="{{ asset($property->FristCoverImage->path ?? $property->cover_image ) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('PropertyDetail', $property->slug) }}">
                                                         <div class="card-body">
@@ -67,7 +67,7 @@
                                                                     {{ $property->title ?? '' }}
                                                                     <i class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange">
-                                                                <b>${{ $property->sale_price }}</b>
+                                                                <b>${{ number_format($property->sale_price) }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($property->description ?? '', 0, 150) . '....' }}
@@ -138,10 +138,10 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($property->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($property->cover_image ?? '') }}"
+                                                        src="{{ asset($property->FristCoverImage->path ?? $property->cover_image ) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('PropertyDetail', $property->slug) }}">
                                                         <div class="card-body">
@@ -149,7 +149,7 @@
                                                                     {{ $property->title ?? '' }}
                                                                     <i class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange">
-                                                                <b>${{ $property->sale_price }}</b>
+                                                                <b>${{ number_format($property->sale_price) }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($property->description ?? '', 0, 150) . '....' }}
@@ -220,10 +220,10 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($property->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($property->cover_image ?? '') }}"
+                                                        src="{{ asset($property->FristCoverImage->path ?? $property->cover_image  ) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('PropertyDetail', $property->slug) }}">
                                                         <div class="card-body">
@@ -231,7 +231,7 @@
                                                                     {{ $property->title ?? '' }}
                                                                     <i class="fas fa-check green"></i></small></h4>
                                                             <p class="card-text orange">
-                                                                <b>${{ $property->sale_price }}</b>
+                                                                <b>${{ number_format($property->sale_price) }}</b>
                                                             </p>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($property->description ?? '', 0, 150) . '....' }}

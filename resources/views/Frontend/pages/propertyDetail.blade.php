@@ -55,8 +55,9 @@
                                             @endif
 
                                         </a>
-                                        <a href="#!" class="share"><i class="fas fa-share-square"></i></a>
-                                        <a href="#!" class="share mt-2"><i class="far fa-comment-alt"></i></a>
+                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
+
                                     </div>
                                     @if ($property->other_info)
                                         <h4 class="blue">Other information</h4>

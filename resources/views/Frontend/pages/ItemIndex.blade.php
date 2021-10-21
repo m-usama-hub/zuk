@@ -54,9 +54,9 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($item->CoverImages) }}</a> 
                                                     </div>
-                                                    <img class="card-img-top" src="{{ asset($item->cover_image) }}"
+                                                    <img class="card-img-top" src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
@@ -116,7 +116,7 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($item->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top" src="Frontend/img/sofa1.png"
                                                         alt="Card image cap">

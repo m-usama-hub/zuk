@@ -33,11 +33,11 @@
                                         </div>
                                         <div class="form-group text_fields label_test">
                                             <label for="">Business Name</label>
-                                            <p>{{ Auth::user()->UserBusinessDetail->business_name }}</p>
+                                            <p>{{ Auth::user()->UserBusinessDetail->business_name??'' }}</p>
                                         </div>
                                         <div class="form-group text_fields label_test">
                                             <label for="">Business Phone</label>
-                                            <p>{{ Auth::user()->UserBusinessDetail->business_phone }}</p>
+                                            <p>{{ Auth::user()->UserBusinessDetail->business_phone??'' }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -176,7 +176,7 @@
                             placeholder="Add other information"></textarea>
                         <p class="limit">500 characters</p>
                     </div>
-                    <div class="cover_photo">
+                    {{-- <div class="cover_photo">
                         <div class="img_background">
                             <div class="cover">
                                 <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
@@ -197,7 +197,10 @@
                             <input type="file" required name="cover_image" class="UploadImageElement"
                                 onchange="loadFile(event,'display_image_property')" style="display: none" />
                         </div>
-                    </div>
+                    </div> --}}
+
+                    @include("Frontend.modals.partials.slider")
+
                     <div class="policy">
                         <p>By posting this ad with Homzs you agree to our <a href="#!" class="terms">Terms of
                                 Use</a>

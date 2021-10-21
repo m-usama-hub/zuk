@@ -96,6 +96,17 @@ class BusinessMessage extends Model
         return $this->belongsTo('App\Models\UserBusinessDetail','business_id');
     }
 
+    public function CoverImages(){
+
+        return $this->hasMany('App\Models\BusinessImage','model_record_id')->where('model','Message')->orderby('sort_order');
+    }
+
+    public function FristCoverImage(){
+
+        return $this->hasOne('App\Models\BusinessImage','model_record_id')->where('model','Message')->orderby('sort_order');
+
+    }
+
     public function getEmailAttribute($value){
 
         return $this->isEmailPrivate ? $this->BusinessDetail->BusinessUser->email : 'Email is Hidden';

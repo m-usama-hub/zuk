@@ -55,9 +55,9 @@
                                                             <a href="#!"><i
                                                                     class="fas fa-map-marker-alt"></i>{{ $message->address ?? '' }}</a>
                                                             <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                                1</a>
+                                                                {{ count($message->CoverImages) }}</a>
                                                         </div>
-                                                        <img class="card-img-top" src="{{ asset($message->cover_image) }}"
+                                                        <img class="card-img-top" src="{{ asset($message->FristCoverImage->path ?? $message->cover_image) }}"
                                                             alt="Card image cap">
 
                                                         <div class="card-body">

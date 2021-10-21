@@ -45,8 +45,9 @@
                                             @endif
 
                                         </a>
-                                        <a href="#!" class="share"><i class="fas fa-share-square"></i></a>
-                                        <a href="#!" class="share mt-2"><i class="far fa-comment-alt"></i></a>
+                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
+                                    
                                     </div>
                                 </div>
                                 <div class="contact-desc">

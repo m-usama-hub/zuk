@@ -56,10 +56,10 @@
                                                             <a href="#!"><i
                                                                     class="fas fa-map-marker-alt"></i>{{ $housemate->address ?? '' }}</a>
                                                             <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                                1</a>
+                                                                {{ count($housemate->CoverImages) }}</a>
                                                         </div>
                                                         <a href="{{ $housemate->link }}" class="anchor_img"><img class="card-img-top"
-                                                                src="{{ asset($housemate->cover_image) }}"
+                                                                src="{{ asset($housemate->FristCoverImage->path ?? $housemate->cover_image) }}"
                                                                 alt="Card image cap"></a>
                                                             <div class="card-body">
                                                                 <h4 class="card-title blue">

@@ -8,6 +8,7 @@ use DB;
 use Config;
 use AppHelper;
 use App\Models\BusinessHousemate;
+use App\Models\BusinessImage;   
 use Auth;
 
 class HousemateController extends Controller
@@ -68,6 +69,7 @@ class HousemateController extends Controller
                 unset($UploadData['id']);
                 unset($UploadData['edit']);
                 unset($UploadData['_token']);
+                unset($UploadData['cover_image']);
 
                 $businessHousemate = BusinessHousemate::where('id',$request->id)->first()->toArray();
                 unset($businessHousemate['business_detail']);
@@ -83,27 +85,7 @@ class HousemateController extends Controller
             }else{
 
                 $UploadData = $request->all();
-            }
-
-            if($request->has('cover_image')){
-
-                $uploadfile = AppHelper::SaveFileAndGetPath($request->cover_image, Config::get('constants.attachment_paths.HousemateCoverImage'));
-
-                if($uploadfile['status']){
-
-                        $UploadData['cover_image'] = $uploadfile['path'];
-
-                        if($request->has('edit')){
-
-                            $newData['cover_image'] = $uploadfile['path'];
-                        }
-
-                }
-                else{
-
-                        $ErrorMsg = $uploadfile['msg'];
-                }
-
+                unset($UploadData['cover_image']);
             }
 
             if($ErrorMsg == ''){
@@ -138,11 +120,45 @@ class HousemateController extends Controller
 
                     BusinessHousemate::where('id',$request->id)->update($newData);
 
+                    $housemate_id = $request->id;
+
                 }else{
 
                     $UploadData['business_id'] = Auth::user()->UserBusinessDetail->id;
 
-                    BusinessHousemate::create($UploadData);
+                    $Housemate = BusinessHousemate::create($UploadData);
+
+                    $housemate_id = $Housemate->id;
+                }
+
+                if($request->has('cover_image')){
+
+
+                    $cover_image_paths = [];
+    
+                    foreach ($request->cover_image as $key => $image) {
+                        
+                        $uploadfile = AppHelper::SaveFileAndGetPath($image, Config::get('constants.attachment_paths.HousemateCoverImage'));
+    
+                        if($uploadfile['status']){
+         
+                             array_push($cover_image_paths,[
+                                 'model' => 'Housemate',
+                                 'sort_order' => $key+1,
+                                 'model_record_id' => $housemate_id,
+                                 'path' => $uploadfile['path']
+                             ]);
+         
+                        }
+                        else{
+         
+                             $ErrorMsg = $uploadfile['msg'];
+                        }
+    
+                    }
+
+                    BusinessImage::insert($cover_image_paths);
+    
                 }
 
             }

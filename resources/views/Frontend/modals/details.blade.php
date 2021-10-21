@@ -201,7 +201,7 @@
                                     <h4>Profile photos</h4>
                                 </div>
                                 <div class="gr_photos">
-                                    <div class="custom_modal_swipper">
+                                    {{-- <div class="custom_modal_swipper">
                                         <img src="{{ asset(Auth::user()->UserBusinessDetail->business_profile_pic ?? 'Frontend/img/Group413.png') }}"
                                             alt="" class="pr_photo" id="show_user_business_pic">
                                         <div>
@@ -218,10 +218,156 @@
                                                     $('#' + id).attr('src', URL.createObjectURL(event.target.files[0]))
                                                 };
                                             </script>
-                                            {{-- <div class="camera" style=""><i class="fas fa-video"></i>
-                                            </div> --}}
                                         </div>
+
+
                                         <!-- Slider main container -->
+                                    </div> --}}
+
+                                    <div class="cover_photo" style="background: aqua;">
+                                        <!-- Slideshow container -->
+                                        <div class="slideshow-container">
+                                            <!-- Full-width images with number and caption text -->
+                                            <div class="mySlides fade" style="display: block;">
+                                                <div class="numbertext">1 / 6</div>
+                                                <div class="img_background">
+                                                    <div class="cover">
+                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <p>Cover Photo</p>
+                                                    </div>
+                                                    <div class="empty_img">
+                                                    <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[0]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_1" id="display_image_1">
+                                                    </div>
+                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_1" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[0]->id??0 }},"display_image_1","mydetails");' ></i>
+                                                    </div>
+                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    </div>
+                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
+                                                            id="camera"></i></div>
+                                    
+                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_1')" style="display: none" />
+                                                </div>
+                                            </div>
+                                            <div class="mySlides fade">
+                                                <div class="numbertext">2 / 6</div>
+                                                <div class="img_background">
+                                                    <div class="cover">
+                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <p>Cover Photo</p>
+                                                    </div>
+                                                    <div class="empty_img">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[1]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_2" id="display_image_2">
+                                                    </div>
+                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_2" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[1]->id??0 }},"display_image_2","mydetails");'></i>
+                                                    </div>
+                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    </div>
+                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
+                                                            id="camera"></i></div>
+                                    
+                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_2')" style="display: none" />
+                                                </div>
+                                            </div>
+                                            <div class="mySlides fade">
+                                                <div class="numbertext">3 / 6</div>
+                                                <div class="img_background">
+                                                    <div class="cover">
+                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <p>Cover Photo</p>
+                                                    </div>
+                                                    <div class="empty_img">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[2]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_3" id="display_image_3">
+                                                    </div>
+                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_3" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[2]->id??0 }},"display_image_3","mydetails");'></i>
+                                                    </div>
+                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    </div>
+                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
+                                                            id="camera"></i></div>
+                                    
+                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_3')" style="display: none" />
+                                                </div>
+                                            </div>
+                                            <div class="mySlides fade">
+                                                <div class="numbertext">4 / 6</div>
+                                                <div class="img_background">
+                                                    <div class="cover">
+                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <p>Cover Photo</p>
+                                                    </div>
+                                                    <div class="empty_img">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[3]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_4" id="display_image_4">
+                                                    </div>
+                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_4" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[3]->id??0 }},"display_image_4","mydetails");'></i>
+                                                    </div>
+                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    </div>
+                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
+                                                            id="camera"></i></div>
+                                    
+                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_4')" style="display: none" />
+                                                </div>
+                                            </div>
+                                            <div class="mySlides fade">
+                                                <div class="numbertext">5 / 6</div>
+                                                <div class="img_background">
+                                                    <div class="cover">
+                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <p>Cover Photo</p>
+                                                    </div>
+                                                    <div class="empty_img">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[4]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_6" id="display_image_6">
+                                                    </div>
+                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_5" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[4]->id??0 }},"display_image_6","mydetails");'></i>
+                                                    </div>
+                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    </div>
+                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
+                                                            id="camera"></i></div>
+                                    
+                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_6')" style="display: none" />
+                                                </div>
+                                            </div>
+                                            <div class="mySlides fade">
+                                                <div class="numbertext">6 / 6</div>
+                                                <div class="img_background">
+                                                    <div class="cover">
+                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <p>Cover Photo</p>
+                                                    </div>
+                                                    <div class="empty_img">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[5]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_5" id="display_image_5">
+                                                    </div>
+                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_6" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[5]->id??0 }},"display_image_5","mydetails");'></i>
+                                                    </div>
+                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    </div>
+                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
+                                                            id="camera"></i></div>
+                                    
+                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_5')" style="display: none" />
+                                                </div>
+                                            </div>
+                                            <!-- Next and previous buttons -->
+                                            {{-- <a class="prev prev_button">&#10094;</a>
+                                            <a class="next next_button">&#10095;</a> --}}
+                                        </div>
+                                        <br>
+                                        <!-- The dots/circles -->
+                                        <div style="text-align:center">
+                                            <span class="dot activeDot"></span>
+                                            <span class="dot"></span>
+                                            <span class="dot"></span>
+                                            <span class="dot"></span>
+                                            <span class="dot"></span>
+                                            <span class="dot"></span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-12 col-12">
@@ -336,7 +482,7 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-sm btn-primary edit_business_btn" type="submit"
+                                <button class="btn btn-sm btn-primary edit_business_btn publish_form_data"  type="submit"
                                     style="float: right;display: none;border-radius: 10px;"> Save</button>
                             </form>
                         </div>

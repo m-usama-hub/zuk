@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\BusinessItem;
 use App\Models\BusinessCategory;
+use App\Models\BusinessImage;
 use AppHelper;
 use Auth;
 use Config;
@@ -67,11 +68,12 @@ class ItemController extends Controller
                 unset($UploadData['id']);
                 unset($UploadData['edit']);
                 unset($UploadData['_token']);
+                unset($UploadData['cover_image']);
 
-                $BusinessItem = BusinessItem::where('id',$request->id)->first();
+                $BusinessItem = BusinessItem::where('id',$request->id)->first()->toArray();
                 unset($BusinessItem['business_detail']);
 
-                $newData = array_diff($UploadData,$BusinessItem->toArray());
+                $newData = array_diff($UploadData,$BusinessItem);
 
                 $newData['isProfilePhotoPrivate'] = $request->has('isProfilePhotoPrivate') ? $request->isProfilePhotoPrivate : 0;
                 $newData['isPhonePrivate'] = $request->has('isPhonePrivate') ? $request->isPhonePrivate : 0;
@@ -82,27 +84,7 @@ class ItemController extends Controller
             }else{
 
                 $UploadData = $request->all();
-            }
-            if($request->has('cover_image')){
-
-               $uploadfile = AppHelper::SaveFileAndGetPath($request->cover_image, Config::get('constants.attachment_paths.itemCoverImage'));
-
-               if($uploadfile['status']){
-
-                    $UploadData['cover_image'] = $uploadfile['path'];
-
-
-                    if($request->has('edit')){
-
-                        $newData['cover_image'] = $uploadfile['path'];
-                    }
-
-               }
-               else{
-
-                    $ErrorMsg = $uploadfile['msg'];
-               }
-
+                unset($UploadData['cover_image']);
             }
 
             if($ErrorMsg == ''){
@@ -165,12 +147,45 @@ class ItemController extends Controller
 
                     BusinessItem::where('id',$request->id)->update($newData);
 
+                    $item_id = $request->id;
+
                 }else{
 
                     $UploadData['business_id'] = Auth::user()->UserBusinessDetail->id;
 
+                    $Item = BusinessItem::create($UploadData);
 
-                    BusinessItem::create($UploadData);
+                    $item_id = $Item->id;
+                }
+
+                if($request->has('cover_image')){
+
+
+                    $cover_image_paths = [];
+    
+                    foreach ($request->cover_image as $key => $image) {
+                        
+                        $uploadfile = AppHelper::SaveFileAndGetPath($image, Config::get('constants.attachment_paths.itemCoverImage'));
+    
+                        if($uploadfile['status']){
+         
+                             array_push($cover_image_paths,[
+                                 'model' => 'Item',
+                                 'sort_order' => $key+1,
+                                 'model_record_id' => $item_id,
+                                 'path' => $uploadfile['path']
+                             ]);
+         
+                        }
+                        else{
+         
+                             $ErrorMsg = $uploadfile['msg'];
+                        }
+    
+                    }
+
+                    BusinessImage::insert($cover_image_paths);
+    
                 }
             }
 

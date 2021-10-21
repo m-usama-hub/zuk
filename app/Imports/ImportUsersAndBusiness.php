@@ -5,6 +5,7 @@ namespace App\Imports;
 use App\Models\User;
 use App\Models\UserBusinessDetail;
 use App\Models\UserBusinessService;
+use App\Models\UserBusinessCategory;
 use App\Models\UserDetail;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Illuminate\Support\Facades\Hash;
@@ -58,6 +59,11 @@ class ImportUsersAndBusiness implements ToModel
             "address" => $data->formatted_address,
             "lat" => $data->geometry['location']['lat'],
             "lng" => $data->geometry['location']['lng']
+        ]);
+
+        UserBusinessCategory::create([
+            'user_business_detail_id' => $userBusiness->id,
+            'business_category_id' => 29
         ]);
 
         $services = explode(";",$row[3]);

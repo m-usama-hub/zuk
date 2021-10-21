@@ -73,6 +73,17 @@ class BusinessItem extends Model
 
     }
 
+    public function CoverImages(){
+
+        return $this->hasMany('App\Models\BusinessImage','model_record_id')->where('model','Item')->orderby('sort_order');
+    }
+
+    public function FristCoverImage(){
+
+        return $this->hasOne('App\Models\BusinessImage','model_record_id')->where('model','Item')->orderby('sort_order');
+
+    }
+
     public function getEmailAttribute($value){
 
         return $this->isEmailPrivate ? $this->BusinessDetail->BusinessUser->email : 'Email is Hidden';

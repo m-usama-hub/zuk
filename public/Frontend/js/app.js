@@ -205,7 +205,6 @@ $(document).ready(function () {
     $("#add_new_business_category").click(function (e) {
         $("#add_new_business_category_inputs").css("display", "flex");
     });
-    
 
     $("#add_new").click(function (e) {
         $.ajaxSetup({
@@ -637,11 +636,63 @@ $(document).ready(function () {
         let form = $(this).closest("form");
 
         if (form.validate()) {
-            form.find("[name='draft']", "[name='publish']").remove();
+            let formAction = form.attr("action");
 
-            form.append(
-                '<input type="hidden" name="preview" value="true" />'
-            ).submit();
+            form.find(
+                "[name='preview']",
+                "[name='draft']",
+                "[name='publish']"
+            ).remove();
+
+            form.append('<input type="hidden" name="preview" value="true" />');
+
+            var data = form.serializeArray().reduce(function (obj, item) {
+                obj[item.name] = item.value;
+                return obj;
+            }, {});
+
+            form.find(".empty_img .img-fluid")
+                .map(function (i) {
+                    data["display_image_"+i] = this.src;
+                })
+                .get();
+
+            console.log({ data });
+
+            const keys = Object.keys(data);
+
+            let modal;
+
+            if (formAction.includes("property")) {
+                modal = $("#previewProperty");
+            }
+
+            if (formAction.includes("item")) {
+                modal = $("#previewItem");
+            }
+
+            if (formAction.includes("housemate")) {
+                modal = $("#previewHousemate");
+            }
+
+            if (formAction.includes("message")) {
+                modal = $("#previewMessage");
+            }
+
+            modal.modal("show");
+
+            keys.forEach((key) => {
+
+                if(key.includes('display_image_')){
+                    modal.find("." + key).attr('src',data[key]);
+                }else{
+
+                    modal.find("." + key).text(data[key]);
+                }
+
+            });
+
+            // modalSwiper.initialize();
         }
     });
 
@@ -668,7 +719,51 @@ $(document).ready(function () {
             ).submit();
         }
     });
+
+    // $(".mySlides").find('.fa-file-upload').click(function (e) {
+
+    // });
 });
+
+{
+    var slideIndex = 1;
+    var dotIndex = 0;
+
+    // showSlides(slideIndex);
+
+    $(".dot").click(function () {
+        dotIndex = $(".dot").index(this) + 1;
+        showSlides((slideIndex = dotIndex));
+    });
+
+    $(".prev").click(function (e) {
+        showSlides(dotIndex - 1);
+    });
+
+    $(".next").click(function (e) {
+        showSlides(dotIndex + 1);
+    });
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {
+            slideIndex = 1;
+        }
+        if (n < 1) {
+            slideIndex = slides.length;
+        }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" activeDot", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " activeDot";
+    }
+}
 
 // function preview(event) {
 //     let form = $(event).closest("form");
@@ -721,7 +816,7 @@ function UploadUsing(event, type = null) {
 }
 
 function loadFile(event, id) {
-    $("#" + id).attr("src", URL.createObjectURL(event.target.files[0]));
+    $("." + id).attr("src", URL.createObjectURL(event.target.files[0]));
 }
 
 function deletePost(table, id, key) {
@@ -787,13 +882,36 @@ function getPostData(table, id, key, modalId) {
         success: function (data) {
             if (data.status == true) {
                 response = data.response;
-
                 delete response.photo;
 
                 const keys = Object.keys(response);
 
                 keys.forEach((key, index) => {
-                    if (`${key}` == "cover_image") {
+                    if (`${key}` == "cover_images") {
+                        $('img[class*="display_image_"]').attr(
+                            "src",
+                            "Frontend/img/empty.png"
+                        );
+
+                        response[key].forEach((element, ImgIndex) => {
+                            $("#" + modalId)
+                                .find(".display_image_" + (ImgIndex + 1))
+                                .attr("src", element.path);
+
+                            $("#" + modalId)
+                                .find(".trash_" + (ImgIndex + 1))
+                                .attr(
+                                    "onClick",
+                                    "DeleteImage(" +
+                                        element.id +
+                                        ',"display_image_' +
+                                        (ImgIndex + 1) +
+                                        '","' +
+                                        modalId +
+                                        '");'
+                                );
+                        });
+                    } else if (`${key}` == "cover_image") {
                         $("#" + modalId)
                             .find(".img_background")
                             .find(".img-fluid")
@@ -823,7 +941,11 @@ function getPostData(table, id, key, modalId) {
                             .val(`${response[key]}`)
                             .change();
                     } else {
-                        $("[name=" + `${key}` + "]").val(`${response[key]}`);
+                        console.log("In else");
+                        console.log(`${key}`);
+                        $("#" + modalId)
+                            .find("[name=" + `${key}` + "]")
+                            .val(`${response[key]}`);
                     }
                 });
 
@@ -919,9 +1041,7 @@ function DoUnfav(id, table, key = null, heartId = null) {
 }
 
 function Dofav(id, table, model) {
-
-    if(Auth){
-
+    if (Auth) {
         $.ajaxSetup({
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
@@ -957,12 +1077,9 @@ function Dofav(id, table, model) {
                 }
             },
         });
-
-    }else{
-
-        $('#welcome').modal('show');
+    } else {
+        $("#welcome").modal("show");
     }
-
 }
 
 function OpenRatingModal(company, services, address, business_id) {
@@ -1108,102 +1225,114 @@ google.maps.event.addListener(houseAddress, "place_changed", function () {
     console.log(place);
 });
 
-$('.chatmessage').find('.fa-minus-circle').click(function(){
-    $('.chatmessage').css('display','none');
-    $(".nomessage").css('display','unset');
-});
+$(".chatmessage")
+    .find(".fa-minus-circle")
+    .click(function () {
+        $(".chatmessage").css("display", "none");
+        $(".nomessage").css("display", "unset");
+    });
+
+$(".chatmessage")
+    .find(".fa-flag")
+    .click(function () {
+        $("#abusereports").modal("show");
+    });
 
 {
-
-    let record_id, table ,to_id, parent_id;
+    let record_id, table, to_id, parent_id;
 
     function GetProductDetails(id, title, modal, user, user_id, date) {
-
-        if(Auth){
-
+        if (Auth) {
             record_id = id;
             table = modal;
             to_id = user_id;
 
-            $('.chatmessage').css('display','unset');
+            $(".chatmessage").css("display", "unset");
             $(".address_area>.note").html(title);
             $(".receiver>.name").html(user);
             $(".address_area>.address").html(user + " " + date);
-            $(".nomessage").css('display','none');
+            $(".nomessage").css("display", "none");
 
             $("#personal").modal("show");
-
-        }else{
-            $('#welcome').modal('show');
+        } else {
+            $("#welcome").modal("show");
         }
-
     }
 
-    function sendMessage(){
+    function sendMessage() {
+        message = $(".type_area>#message").val();
 
-        message = $('.type_area>#message').val();
-
-        $('.sending').css('display','none');
-        $('.sendingloader').css('display','unset');
+        $(".sending").css("display", "none");
+        $(".sendingloader").css("display", "unset");
 
         data = {
-            table_record_id:record_id,
-            table_name:table,
-            to_id:to_id,
+            table_record_id: record_id,
+            table_name: table,
+            to_id: to_id,
             parent_message_id: parent_id ? parent_id : null,
-            body:message
+            body: message,
         };
 
-        CallAction("/sendMessage", data, function(response){
-
-            if(response.status == true){
-
+        CallAction("/sendMessage", data, function (response) {
+            if (response.status == true) {
                 location.reload();
 
-                $('.sending').css('display','unset');
-                $('.sendingloader').css('display','none');
+                $(".sending").css("display", "unset");
+                $(".sendingloader").css("display", "none");
 
                 console.log(response);
-
-            }else{
+            } else {
                 console.log(response);
 
                 alert(response.message);
-                $('.sending').css('display','unset');
-                $('.sendingloader').css('display','none');
+                $(".sending").css("display", "unset");
+                $(".sendingloader").css("display", "none");
             }
-
         });
-
     }
 
-    
+    $(".clicktoreply").click(function () {
+        $(".nomessage").css("display", "none");
+        $(".chatmessage").css("display", "unset");
+        to_id = $(this).find(".to_id").val();
+        record_id = $(this).find(".table_record_id").val();
+        table = $(this).find(".table_name").val();
+        parent_id = $(this).find(".parent_id").val();
 
-    $('.clicktoreply').click( function(){
+        username = $(this).find(".username").text();
+        message = $(this).find(".body").html();
 
-        $(".nomessage").css('display','none');
-        $('.chatmessage').css('display','unset');
-        to_id = $(this).find('.to_id').val();
-        record_id = $(this).find('.table_record_id').val();
-        table = $(this).find('.table_name').val();
-        parent_id = $(this).find('.parent_id').val();
-
-
-        username = $(this).find('.username').text();
-        message = $(this).find('.body').html();
-        
-        $(".address_area>.note").html('Reply to : '+ message);
+        $(".address_area>.note").html("Reply to : " + message);
         $(".receiver>.name").html(username);
         $(".address_area>.address").html(username);
-
     });
 }
 
 function copyURI(evt) {
     evt.preventDefault();
-    navigator.clipboard.writeText(evt.target.getAttribute('href')).then(() => {
-      /* clipboard successfully set */
-    }, () => {
-      /* clipboard write failed */
+    navigator.clipboard.writeText(evt.target.getAttribute("href")).then(
+        () => {
+            /* clipboard successfully set */
+        },
+        () => {
+            /* clipboard write failed */
+        }
+    );
+}
+
+function DeleteImage(id, displayClass, modalId) {
+    var data = {
+        id: id,
+    };
+
+    CallAction("/deleteImage", data, function (response) {
+        if (response.status == true) {
+            $("#" + modalId)
+                .find(".img_background")
+                .find("." + displayClass)
+                .attr("src", "http://127.0.0.1:8000/Frontend/img/empty.png");
+        } else {
+            alert(response.message);
+        }
     });
 }

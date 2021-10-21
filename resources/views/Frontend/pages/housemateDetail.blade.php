@@ -48,8 +48,8 @@
 
                                         </a>
 
-                                        <a href="#!" class="share"><i class="fas fa-share-square"></i></a>
-                                        <a href="#!" class="share mt-2"><i class="far fa-comment-alt"></i></a>
+                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
+                                        @include('Frontend.pages.partials.messageElement',['id' => $housemate->id, 'title' => $housemate->title, 'modal' => 'Housemate','user'  => $housemate->BusinessDetail->BusinessUser->fullname,'user_id'  => $housemate->BusinessDetail->User->id])
 
                                     </div>
                                     <div class=" card-body">

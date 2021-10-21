@@ -94,10 +94,10 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($property->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($property->cover_image ?? '') }}"
+                                                        src="{{ asset($property->FristCoverImage->path ?? $property->cover_image ?? '') }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('PropertyDetail', $property->slug) }}">
                                                         <div class="card-body">
@@ -171,15 +171,16 @@
                                                         </a>
                                                         @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
                                                         @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
+                                                    
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $property->address ?? '' }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($property->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($property->cover_image ?? '') }}"
+                                                        src="{{ asset($property->FristCoverImage->path ?? $property->cover_image ?? '') }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('PropertyDetail', $property->slug) }}">
                                                         <div class="card-body">
@@ -274,6 +275,7 @@
                                                         </a>
                                                         @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
                                                         @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
+                                                    
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#"
@@ -288,10 +290,10 @@
                                                             </span> {{ $pro->reviewComment }}
                                                         </a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($pro->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($pro->business_profile_pic) }}"
+                                                        src="{{ asset($pro->FristCoverImage->path ?? $pro->business_profile_pic) }}"
                                                         alt="Card image cap">
 
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
@@ -379,11 +381,10 @@
 
                                                         </a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1
-                                                        </a>
+                                                            {{ count($pro->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($pro->business_profile_pic) }}"
+                                                        src="{{ asset($pro->FristCoverImage->path ?? $pro->business_profile_pic) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ProfessionalDetail', $pro->slug) }}">
                                                         <div class="card-body">
@@ -481,9 +482,9 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($item->CoverImages) }}</a>
                                                     </div>
-                                                    <img class="card-img-top" src="Frontend/img/sofa1.png"
+                                                    <img class="card-img-top" src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
@@ -555,9 +556,9 @@
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            1</a>
+                                                            {{ count($item->CoverImages) }}</a>
                                                     </div>
-                                                    <img class="card-img-top" src="Frontend/img/sofa1.png"
+                                                    <img class="card-img-top" src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
