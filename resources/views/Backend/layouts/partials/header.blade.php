@@ -63,16 +63,15 @@
                     <div class="dropdown-menu dropdown-menu-right user-dd animated">
                         {{-- <a class="dropdown-item" href="{{ route('showprofile') }}"><i class="ti-user m-r-5 m-l-5"></i>
                             My Profile</a> --}}
-                        <form action="{{route('logout')}}" class="dropdown-item" method="POST">
+                        <form action="{{ route('logout') }}" class="dropdown-item" method="POST">
                             @csrf
-                            <i
-                                class="fa fa-power-off m-r-5 m-l-5"></i>
+                            <i class="fa fa-power-off m-r-5 m-l-5"></i>
 
-                                    <button type="submit" class="btn red">
-                                        <i class="icon-logout"></i>
-                                        Logout
-                                        </button>
-                                </form>
+                            <button type="submit" class="btn red">
+                                <i class="icon-logout"></i>
+                                Logout
+                            </button>
+                        </form>
                     </div>
                 </li>
                 <!-- ============================================================== -->

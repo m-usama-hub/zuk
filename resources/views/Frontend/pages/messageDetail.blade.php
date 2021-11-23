@@ -8,12 +8,37 @@
                     <div class="col-lg-12 detail-box">
                         <div class="row">
                             <div class="col-lg-4">
-                                <img src="{{ asset($message->cover_image) }}" alt="" class="img-fluid">
+                                {{-- <img src="{{ asset($message->cover_image) }}" alt="" class="img-fluid"> --}}
+                                <div class="swiper modalSwiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                                    <div class="swiper-wrapper" id="swiper-wrapper-030becf1010c7a5e07" aria-live="polite"
+                                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                                        @foreach ($message->CoverImages as $image)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($image->path) }}" alt="" class="pr_photo">
+                                            </div>
+                                        @endforeach
+
+                                        @if (count($message->CoverImages) <= 0)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($message->cover_image) }}" alt=""
+                                                    class="pr_photo">
+                                            </div>
+
+                                        @endif
+
+                                    </div>
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="undefined"
+                                        aria-controls="Next slide" aria-disabled="false">
+                                    </div>
+                                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button"
+                                        aria-label="undefined" aria-controls="Previous slide" aria-disabled="true"></div>
+                                </div>
                             </div>
                             <div class="col-lg-8 media_content">
                                 <div class="media">
-                                    <img class="mr-3"
-                                        src="{{ asset($message->profile_pic) }}" width="100"
+                                    <img class="mr-3" src="{{ asset($message->profile_pic) }}" width="100"
                                         alt="Generic placeholder image">
                                     <div class="media-body">
                                         <h3 class="mt-0 blue">{{ $message->title }}<span class="ab-right"><i
@@ -46,7 +71,10 @@
 
                                         </a>
                                         @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                        @include('Frontend.pages.partials.messageElement',['id' => $message->id, 'title' => $message->title, 'modal' => 'Message','user'  => $message->BusinessDetail->BusinessUser->fullname,'user_id'  => $message->BusinessDetail->User->id])
+                                        @include('Frontend.pages.partials.messageElement',['id' => $message->id, 'title' =>
+                                        $message->title, 'modal' => 'Message','user' =>
+                                        $message->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                        $message->BusinessDetail->User->id])
 
 
                                     </div>
@@ -55,9 +83,13 @@
                                     <div class="col-md-2">
                                         <div class="room_available">
                                             <span class="blue">
-                                                    <i class="fas fa-thumbs-up" onclick="document.getElementById('liketoggle').submit();" style="color: {{ $message->CheckLike() ? 'green' : '' }}"></i>
+                                                <i class="fas fa-thumbs-up"
+                                                    onclick="document.getElementById('liketoggle').submit();"
+                                                    style="color: {{ $message->CheckLike() ? 'green' : '' }}"></i>
 
-                                                    <form action="{{ route('liketoggle',$message->id) }}?like={{ $message->CheckLike() }}" id="liketoggle" method="post" style="display: none;">@csrf</form>
+                                                <form
+                                                    action="{{ route('liketoggle', $message->id) }}?like={{ $message->CheckLike() }}"
+                                                    id="liketoggle" method="post" style="display: none;">@csrf</form>
                                             </span>
                                             <span class=" custom_border">
                                                 {{ count($message->Likes) }}
@@ -99,13 +131,39 @@
                     <div class="col-lg-12 detail-box">
                         <div class="row">
                             <div class="col-lg-4">
-                                <img src="{{ asset($message->cover_image) }}" alt="" class="img-fluid">
+                                {{-- <img src="{{ asset($message->cover_image) }}" alt="" class="img-fluid"> --}}
+
+                                <div class="swiper modalSwiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                                    <div class="swiper-wrapper" id="swiper-wrapper-030becf1010c7a5e07" aria-live="polite"
+                                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                                        @foreach ($message->CoverImages as $image)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($image->path) }}" alt="" class="pr_photo">
+                                            </div>
+                                        @endforeach
+
+                                        @if (count($message->CoverImages) <= 0)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($message->cover_image) }}" alt=""
+                                                    class="pr_photo">
+                                            </div>
+
+                                        @endif
+
+                                    </div>
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="undefined"
+                                        aria-controls="Next slide" aria-disabled="false">
+                                    </div>
+                                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button"
+                                        aria-label="undefined" aria-controls="Previous slide" aria-disabled="true"></div>
+                                </div>
                             </div>
                             <div class="col-lg-8 media_content">
                                 <div class="media">
-                                    <img class="mr-3"
-                                        src="{{ asset($message->profile_pic) }}"
-                                        width="100" alt="Generic placeholder image">
+                                    <img class="mr-3" src="{{ asset($message->profile_pic) }}" width="100"
+                                        alt="Generic placeholder image">
                                     <div class="media-body">
                                         <h3 class="mt-0 blue">{{ $message->title }}<span class="ab-right"><i
                                                     class="far fa-calendar-alt"></i>{{ date('d M Y', strtotime($message->created_at)) }}</span>
@@ -143,20 +201,30 @@
                                 @foreach ($message->Replies as $reply)
                                     <div class="custom_like_message">
 
-                                        @if (Auth::user() && Auth::user()->id == $reply->user_id)
-                                            
-                                            <div class="room_available">
-                                                <span class="blue">
-                                                    <i class="fas fa-flag"></i>
-                                                </span>
+                                        @if (Auth::user() && Auth::user()->UserBusinessDetail->id == $message->business_id)
 
-                                            </div>
+                                            @if (Auth::user()->id != $reply->user_id)
+                                                <div class="room_available">
+                                                    <span class="blue">
+                                                        <i class="fas fa-flag"
+                                                            onclick="Report('{{ $reply->User->UserDetail->fullname ?? $reply->User->name }}','{{ $reply->User->id }}')"></i>
+                                                    </span>
+                                                </div>
+                                            @endif
+
+                                        @endif
+
+                                        @if (Auth::user() && Auth::user()->id == $reply->user_id)
+
                                             <div class="location_room">
                                                 <span class="orange">
-                                                   <i onclick="document.getElementById('deleteReply').submit();" class="fas fa-minus-circle"></i>
-                                                   <form action="{{ route('deleteReply',$reply->id) }}" id="deleteReply" method="post">@csrf</form> 
+                                                    <i onclick="document.getElementById('deleteReply').submit();"
+                                                        class="fas fa-minus-circle"></i>
+                                                    <form action="{{ route('deleteReply', $reply->id) }}"
+                                                        id="deleteReply" method="post">@csrf</form>
                                                 </span>
                                             </div>
+
                                         @endif
 
                                     </div>
@@ -166,16 +234,21 @@
                                             <div class="col-md-6">
                                                 <div class="comments_person_details">
                                                     <img class="mr-3"
-                                                        src="{{ asset($reply->User->UserDetail->profile_pic??'img/default.png') }}" width="60"
-                                                        alt="Generic placeholder image">
-                                                    <span class="person_name">{{ $reply->User->UserDetail->fullname ?? $reply->User->name }}</span>
+                                                        src="{{ asset($reply->User->UserDetail->profile_pic ?? 'img/default.png') }}"
+                                                        width="60" alt="Generic placeholder image">
+                                                    <span
+                                                        class="person_name">{{ $reply->User->UserDetail->fullname ?? $reply->User->name }}</span>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="comments_time">
                                                     <ul>
-                                                        <li> <span class="time">{{ date('H.i A',strtotime($reply->created_at)) }}</span></li>
-                                                        <li> <span class="date">{{ date('d M y',strtotime($reply->created_at)) }}</span></li>
+                                                        <li> <span
+                                                                class="time">{{ date('H.i A', strtotime($reply->created_at)) }}</span>
+                                                        </li>
+                                                        <li> <span
+                                                                class="date">{{ date('d M y', strtotime($reply->created_at)) }}</span>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -184,18 +257,19 @@
                                     </div>
 
                                 @endforeach
-                                
 
-                                    @if (Auth::user())
+
+                                @if (Auth::user())
 
                                     <div class="custom_comments_box">
-                                        <form action="{{ route('doreply',$message->id) }}" method="post">
+                                        <form action="{{ route('doreply', $message->id) }}" method="post">
                                             @csrf
-                                            <textarea rows="4" cols="75" placeholder="Enter your message here" name="message"></textarea>
+                                            <textarea rows="4" cols="75" placeholder="Enter your message here"
+                                                name="message"></textarea>
                                             <div class="comments_form">
                                                 <div class="row">
                                                     <div class="col-md-6">
-    
+
                                                     </div>
                                                     <div class="col-md-6">
                                                         <button type="submit" class="btn send_message_btn">Send my
@@ -203,11 +277,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-    
+
                                         </form>
                                     </div>
-                                        
-                                    @endif
+
+                                @endif
 
 
 

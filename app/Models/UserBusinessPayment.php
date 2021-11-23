@@ -13,4 +13,9 @@ class UserBusinessPayment extends Model
 
     protected $guarded = [];
 
+	public function User(){
+        
+      return $this->belongsTo('App\Models\User','user_id');
+    }
+
 }

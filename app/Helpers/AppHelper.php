@@ -13,10 +13,12 @@ use Str;
 use Route;
 use App\Models\UserBusinessDetail;
 use App\Models\BusinessCategory;
+use App\Models\BusinessItemPackage;
 use App\Models\UserDetail;
+use App\Models\Page;
+use App\Models\CmsData;
 use App\Models\PersonalMessage;
 use Illuminate\Support\Facades\Http;
-
 
 class AppHelper
 {
@@ -108,44 +110,44 @@ class AppHelper
     public static function getDataBasesOnPage(){
 
         $data = [];
+        $pageCms = [];
         $currentRouteName = Route::currentRouteName();
 
         if($currentRouteName == 'indexProfessional'){
 
-            $data['heading'] = "Find the right Professional for your job";
-            $data['LinkHtmlText'] = "Post an Professional";
             $data['ModalId'] = "#mydetails";
 
         }else if($currentRouteName == 'indexProperty'){
 
-            $data['heading'] = "Find the right Property";
-            $data['LinkHtmlText'] = "Post an Property";
             $data['ModalId'] = "#buisness_property";
 
         }else if($currentRouteName == 'indexItem'){
 
-            $data['heading'] = "Find the right Item";
-            $data['LinkHtmlText'] = "Post an Item to Sell";
             $data['ModalId'] = "#itemtosell";
 
         }else if($currentRouteName == 'indexHousemate'){
 
-            $data['heading'] = "Find the right Housemate";
-            $data['LinkHtmlText'] = "Post an Housemate";
             $data['ModalId'] = "#posthousemate";
 
         }else if($currentRouteName == 'indexMessage'){
 
-            $data['heading'] = "Find the right Message";
-            $data['LinkHtmlText'] = "Post an Message";
             $data['ModalId'] = "#postmessage";
 
         }else{
 
-            $data['heading'] = "Find Everything on you needs";
-            $data['LinkHtmlText'] = "";
             $data['ModalId'] = "";
         }
+
+        if($data['ModalId'] != ""){
+
+            $page = Page::where('routeName',$currentRouteName)->with('Data')->first();
+            $pageCms = $page->Data->pluck('value','key')->toArray();
+    
+        }
+
+        $data['heading'] = $pageCms['Page Heading'] ?? self::SystemConfig('header_heading_1');
+        $data['LinkHtmlText'] = $pageCms['Page Modal'] ?? '';
+
 
         if(Auth::user()){
             if(!Auth::user()->UserHasBusinessProfile()){
@@ -323,11 +325,63 @@ class AppHelper
 
     }
 
+    public static function getCmsData($pageRoute, $key){
+
+        $data = Page::where('routeName' , $pageRoute)->with(['Data' => function($q) use($key){
+            $q->where('key', $key);
+        }])->first();
+
+        $config = $data->Data->first();
+
+        if($config != null){
+
+            return $config->value;
+        }
+
+        return null;
+    }
+
     public static function getMessages(){
 
         $myMessages  = PersonalMessage::where('to_id', Auth::user()->id)->where('parent_message_id' ,null)->orWhere('from_id', Auth::user()->id)->where('parent_message_id' ,null)->with('MessageReplies')->with('ToUser')->orderby('created_at','DESC')->get();
 
         return $myMessages;
+
+    }
+
+    public static function MakeItemPayment($data){
+
+        $message = "";
+
+        if(array_key_exists('package_id', $data) && $data['package_id'] != "null" ){
+
+            $package = BusinessItemPackage::where('id',$data['package_id'])->first();
+
+            $walletAmount = Auth::user()->UserBusinessDetail->business_wallet_available;
+
+            if($walletAmount < $package->amount){
+
+                $data['package_id'] = null;
+                $data['status'] = 'draft';
+
+                $message = "Insufficient balance to make Ad Standout.";
+            }
+            else{
+
+                Auth::user()->UserBusinessDetail->update([
+                    'business_wallet_available' => $walletAmount - $package->amount,
+                    'business_wallet_spended' => $package->amount + Auth::user()->UserBusinessDetail->business_wallet_spended
+                ]);
+
+                $message = "Payment Successful..!";
+
+            }
+        }
+
+        return [
+            'payment' => $data,
+            'message' => $message
+        ];
 
     }
 

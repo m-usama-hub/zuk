@@ -164,7 +164,7 @@ return [
         Stevebauman\Location\LocationServiceProvider::class,
         Nexmo\Laravel\NexmoServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
-        
+        // Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -178,6 +178,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // App\Services\Locale\TranslationServiceProvider::class,
+        Illuminate\Translation\TranslationServiceProvider::class,
 
     ],
 

@@ -8,7 +8,34 @@
                     <div class="col-lg-12 detail-box mt-3">
                         <div class="row">
                             <div class="col-lg-4">
-                                <img src="{{ asset($property->cover_image) }}" alt="" class="img-fluid">
+                                {{-- <img src="{{ asset($property->cover_image) }}" alt="" class="img-fluid"> --}}
+
+                                <div class="swiper modalSwiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                                    <div class="swiper-wrapper" id="swiper-wrapper-030becf1010c7a5e07" aria-live="polite"
+                                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                                        @foreach ($property->CoverImages as $image)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($image->path) }}" alt="" class="pr_photo">
+                                            </div>
+                                        @endforeach
+
+                                        @if (count($property->CoverImages) <= 0)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($property->cover_image) }}" alt=""
+                                                    class="pr_photo">
+                                            </div>
+
+                                        @endif
+
+                                    </div>
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="undefined"
+                                        aria-controls="Next slide" aria-disabled="false">
+                                    </div>
+                                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button"
+                                        aria-label="undefined" aria-controls="Previous slide" aria-disabled="true"></div>
+                                </div>
                             </div>
                             <div class="col-lg-8 media_content">
                                 <div class="media">
@@ -18,7 +45,8 @@
                                     <div class="media-body">
                                         <h3 class="mt-0 blue">{{ $property->property_beds }}
                                             {{ $property->property_type }} <span
-                                                class="ab-right">${{ number_format($property->sale_price) }}</span></h3>
+                                                class="ab-right">${{ number_format($property->sale_price) }}</span>
+                                        </h3>
                                         <p class="gray">{{ $property->address }} <span
                                                 class="ab-right">For {{ $property->for_type }}</span></p>
                                     </div>
@@ -56,7 +84,10 @@
 
                                         </a>
                                         @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
+                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' =>
+                                        $property->title, 'modal' => 'Property','user' =>
+                                        $property->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                        $property->BusinessDetail->User->id])
 
                                     </div>
                                     @if ($property->other_info)
@@ -74,10 +105,12 @@
                                 <div class="contact-desc">
                                     <a href="tel: {{ $property->BusinessDetail->business_phone }}"><i
                                             class="fas fa-phone-alt l-blue pr-2"></i>
-                                        {{ $property->BusinessDetail->business_phone  }}
-                                    </a> <a href="mailto:{{ $property->BusinessDetail->BusinessUser->email  }}"><i
-                                            class="fas fa-envelope l-blue pl-2 pr-2"></i> {{ $property->BusinessDetail->BusinessUser->email  }}</a>
-                                    <a href="#!" class="views"><i class="fas fa-eye l-blue"></i> Viewed | {{ $property->views }}</a>
+                                        {{ $property->BusinessDetail->business_phone }}
+                                    </a> <a href="mailto:{{ $property->BusinessDetail->BusinessUser->email }}"><i
+                                            class="fas fa-envelope l-blue pl-2 pr-2"></i>
+                                        {{ $property->BusinessDetail->BusinessUser->email }}</a>
+                                    <a href="#!" class="views"><i class="fas fa-eye l-blue"></i> Viewed |
+                                        {{ $property->views }}</a>
 
                                 </div>
                             </div>

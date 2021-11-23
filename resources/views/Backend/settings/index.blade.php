@@ -40,7 +40,7 @@
                             </div>
                             <input type="file" class="form-control" name="header_cover_image" onchange="loadImage(event)"
                                 style="background: transparent;
-                                padding: 3px;" id="basic-url" aria-describedby="basic-addon3">
+                                                    padding: 3px;" id="basic-url" aria-describedby="basic-addon3">
                             <div class="input-group-append">
                                 <a href="{{ $data['header_cover_image'] ?? '' }}" id="new_image" target="_blank"
                                     class="btn btn-outline-link"><i class="fas fa-external-link-alt"></i> Preview</a>
@@ -93,7 +93,8 @@
                                     Video</span>
                             </div>
                             <input type="file" class="form-control" name="header_video" onchange="loadvideo(event)" style="background: transparent;
-                                padding: 3px;" id="basic-url" aria-describedby="basic-addon3" accept="video/mp4,video/x-m4v,video/*">
+                                                    padding: 3px;" id="basic-url" aria-describedby="basic-addon3"
+                                accept="video/mp4,video/x-m4v,video/*">
                             <div class="input-group-append">
                                 <a href="{{ $data['header_video'] ?? '' }}" id="new_video" target="_blank"
                                     class="btn btn-outline-link"><i class="fas fa-external-link-alt"></i> Preview</a>
@@ -107,8 +108,7 @@
                                 };
                             </script>
                         </div>
-                    </div>
-
+                    </div>  
                     <div class="row" style="float: right;">
                         <br>
                         <div class="col-md-12">
@@ -247,8 +247,8 @@
                     <label for="basic-url">Privacy and Policy</label>
                     <div>
                         <textarea name="privacy-policy" id="privacy-policy" cols="40" rows="10" name="">
-                                            {!! $data['privacy-policy'] ?? '' !!}
-                                        </textarea>
+                                                                {!! $data['privacy-policy'] ?? '' !!}
+                                                            </textarea>
 
                         <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
                         <script>
@@ -271,8 +271,8 @@
                     <label for="basic-url">About Us</label>
                     <div>
                         <textarea name="about-us" id="about-us" cols="40" rows="10" name="">
-                                            {!! $data['about-us'] ?? '' !!}
-                                        </textarea>
+                                                                {!! $data['about-us'] ?? '' !!}
+                                                            </textarea>
 
                         <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
                         <script>

@@ -6,11 +6,12 @@
     <div class="container custom_container">
         <div class="row align-items-center">
             <div class="col-md-8" data-aos="fade-right" data-aos-duration="1500">
-                <h3 class="pb-3">{{ $data['heading'] ?? '' }}</h3>
+                <h3 class="pb-3">{{ __('' . $data['heading'] ?? '') }}</h3>
                 <form action="" method="get">
                     <div class="form-row">
                         <div class="col b-form">
-                            <input type="text" class="form-control" value="{{ Request::get('address') }}" name="address" placeholder="Area Or Postcode">
+                            <input type="text" id="searchAddress" class="form-control"
+                                value="{{ Request::get('address') }}" name="address" placeholder="Area Or Postcode">
                         </div>
                         <div class="col">
                             <select id="inputState" name="city" class="form-control">
@@ -28,16 +29,18 @@
                             </select>
                         </div>
                         <div class="col">
-                            <button type="submit" class="btn btn-link">Search <i class="fas fa-search"></i></button>
+                            <button type="submit" class="btn btn-link">{{ __('Search') }} <i
+                                    class="fas fa-search"></i></button>
                         </div>
                         <div class="col">
-                            <button type="submit" style="background: transparent; border: 0; color: white;"><i class="fas fa-map-marker-alt"></i>Radius</button>
+                            <button type="submit" style="background: transparent; border: 0; color: white;"><i
+                                    class="fas fa-map-marker-alt"></i> {{ __('Radius') }}</button>
                         </div>
                     </div>
                 </form>
 
-                <h3 class="pt-3 banner_heading_two">Search Find Share Enjoy</h3>
-                <button class="btn btn-link advance_btn">Advance Search</button>
+                <h3 class="pt-3 banner_heading_two">{{ __('Search Find Share Enjoy') }}</h3>
+                <button class="btn btn-link advance_btn">{{ __('Advance Search') }}</button>
                 <div class="post_project_anchor">
                     {{-- <a href="#!">Post Your Project or Job</a> --}}
 

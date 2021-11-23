@@ -14,10 +14,12 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.3",
         "maatwebsite/excel": "^3.1",
-        "mcamara/laravel-localization": "^1.6",
         "munafio/chatify": "^1.2",
         "nexmo/laravel": "^2.4",
+        "spatie/laravel-feed": "^3.2",
         "spatie/laravel-permission": "^4.0",
+        "spatie/laravel-translatable": "^4.6",
+        "spatie/laravel-translation-loader": "^2.7",
         "stevebauman/location": "^6.1",
         "vonage/client": "^2.4"
     },

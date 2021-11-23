@@ -45,6 +45,7 @@ return [
         'HousemateCoverImage' => '/uploads/housemate/image/',
         'ProjectCoverImage' => '/uploads/Project/image/',
         'PropertyCoverImage' => '/uploads/property/image/',
+        'service' => '/uploads/service/',
     ],
 
     'stripe'=>[

@@ -7,7 +7,7 @@
         <div class="container custom_container">
             <div class="row">
                 <div class="col-lg-12" data-aos="fade-right" data-aos-duration="1500">
-                    <h2 class="blue">News And Updates</h2>
+                    <h2 class="blue">{{ __('' . $pageCms['Section Title (News)']) }}</h2>
                 </div>
                 <div class="col-lg-12">
                     <div class="swiper-container new_update_slider" data-aos="fade-up" data-aos-duration="1500">
@@ -25,7 +25,7 @@
                                                 <p><i class="fas fa-user"></i>
                                                     {{ $property->BusinessDetail->BusinessUser->fullname }}</p>
                                                 <p><i class="fas fa-comments"></i> {{ number_format($property->views) }}
-                                                    Views</p>
+                                                    {{ __('Views') }}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -46,15 +46,16 @@
         <div class="container custom_container">
             <div class="row">
                 <div class="col-md-12 m-cl">
-                    <h2 class="blue mb-0" data-aos="fade-right" data-aos-duration="1500">Latest Properties</h2>
+                    <h2 class="blue mb-0" data-aos="fade-right" data-aos-duration="1500">
+                        {{ __('' . $pageCms['Section Title (Property)']) }}</h2>
                 </div>
                 <div class="col-lg-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-link  active" id="nav-profile-tab" data-toggle="tab" href="#nav-home1" role="tab"
-                                aria-controls="nav-profile" aria-selected="false">For Sale</a>
+                                aria-controls="nav-profile" aria-selected="false">{{ __('For Sale') }}</a>
                             <a class="nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-profile1" role="tab"
-                                aria-controls="nav-contact" aria-selected="false">For Rent</a>
+                                aria-controls="nav-contact" aria-selected="false">{{ __('For Rent') }}</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -65,15 +66,17 @@
 
                                     @foreach ($properties['sale'] as $key => $property)
                                         <div class="swiper-slide">
+
                                             <div class="latest_properties_card" data-aos="fade-up" data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card card_link" data-link="{{ $property->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href="#!" class="btn btn-link">For
                                                             {{ $property->for_type ?? '' }}</a> <a href="#!"
                                                             class="btn btn-link">{{ $property->property_type ?? '' }}</a>
                                                     </div>
                                                     <div class="col-md-12 card-in-heart">
-                                                        <a href="#!" class="heart" id="heartProp{{ $key }}"
+                                                        <a href="#!" class="heart"
+                                                            id="heartProp{{ $key }}"
                                                             style="border:{{ $property->CheckFavourite() ?? '' ? '1px solid red' : '' }}; background: {{ $property->CheckFavourite() ?? '' ? 'white' : '#dc5523' }} ">
                                                             @if ($property->CheckFavourite() ?? '')
                                                                 <i class="fas fa-heart"
@@ -87,8 +90,13 @@
                                                             @endif
 
                                                         </a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' =>
+                                                        $property->id, 'title' => $property->title, 'modal' =>
+                                                        'Property','user' =>
+                                                        $property->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                                        $property->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#!"><i
@@ -97,7 +105,7 @@
                                                             {{ count($property->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($property->FristCoverImage->path ?? $property->cover_image ?? '') }}"
+                                                        src="{{ asset($property->FristCoverImage->path ?? ($property->cover_image ?? '')) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('PropertyDetail', $property->slug) }}">
                                                         <div class="card-body">
@@ -145,9 +153,10 @@
                                 <div class="swiper-wrapper">
 
                                     @foreach ($properties['rent'] as $key => $property)
+                                        <a class="link" href="{{ $property->link }}"></a>
                                         <div class="swiper-slide">
                                             <div class="latest_properties_card" data-aos="fade-up" data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card card_link" data-link="{{ $property->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href="#!" class="btn btn-link">For
                                                             {{ $property->for_type ?? '' }}</a> <a href="#!"
@@ -169,9 +178,14 @@
                                                             @endif
 
                                                         </a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $property->id, 'title' => $property->title, 'modal' => 'Property','user'  => $property->BusinessDetail->BusinessUser->fullname,'user_id'  => $property->BusinessDetail->User->id])
-                                                    
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' =>
+                                                        $property->id, 'title' => $property->title, 'modal' =>
+                                                        'Property','user' =>
+                                                        $property->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                                        $property->BusinessDetail->User->id])
+
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#!"><i
@@ -180,7 +194,7 @@
                                                             {{ count($property->CoverImages) }}</a>
                                                     </div>
                                                     <img class="card-img-top"
-                                                        src="{{ asset($property->FristCoverImage->path ?? $property->cover_image ?? '') }}"
+                                                        src="{{ asset($property->FristCoverImage->path ?? ($property->cover_image ?? '')) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('PropertyDetail', $property->slug) }}">
                                                         <div class="card-body">
@@ -232,16 +246,16 @@
         <div class="container custom_container">
             <div class="row">
                 <div class="col-md-12 m-cl" data-aos="fade-right" data-aos-duration="1500">
-                    <h2 class="blue mb-0">Professionals Near You</h2>
+                    <h2 class="blue mb-0">{{ __('' . $pageCms['Section Title (Professional)']) }}</h2>
                 </div>
                 <div class="col-lg-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a href="#!" class="pt blue"></a>
                             <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home2" role="tab"
-                                aria-controls="nav-home" aria-selected="true">Newest</a>
-                            <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile2" role="tab"
-                                aria-controls="nav-profile" aria-selected="false">Top</a>
+                                aria-controls="nav-home" aria-selected="true">{{ __('Newest') }}</a>
+                            <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile2"
+                                role="tab" aria-controls="nav-profile" aria-selected="false">{{ __('Top') }}</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -254,7 +268,7 @@
                                         <div class="swiper-slide">
                                             <div class="professional_near_card" data-aos="fade-up"
                                                 data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card card_link" data-link="{{ $pro->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         {{-- <a href="#!" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
@@ -273,9 +287,12 @@
                                                             @endif
 
                                                         </a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
-                                                    
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id,
+                                                        'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'
+                                                        => $pro->BusinessUser->fullname,'user_id' => $pro->User->id])
+
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#"
@@ -319,8 +336,10 @@
                                                         <img src="{{ asset($pro->BusinessUser->profile_pic) }}" alt=""
                                                             style="width:50px" class="img-fluid">
                                                         <div class="ab-right">
-                                                            <a href="tel:{{ $pro->business_phone }}"><i class="fas fa-phone-alt"></i></a>
-                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i class="far fa-envelope"></i></a>
+                                                            <a href="tel:{{ $pro->business_phone }}"><i
+                                                                    class="fas fa-phone-alt"></i></a>
+                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i
+                                                                    class="far fa-envelope"></i></a>
                                                         </div>
                                                     </div>
 
@@ -344,7 +363,7 @@
                                         <div class="swiper-slide">
                                             <div class="professional_near_card" data-aos="fade-up"
                                                 data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card card_link" data-link="{{ $pro->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         {{-- <a href="#!" class="btn btn-link">25 Listings</a> --}}
                                                     </div>
@@ -363,8 +382,11 @@
                                                             @endif
 
                                                         </a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id,
+                                                        'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'
+                                                        => $pro->BusinessUser->fullname,'user_id' => $pro->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#"
@@ -408,8 +430,10 @@
                                                         <img src="{{ asset($pro->BusinessUser->profile_pic) }}" alt=""
                                                             style="width:50px" class="img-fluid">
                                                         <div class="ab-right">
-                                                            <a href="tel:{{ $pro->business_phone }}"><i class="fas fa-phone-alt"></i></a>
-                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i class="far fa-envelope"></i></a>
+                                                            <a href="tel:{{ $pro->business_phone }}"><i
+                                                                    class="fas fa-phone-alt"></i></a>
+                                                            <a href="mail:{{ $pro->BusinessUser->email }}"><i
+                                                                    class="far fa-envelope"></i></a>
                                                         </div>
                                                     </div>
 
@@ -435,15 +459,15 @@
         <div class="container custom_container">
             <div class="row">
                 <div class="col-md-12 m-cl" data-aos="fade-right" data-aos-duration="1500">
-                    <h2 class="blue mb-0">Items for Sale</h2>
+                    <h2 class="blue mb-0">{{ __('' . $pageCms['Section Title (Items)']) }}</h2>
                 </div>
                 <div class="col-lg-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home3" role="tab"
-                                aria-controls="nav-home" aria-selected="true">All Type</a>
+                                aria-controls="nav-home" aria-selected="true">{{ __('All Type') }}</a>
                             <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile3"
-                                role="tab" aria-controls="nav-profile" aria-selected="false">Newest</a>
+                                role="tab" aria-controls="nav-profile" aria-selected="false">{{ __('Newest') }}</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -454,7 +478,7 @@
                                     @foreach ($items['all'] as $item)
                                         <div class="swiper-slide">
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card card_link" data-link="{{ $item->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
@@ -475,8 +499,13 @@
                                                             @endif
 
                                                         </a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' =>
+                                                        $item->id, 'title' => $item->title, 'modal' =>
+                                                        'BusinessDetail','user' =>
+                                                        $item->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                                        $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#!"><i
@@ -484,7 +513,8 @@
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             {{ count($item->CoverImages) }}</a>
                                                     </div>
-                                                    <img class="card-img-top" src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
+                                                    <img class="card-img-top"
+                                                        src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
@@ -528,7 +558,7 @@
                                     @foreach ($items['new'] as $item)
                                         <div class="swiper-slide">
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card card_link" data-link="{{ $item->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
@@ -549,8 +579,13 @@
                                                             @endif
 
                                                         </a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' =>
+                                                        $item->id, 'title' => $item->title, 'modal' =>
+                                                        'BusinessDetail','user' =>
+                                                        $item->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                                        $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#!"><i
@@ -558,7 +593,8 @@
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
                                                             {{ count($item->CoverImages) }}</a>
                                                     </div>
-                                                    <img class="card-img-top" src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
+                                                    <img class="card-img-top"
+                                                        src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
@@ -606,43 +642,28 @@
         <div class="container custom_container">
             <div class="row">
                 <div class="col-lg-12 text-center pb-4">
-                    <p class="blue aos-init aos-animate" data-aos="fade-right" data-aos-duration="1500">Check Video
-                        Presentation To Find Out More About Us</p>
-                    <h2 class="blue aos-init aos-animate" data-aos="fade-left" data-aos-duration="1500">Why Use Homzs?
+                    <p class="blue aos-init aos-animate" data-aos="fade-right" data-aos-duration="1500">
+                        {{ AppHelper::SystemConfig('service_title') }}</p>
+                    <h2 class="blue aos-init aos-animate" data-aos="fade-left" data-aos-duration="1500">
+                        {{ AppHelper::SystemConfig('service_sub_title') }}
                     </h2>
                     <a class="btn btn-play" type="button" data-toggle="modal" data-target="#exampleModal"> <i
                             class="fas fa-play"></i> </a>
                 </div>
-                <div class="col-lg-4 aos-init aos-animate" data-aos="zoom-in" data-aos-duration="1500">
-                    <div class="media"> <img class="mr-4" src="Frontend/img/icon1.png"
-                            alt="Generic placeholder image" width="70px" height="70px">
-                        <div class="media-body">
-                            <h5 class="mt-0 blue">24 Hours Support</h5>
-                            <p class="gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+                @foreach (App\Models\CmsService::get() as $item)
+
+                    <div class="col-lg-4 aos-init aos-animate" data-aos="zoom-in" data-aos-duration="1500">
+                        <div class="media"> <img class="mr-4" src="{{ $item->image }}"
+                                alt="Generic placeholder image" width="70px" height="70px">
+                            <div class="media-body">
+                                <h5 class="mt-0 blue">{{ $item->title }}</h5>
+                                <p class="gray">{{ $item->description }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 aos-init aos-animate" data-aos="zoom-in" data-aos-duration="1500">
-                    <div class="media"> <img class="mr-4" src="Frontend/img/icon2.png"
-                            alt="Generic placeholder image" width="70px" height="70px">
-                        <div class="media-body">
-                            <h5 class="mt-0 blue">40,000 businesses services providers</h5>
-                            <p class="gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 aos-init aos-animate" data-aos="zoom-in" data-aos-duration="1500">
-                    <div class="media"> <img class="mr-4" src="Frontend/img/icon2.png"
-                            alt="Generic placeholder image" width="70px" height="70px">
-                        <div class="media-body">
-                            <h5 class="mt-0 blue">40,000 businesses services providers</h5>
-                            <p class="gray">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
+
             </div>
         </div>
     </section>

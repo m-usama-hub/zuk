@@ -78,9 +78,28 @@
                             <span class="hide-menu">Chat</span></a></li>
                 @endcan
                 @can('can-manage-cms')
-                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                            href="{{ route('setting.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
-                            <span class="hide-menu">Content Management</span></a></li>
+                    <li class="sidebar-item">
+                        <div class="btn-group dropright">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-columns"></i>
+                                <span class="hide-menu">Content Management</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="{{ route('header') }}">Header</a>
+                                <a class="dropdown-item" href="{{ route('pages') }}">Pages</a>
+                                <a class="dropdown-item" href="{{ route('services') }}">Web Services</a>
+                                {{-- <a class="dropdown-item" href="{{ route('menu') }}">Menu</a> --}}
+                                {{-- <a class="dropdown-item" href="{{ route('translation') }}">Translations</a> --}}
+                                <a class="dropdown-item" href="{{ route('footer') }}">Footer</a>
+                                <a class="dropdown-item" href="{{ route('privacy-policy') }}">Privacy Policy</a>
+                                <a class="dropdown-item" href="{{ route('about-us') }}">About Us</a>
+                                <a class="dropdown-item" href="{{ route('web-content') }}">Website Content</a>
+                            </div>
+                        </div>
+                    </li>
+
+
                 @endcan
                 @can('seo-settings')
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
@@ -133,6 +152,12 @@
                     <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
                             href="{{ route('messages.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
                             <span class="hide-menu">Business Messages</span></a></li>
+                @endcan
+
+                @can('payment-list')
+                    <li class="sidebar-item"> <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                            href="{{ route('payments.index') }}" aria-expanded="false"><i class="fas fa-columns"></i>
+                            <span class="hide-menu">Business Payments</span></a></li>
                 @endcan
 
                 {{-- @can('company-list')

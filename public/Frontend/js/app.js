@@ -445,15 +445,31 @@ $(document).ready(function () {
     if (Auth) {
         paypal
             .Buttons({
-                createOrder: function (data, actions) {
-                    // This function sets up the details of the transaction, including the amount and line item details.
+                // createOrder: function (data, actions) {
+                //     // This function sets up the details of the transaction, including the amount and line item details.
+                //     return actions.order.create({
+                //         application_context: {
+                //             user_action: "PAY_NOW",
+                //         },
+                //         purchase_units: [
+                //             {
+                //                 amount: {
+                //                     value: $(".credits:checked").val(),
+                //                 },
+                //             },
+                //         ],
+                //     });
+                // },
+
+                createOrder: (data, actions, err) => {
+                    $(".loader").css("display", "flex");
                     return actions.order.create({
-                        application_context: {
-                            user_action: "PAY_NOW",
-                        },
+                        intent: "CAPTURE",
                         purchase_units: [
                             {
+                                description: "Homzs Payment",
                                 amount: {
+                                    currency_code: "USD",
                                     value: $(".credits:checked").val(),
                                 },
                             },
@@ -463,16 +479,18 @@ $(document).ready(function () {
 
                 onApprove: function (data, actions) {
                     var Postdata = {
+                        order_id: data.orderID,
                         amount: $(".credits:checked").val(),
                     };
                     CallAction("/paymentPost", Postdata, function (data) {
                         if (data) {
-                            alert("Payment Successfull.");
+                            alert(data.message);
                         } else {
                             alert(
                                 "First create business account to make payments"
                             );
                         }
+                        $(".loader").css("display", "none");
                     });
                 },
 
@@ -653,7 +671,7 @@ $(document).ready(function () {
 
             form.find(".empty_img .img-fluid")
                 .map(function (i) {
-                    data["display_image_"+i] = this.src;
+                    data["display_image_" + i] = this.src;
                 })
                 .get();
 
@@ -682,14 +700,11 @@ $(document).ready(function () {
             modal.modal("show");
 
             keys.forEach((key) => {
-
-                if(key.includes('display_image_')){
-                    modal.find("." + key).attr('src',data[key]);
-                }else{
-
+                if (key.includes("display_image_")) {
+                    modal.find("." + key).attr("src", data[key]);
+                } else {
                     modal.find("." + key).text(data[key]);
                 }
-
             });
 
             // modalSwiper.initialize();
@@ -718,6 +733,26 @@ $(document).ready(function () {
                 '<input type="hidden" name="publish" value="true" />'
             ).submit();
         }
+    });
+
+    $(".card-img-top").click(function (e) {
+        window.location.href = $(this).closest(".card").data("link");
+    });
+
+    $(".listhubCard").click(function (e) {
+        window.location.href = $(this).data("link");
+    });
+
+    $("#package_id").on("change", function (e) {
+        package_id = $(this).val();
+
+        data = {
+            package_id: package_id,
+        };
+
+        CallAction("/getPackagePrice", data, function (response) {
+            $("#total").val("$" + response);
+        });
     });
 
     // $(".mySlides").find('.fa-file-upload').click(function (e) {
@@ -1136,6 +1171,9 @@ $(document).ready(function () {
     );
 });
 
+var searchAddress = new google.maps.places.Autocomplete(
+    document.getElementById("searchAddress")
+);
 var messageAddress = new google.maps.places.Autocomplete(
     document.getElementById("messageAddress")
 );
@@ -1157,6 +1195,17 @@ var professionalAddress = new google.maps.places.Autocomplete(
 
 google.maps.event.addListener(messageAddress, "place_changed", function () {
     var place = messageAddress.getPlace();
+    var lat = place.geometry.location.lat();
+    var long = place.geometry.location.lng();
+
+    $(".longitude").val(long);
+    $(".latitude").val(lat);
+
+    console.log(place);
+});
+
+google.maps.event.addListener(searchAddress, "place_changed", function () {
+    var place = searchAddress.getPlace();
     var lat = place.geometry.location.lat();
     var long = place.geometry.location.lng();
 
@@ -1235,11 +1284,48 @@ $(".chatmessage")
 $(".chatmessage")
     .find(".fa-flag")
     .click(function () {
+        let name = $(".chatmessage").find(".receiver>.name").text();
+        $("#abusereports").find(".nameto>h3").text(name);
+        $("#personal").modal("hide");
         $("#abusereports").modal("show");
     });
 
 {
     let record_id, table, to_id, parent_id;
+
+    function Report(name, id) {
+        to_id = id;
+        $("#abusereports").find(".nameto>h3").text(name);
+        $("#abusereports").modal("show");
+    }
+
+    $("#abusereports")
+        .find(".sending")
+        .click(function () {
+            let form = $("#abusereports").find("#form");
+            let title = $("#abusereports").find(".title_text").val();
+            let reason_text = $("#abusereports").find(".reason_text").val();
+
+            if (form.valid()) {
+                $(this).text("Sending.....");
+                data = {
+                    reported_to: to_id,
+                    title: title,
+                    reason: reason_text,
+                };
+                CallAction("/reportUser", data, function (response) {
+                    if (response.status == true) {
+                        $("#abusereports")
+                            .find(".sending")
+                            .text(response.message);
+                    } else {
+                        $("#abusereports")
+                            .find(".sending")
+                            .text(response.message);
+                    }
+                });
+            }
+        });
 
     function GetProductDetails(id, title, modal, user, user_id, date) {
         if (Auth) {

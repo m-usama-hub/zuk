@@ -8,7 +8,32 @@
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="col-lg-4">
-                                <img src="{{ asset($pro->business_profile_pic) }}" alt="" class="img-fluid">
+                                {{-- <img src="{{ asset($pro->business_profile_pic) }}" alt="" class="img-fluid"> --}}
+                                <div class="swiper modalSwiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                                    <div class="swiper-wrapper" id="swiper-wrapper-030becf1010c7a5e07" aria-live="polite"
+                                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                                        @foreach ($pro->CoverImages as $image)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($image->path) }}" alt="" class="pr_photo">
+                                            </div>
+                                        @endforeach
+
+                                        @if (count($pro->CoverImages) <= 0)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($pro->business_profile_pic) }}" alt="" class="pr_photo">
+                                            </div>
+
+                                        @endif
+
+                                    </div>
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="undefined"
+                                        aria-controls="Next slide" aria-disabled="false">
+                                    </div>
+                                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button"
+                                        aria-label="undefined" aria-controls="Previous slide" aria-disabled="true"></div>
+                                </div>
                                 <h3 class="pt-5 blue">{{ $pro->totalReviewsCount }} Customer Reviews</h3>
                             </div>
                             <div class="col-lg-8 pf-shadow">
@@ -46,8 +71,10 @@
 
                                         </a>
                                         @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' => $pro->business_name, 'modal' => 'BusinessDetail','user'  => $pro->BusinessUser->fullname,'user_id'  => $pro->User->id])
-                                    
+                                        @include('Frontend.pages.partials.messageElement',['id' => $pro->id, 'title' =>
+                                        $pro->business_name, 'modal' => 'BusinessDetail','user' =>
+                                        $pro->BusinessUser->fullname,'user_id' => $pro->User->id])
+
                                     </div>
                                 </div>
                                 <div class="contact-desc">

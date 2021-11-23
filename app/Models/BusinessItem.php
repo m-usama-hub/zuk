@@ -21,6 +21,7 @@ class BusinessItem extends Model
         'price',
         'price_free',
         'item_category_id',
+        'package_id',
         'delivery_type',
         'website_link',
         'cover_image',

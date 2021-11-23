@@ -20,3 +20,10 @@ ALTER TABLE `business_housemates` ADD `address` TEXT NOT NULL AFTER `interested_
 ALTER TABLE `business_messages` DROP `name`, DROP `email`, DROP `age`, DROP `contact_no`;
 ALTER TABLE `business_housemates` DROP `name`, DROP `email`, DROP `age`, DROP `contact_no`;
 ALTER TABLE `business_properties` DROP `source_name`, DROP `source_phone`, DROP `email`, DROP `contact_no`;
+
+
+
+
+
+
+ALTER TABLE `user_business_details` CHANGE `business_wallet_available` `business_wallet_available` DECIMAL(5,2) NOT NULL DEFAULT '0', CHANGE `business_wallet_total` `business_wallet_total` DECIMAL(5,2) NOT NULL DEFAULT '0', CHANGE `business_wallet_spended` `business_wallet_spended` DECIMAL(5,2) NOT NULL DEFAULT '0';

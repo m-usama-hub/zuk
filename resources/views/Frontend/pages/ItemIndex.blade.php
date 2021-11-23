@@ -7,15 +7,15 @@
         <div class="container custom_container">
             <div class="row">
                 <div class="col-md-12 m-cl" data-aos="fade-right" data-aos-duration="1500">
-                    <h2 class="blue mb-0">An item near you is waiting</h2>
+                    <h2 class="blue mb-0">{{ __('' . $pageCms['Section Title'] ?? '') }}</h2>
                 </div>
                 <div class="col-lg-12">
                     <nav>
                         <div class="nav nav-tabs" id="nav-tab" role="tablist">
                             <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home3" role="tab"
-                                aria-controls="nav-home" aria-selected="true">All Type</a>
+                                aria-controls="nav-home" aria-selected="true">{{ __('All Type') }}</a>
                             <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile3" role="tab"
-                                aria-controls="nav-profile" aria-selected="false">Newest</a>
+                                aria-controls="nav-profile" aria-selected="false">{{ __('Newest') }}</a>
                         </div>
                     </nav>
                     <div class="tab-content" id="nav-tabContent">
@@ -26,7 +26,7 @@
                                     @foreach ($items['all'] as $key => $item)
                                         <div class="swiper-slide">
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card" data-link="{{ $item->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
@@ -47,16 +47,22 @@
                                                             @endif
 
                                                         </a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' =>
+                                                        $item->id, 'title' => $item->title, 'modal' =>
+                                                        'BusinessDetail','user' =>
+                                                        $item->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                                        $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#!"><i
                                                                 class="fas fa-map-marker-alt"></i>{{ $item->location_address }}</a>
                                                         <a href="#!" class="camera"><i class="fas fa-camera"></i>
-                                                            {{ count($item->CoverImages) }}</a> 
+                                                            {{ count($item->CoverImages) }}</a>
                                                     </div>
-                                                    <img class="card-img-top" src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
+                                                    <img class="card-img-top"
+                                                        src="{{ asset($item->FristCoverImage->path ?? $item->cover_image) }}"
                                                         alt="Card image cap">
                                                     <a href="{{ route('ItemDetail', $item->slug) }}">
                                                         <div class="card-body">
@@ -79,8 +85,8 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->profile_pic) }}"
-                                                            style="width:50px" alt="" class="img-fluid">
+                                                        <img src="{{ asset($item->profile_pic) }}" style="width:50px"
+                                                            alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>
                                                     </div>
@@ -100,7 +106,7 @@
                                     @foreach ($items['new'] as $item)
                                         <div class="swiper-slide">
                                             <div class="item_sale_card" data-aos="fade-up" data-aos-duration="1500">
-                                                <div class="card">
+                                                <div class="card" data-link="{{ $item->link }}">
                                                     <div class="col-md-12 card-in-btn">
                                                         <a href="#!"
                                                             class="btn btn-link">{{ $item->ItemCategory->category }}</a>
@@ -109,8 +115,13 @@
                                                     <div class="col-md-12 card-in-heart">
                                                         <a href="#!" class="heart"><i
                                                                 class="far fa-heart"></i></a>
-                                                        @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
+                                                        @include('Frontend.pages.partials.shareElement',['link' =>
+                                                        'google.com'])
+                                                        @include('Frontend.pages.partials.messageElement',['id' =>
+                                                        $item->id, 'title' => $item->title, 'modal' =>
+                                                        'BusinessDetail','user' =>
+                                                        $item->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                                        $item->BusinessDetail->User->id])
                                                     </div>
                                                     <div class="card-map col-md-12 d-flex justify-content-between">
                                                         <a href="#!"><i
@@ -141,8 +152,8 @@
                                                         </div>
                                                     </a>
                                                     <div class="col-md-12 d-flex align-items-center pb-2 card-footer">
-                                                        <img src="{{ asset($item->profile_pic) }}"
-                                                            style="width:50px" alt="" class="img-fluid">
+                                                        <img src="{{ asset($item->profile_pic) }}" style="width:50px"
+                                                            alt="" class="img-fluid">
                                                         <p class="pl-2 gray">By
                                                             {{ $item->BusinessDetail->BusinessUser->fullname }}</p>
                                                     </div>

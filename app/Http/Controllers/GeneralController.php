@@ -8,8 +8,10 @@ use App\Models\UserFavorite;
 use App\Models\User;
 use App\Models\BusinessMessageLike;
 use App\Models\BusinessImage;
+use App\Models\BusinessReport;
 use App\Models\BusinessMessageReply;
 use App\Models\PersonalMessage;
+use App\Models\BusinessItemPackage;
 use App\Notifications\MessageEmailNotification;
 use Auth;
 use Config;
@@ -71,7 +73,6 @@ class GeneralController extends Controller
         return $data;
 
     }
-
 
     public function getPostData(Request $request){
 
@@ -281,6 +282,62 @@ class GeneralController extends Controller
 
     }
 
+    public function getPackagePrice(Request $request){
+
+        $package_id = $request->package_id;
+
+        $package = BusinessItemPackage::where('id',$package_id)->first();
+
+        return $package->amount;
+
+    }
+
+    public function reportUser(Request $request){
+
+        $data = [];
+        $data['message'] = '';
+        $data['status'] = false;
+
+        try{
+
+            $UploadData = $request->all();
+
+            if($UploadData['reported_to'] == Auth::user()->id){
+
+                $data['message'] = 'Cannot report Oourself';
+                $data['status'] = true;
+            }else{
+
+                $UploadData['reported_by'] = Auth::user()->id;
+
+                $reported = BusinessReport::where('reported_by', Auth::user()->id)->where('reported_to', $request->reported_to)->first();
+
+                if(!$reported){
+
+                    BusinessReport::create($UploadData);
+
+                    $data['message'] = 'Reported Successfully..!';
+                    $data['status'] = true;
+                
+                }else{
+
+                    $data['message'] = 'Already Reported..!';
+                    $data['status'] = true;
+
+                }
+            }
+
+
+
+        }catch(\Throwable $e){
+
+            $data['message'] = $e->getMessage();
+
+        }
+
+        return $data;
+
+    }
 
 }
 

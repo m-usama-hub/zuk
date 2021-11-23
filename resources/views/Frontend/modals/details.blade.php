@@ -12,7 +12,7 @@
                         <div class="col-md-4 col-12 personal_box">
                             <div class="header">
                                 <div class="heading">
-                                    <h1>Personal Details</h1>
+                                    <h1>{{ __('Personal Details') }}</h1>
                                 </div>
                                 <div><i class="far fa-edit" id="profile_edit_but" style="cursor: pointer;"></i></div>
                             </div>
@@ -99,11 +99,12 @@
                                                 class="fas fa-edit" id="edit_user_profile_pic"
                                                 style="cursor: pointer;"></i>
                                             <input type="file" name="user_profile_pic"
-                                                onchange="loadFile(event,'show_user_profile_pic')" id="user_profile_pic"
-                                                style="display: none;" accept="image/gif, image/jpeg, image/png">
+                                                onchange="loadFilex(event,'show_user_profile_pic')"
+                                                id="user_profile_pic" style="display: none;"
+                                                accept="image/gif, image/jpeg, image/png">
                                         </div>
                                         <script>
-                                            function loadFile(event, id) {
+                                            function loadFilex(event, id) {
                                                 $('#' + id).attr('src', URL.createObjectURL(event.target.files[0]))
                                             };
                                         </script>
@@ -236,17 +237,25 @@
                                                         <p>Cover Photo</p>
                                                     </div>
                                                     <div class="empty_img">
-                                                    <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[0]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_1" id="display_image_1">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[0]->path ?? 'Frontend/img/empty.png') }}"
+                                                            alt="" class="img-fluid display_image_1"
+                                                            id="display_image_1">
                                                     </div>
-                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_1" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[0]->id??0 }},"display_image_1","mydetails");' ></i>
+                                                    <div class="trash"><i
+                                                            class="upload_icons fas fa-trash trash_1" id="deleteImage"
+                                                            onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[0]->id ?? 0 }},"display_image_1","mydetails");'></i>
                                                     </div>
-                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    <div class="upload"><i
+                                                            class="upload_icons fas fa-file-upload"
+                                                            onclick="UploadUsing(this)"></i>
                                                     </div>
-                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
-                                                            id="camera"></i></div>
-                                    
-                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
-                                                        onchange="loadFile(event,'display_image_1')" style="display: none" />
+                                                    <div class="camera"><i class="upload_icons fas fa-camera"
+                                                            onclick="UploadUsing(this,'camera')" id="camera"></i></div>
+
+                                                    <input type="file" required name="cover_image[]"
+                                                        class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_1')"
+                                                        style="display: none" />
                                                 </div>
                                             </div>
                                             <div class="mySlides fade">
@@ -257,101 +266,145 @@
                                                         <p>Cover Photo</p>
                                                     </div>
                                                     <div class="empty_img">
-                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[1]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_2" id="display_image_2">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[1]->path ?? 'Frontend/img/empty.png') }}"
+                                                            alt="" class="img-fluid display_image_2"
+                                                            id="display_image_2">
                                                     </div>
-                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_2" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[1]->id??0 }},"display_image_2","mydetails");'></i>
+                                                    <div class="trash"><i
+                                                            class="upload_icons fas fa-trash trash_2" id="deleteImage"
+                                                            onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[1]->id ?? 0 }},"display_image_2","mydetails");'></i>
                                                     </div>
-                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    <div class="upload"><i
+                                                            class="upload_icons fas fa-file-upload"
+                                                            onclick="UploadUsing(this)"></i>
                                                     </div>
-                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
-                                                            id="camera"></i></div>
-                                    
-                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
-                                                        onchange="loadFile(event,'display_image_2')" style="display: none" />
+                                                    <div class="camera"><i class="upload_icons fas fa-camera"
+                                                            onclick="UploadUsing(this,'camera')" id="camera"></i></div>
+
+                                                    <input type="file" required name="cover_image[]"
+                                                        class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_2')"
+                                                        style="display: none" />
                                                 </div>
                                             </div>
                                             <div class="mySlides fade">
                                                 <div class="numbertext">3 / 6</div>
                                                 <div class="img_background">
                                                     <div class="cover">
-                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <img src="Frontend/img/FOCUS.png" alt=""
+                                                            class="focus_size">
                                                         <p>Cover Photo</p>
                                                     </div>
                                                     <div class="empty_img">
-                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[2]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_3" id="display_image_3">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[2]->path ?? 'Frontend/img/empty.png') }}"
+                                                            alt="" class="img-fluid display_image_3"
+                                                            id="display_image_3">
                                                     </div>
-                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_3" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[2]->id??0 }},"display_image_3","mydetails");'></i>
+                                                    <div class="trash"><i
+                                                            class="upload_icons fas fa-trash trash_3" id="deleteImage"
+                                                            onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[2]->id ?? 0 }},"display_image_3","mydetails");'></i>
                                                     </div>
-                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    <div class="upload"><i
+                                                            class="upload_icons fas fa-file-upload"
+                                                            onclick="UploadUsing(this)"></i>
                                                     </div>
-                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
-                                                            id="camera"></i></div>
-                                    
-                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
-                                                        onchange="loadFile(event,'display_image_3')" style="display: none" />
+                                                    <div class="camera"><i class="upload_icons fas fa-camera"
+                                                            onclick="UploadUsing(this,'camera')" id="camera"></i></div>
+
+                                                    <input type="file" required name="cover_image[]"
+                                                        class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_3')"
+                                                        style="display: none" />
                                                 </div>
                                             </div>
                                             <div class="mySlides fade">
                                                 <div class="numbertext">4 / 6</div>
                                                 <div class="img_background">
                                                     <div class="cover">
-                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <img src="Frontend/img/FOCUS.png" alt=""
+                                                            class="focus_size">
                                                         <p>Cover Photo</p>
                                                     </div>
                                                     <div class="empty_img">
-                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[3]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_4" id="display_image_4">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[3]->path ?? 'Frontend/img/empty.png') }}"
+                                                            alt="" class="img-fluid display_image_4"
+                                                            id="display_image_4">
                                                     </div>
-                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_4" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[3]->id??0 }},"display_image_4","mydetails");'></i>
+                                                    <div class="trash"><i
+                                                            class="upload_icons fas fa-trash trash_4" id="deleteImage"
+                                                            onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[3]->id ?? 0 }},"display_image_4","mydetails");'></i>
                                                     </div>
-                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    <div class="upload"><i
+                                                            class="upload_icons fas fa-file-upload"
+                                                            onclick="UploadUsing(this)"></i>
                                                     </div>
-                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
-                                                            id="camera"></i></div>
-                                    
-                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
-                                                        onchange="loadFile(event,'display_image_4')" style="display: none" />
+                                                    <div class="camera"><i class="upload_icons fas fa-camera"
+                                                            onclick="UploadUsing(this,'camera')" id="camera"></i></div>
+
+                                                    <input type="file" required name="cover_image[]"
+                                                        class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_4')"
+                                                        style="display: none" />
                                                 </div>
                                             </div>
                                             <div class="mySlides fade">
                                                 <div class="numbertext">5 / 6</div>
                                                 <div class="img_background">
                                                     <div class="cover">
-                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <img src="Frontend/img/FOCUS.png" alt=""
+                                                            class="focus_size">
                                                         <p>Cover Photo</p>
                                                     </div>
                                                     <div class="empty_img">
-                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[4]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_6" id="display_image_6">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[4]->path ?? 'Frontend/img/empty.png') }}"
+                                                            alt="" class="img-fluid display_image_6"
+                                                            id="display_image_6">
                                                     </div>
-                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_5" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[4]->id??0 }},"display_image_6","mydetails");'></i>
+                                                    <div class="trash"><i
+                                                            class="upload_icons fas fa-trash trash_5" id="deleteImage"
+                                                            onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[4]->id ?? 0 }},"display_image_6","mydetails");'></i>
                                                     </div>
-                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    <div class="upload"><i
+                                                            class="upload_icons fas fa-file-upload"
+                                                            onclick="UploadUsing(this)"></i>
                                                     </div>
-                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
-                                                            id="camera"></i></div>
-                                    
-                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
-                                                        onchange="loadFile(event,'display_image_6')" style="display: none" />
+                                                    <div class="camera"><i class="upload_icons fas fa-camera"
+                                                            onclick="UploadUsing(this,'camera')" id="camera"></i></div>
+
+                                                    <input type="file" required name="cover_image[]"
+                                                        class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_6')"
+                                                        style="display: none" />
                                                 </div>
                                             </div>
                                             <div class="mySlides fade">
                                                 <div class="numbertext">6 / 6</div>
                                                 <div class="img_background">
                                                     <div class="cover">
-                                                        <img src="Frontend/img/FOCUS.png" alt="" class="focus_size">
+                                                        <img src="Frontend/img/FOCUS.png" alt=""
+                                                            class="focus_size">
                                                         <p>Cover Photo</p>
                                                     </div>
                                                     <div class="empty_img">
-                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[5]->path ?? 'Frontend/img/empty.png') }}" alt="" class="img-fluid display_image_5" id="display_image_5">
+                                                        <img src="{{ asset(Auth::user()->UserBusinessDetail->CoverImages[5]->path ?? 'Frontend/img/empty.png') }}"
+                                                            alt="" class="img-fluid display_image_5"
+                                                            id="display_image_5">
                                                     </div>
-                                                    <div class="trash"><i class="upload_icons fas fa-trash trash_6" id="deleteImage" onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[5]->id??0 }},"display_image_5","mydetails");'></i>
+                                                    <div class="trash"><i
+                                                            class="upload_icons fas fa-trash trash_6" id="deleteImage"
+                                                            onclick='DeleteImage({{ Auth::user()->UserBusinessDetail->CoverImages[5]->id ?? 0 }},"display_image_5","mydetails");'></i>
                                                     </div>
-                                                    <div class="upload"><i class="upload_icons fas fa-file-upload" onclick="UploadUsing(this)"></i>
+                                                    <div class="upload"><i
+                                                            class="upload_icons fas fa-file-upload"
+                                                            onclick="UploadUsing(this)"></i>
                                                     </div>
-                                                    <div class="camera"><i class="upload_icons fas fa-camera" onclick="UploadUsing(this,'camera')"
-                                                            id="camera"></i></div>
-                                    
-                                                    <input type="file" required name="cover_image[]" class="UploadImageElement"
-                                                        onchange="loadFile(event,'display_image_5')" style="display: none" />
+                                                    <div class="camera"><i class="upload_icons fas fa-camera"
+                                                            onclick="UploadUsing(this,'camera')" id="camera"></i></div>
+
+                                                    <input type="file" required name="cover_image[]"
+                                                        class="UploadImageElement"
+                                                        onchange="loadFile(event,'display_image_5')"
+                                                        style="display: none" />
                                                 </div>
                                             </div>
                                             <!-- Next and previous buttons -->
@@ -410,7 +463,8 @@
                                     <label for="" class="labels">Business Address</label>
                                     <input type="hidden" name="lat" class="latitude" placeholder="Address">
                                     <input type="hidden" name="lng" class='longitude' placeholder="Address">
-                                    <input type="text" name="address" class="textarea enable_business_edit" id="professionalAddress"
+                                    <input type="text" name="address" class="textarea enable_business_edit"
+                                        id="professionalAddress"
                                         value="{{ Auth::user()->UserBusinessDetail->address ?? '' }}"
                                         placeholder="zipcode, country, town" disabled required>
                                     <label for="" class="labels">About my business</label>
@@ -432,25 +486,26 @@
                                     <label for="" class="labels">Business Category</label>
                                     <div class="textarea" id="all_business_categories" style="font-size: 11px;">
                                         @foreach (Auth::user()->UserBusinessDetail->ProfessionalBusinessCategories ?? [] as $item)
-                                            
-                                            <i>{{ $item->category }} 
-                                                <input type="hidden" class="category_id" value="{{ $item->id }}">
-                                                <i class="fas fa-trash edit_business_btn"
-                                                    data-toggle="tooltip" data-original-title="Delete"
+
+                                            <i>{{ $item->category }}
+                                                <input type="hidden" class="category_id"
+                                                    value="{{ $item->id }}">
+                                                <i class="fas fa-trash edit_business_btn" data-toggle="tooltip"
+                                                    data-original-title="Delete"
                                                     style="cursor: pointer; display:none;"></i></i><br>
                                         @endforeach
                                     </div>
 
                                     <div class="changepass edit_business_btn" style="display: none;">
-                                        <h4>Add a business category <i class="fas fa-plus" id="add_new_business_category"
-                                                style="cursor: pointer;"></i></h4>
+                                        <h4>Add a business category <i class="fas fa-plus"
+                                                id="add_new_business_category" style="cursor: pointer;"></i></h4>
                                     </div>
                                     <div id="add_new_business_category_inputs" style="display:none;">
                                         <select id="business_category_id" class="textarea">
-                                        @foreach (AppHelper::professionalCategories() as $item)
-                                            <option value="{{ $item->id }}">
-                                                {{ $item->category }}</option>
-                                        @endforeach
+                                            @foreach (AppHelper::professionalCategories() as $item)
+                                                <option value="{{ $item->id }}">
+                                                    {{ $item->category }}</option>
+                                            @endforeach
                                         </select>
                                         <button class="btn btn-sm"
                                             style="padding: 4px;margin-left: 5px;font-size: 11px;margin-bottom: 5px;border: 1px solid;border-radius: 8px;"
@@ -482,8 +537,8 @@
                                     </div>
                                 </div>
 
-                                <button class="btn btn-sm btn-primary edit_business_btn publish_form_data"  type="submit"
-                                    style="float: right;display: none;border-radius: 10px;"> Save</button>
+                                <button class="btn btn-sm btn-primary edit_business_btn publish_form_data"
+                                    type="submit" style="float: right;display: none;border-radius: 10px;"> Save</button>
                             </form>
                         </div>
                     </div>

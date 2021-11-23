@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\BusinessItem;
+use App\Models\BusinessItemPackage;
 use App\Models\BusinessCategory;
 use App\Models\BusinessImage;
 use AppHelper;
@@ -59,6 +60,7 @@ class ItemController extends Controller
         $data = [];
         $newData = [];
         $UploadData = [];
+        $message = "";
         try
         {
             if($request->has('edit')){
@@ -145,7 +147,14 @@ class ItemController extends Controller
                     unset($newData['preview']);
                     unset($newData['publish']);
 
+                    $response = AppHelper::MakeItemPayment($newData);
+
+                    $newData = $response['payment'];
+                    $message .= $response['message'];
+
                     BusinessItem::where('id',$request->id)->update($newData);
+
+                    $message .= " Updated Successfully";
 
                     $item_id = $request->id;
 
@@ -153,7 +162,14 @@ class ItemController extends Controller
 
                     $UploadData['business_id'] = Auth::user()->UserBusinessDetail->id;
 
+                    $response = AppHelper::MakeItemPayment($UploadData);
+
+                    $UploadData = $response['payment'];
+                    $message .= $response['message'];
+
                     $Item = BusinessItem::create($UploadData);
+
+                    $message .= "Item Uploaded Successfully";
 
                     $item_id = $Item->id;
                 }
@@ -201,12 +217,7 @@ class ItemController extends Controller
         if ($ErrorMsg == "")
         {
             DB::commit();
-            if($request->has('edit')){
-                return redirect()->back()->with('message','Item Updated successfully');
-            }else{
-                return redirect()->back()->with('message','Item Added successfully');
-            }
-
+            return redirect()->back()->with('message', $message);
         }
         else
         {

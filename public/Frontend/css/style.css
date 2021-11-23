@@ -61,10 +61,10 @@ p {
     font-family: "Aileron-Bold";
 }
 /* recernt-css-starts */
-.anchor_img{
-    min-height:168px;
+.anchor_img {
+    min-height: 168px;
 }
-.mini_para{
+.mini_para {
     min-height: 105px;
 }
 /* recent-css-ends */
@@ -199,9 +199,12 @@ p.footer-desc {
     color: #fff;
 }
 .home_page_slider .latest_properties_card .card-in-btn {
-    position: absolute;
+    /* position: absolute;
     top: 40px;
     left: -55px !important;
+    z-index: 9; */
+
+    text-align: initial;
 }
 .home_page_slider .share {
     padding: 5px 8px;
@@ -220,6 +223,17 @@ p.footer-desc {
     top: 300px;
 }
 .home_page_slider .swiper-button-next {
+    right: -80px;
+    background-color: #fff;
+    box-shadow: 0 0 15px #0000004f;
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    padding: 20px 20px;
+    top: 300px;
+}
+
+.home_page_slider_listhub .swiper-button-next {
     right: -80px;
     background-color: #fff;
     box-shadow: 0 0 15px #0000004f;
@@ -519,7 +533,7 @@ p.footer-desc {
 .swiper-slide img {
     display: block;
     width: 100%;
-    height: 100%;
+    height: 260px;
     object-fit: cover;
 }
 
@@ -1349,28 +1363,27 @@ body a:hover {
 /* Read More CSS End */
 /* =================WK CSS End===================== */
 
-.publish{
-    background: #04ff04;;
+.publish {
+    background: #04ff04;
     padding: 3px;
     font-size: 9px;
     border-radius: 5px;
     border: 1px solid darkgreen;
     margin-left: 490px;
-    color:black;
+    color: black;
 }
 
-.draft{
+.draft {
     background: gray;
     padding: 3px;
     font-size: 9px;
     border-radius: 5px;
     border: 1px solid black;
     margin-left: 499px;
-    color:white;
+    color: white;
 }
 
 /* ================ */
-
 
 .rate_me_btn {
     border-radius: 6px;
@@ -1386,7 +1399,6 @@ body a:hover {
     right: 0;
     padding: 6px 14px;
 }
-
 
 .criteria .rate_me_time {
     margin-right: 24px;
@@ -1405,21 +1417,257 @@ input::-webkit-inner-spin-button {
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
-input[type=number] {
-    -moz-appearance:textfield; /* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield; /* Firefox */
 }
-
 
 .pac-container {
     z-index: 10000 !important;
 }
 
-
 /* / recernt-css-starts / */
-.anchor_img{
-    min-height:168px;
+.anchor_img {
+    min-height: 168px;
 }
-.mini_para{
+.mini_para {
     min-height: 105px;
 }
 /* / recent-css-ends / */
+.card {
+    cursor: pointer;
+}
+
+.card-body .gray {
+    height: 50px;
+    overflow: hidden;
+}
+
+.newestswiper .card-body .gray {
+    height: 105px;
+    overflow: hidden;
+}
+
+.newestswiper .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.cover_photo {
+    background: none !important;
+    border: 2px solid black;
+    border-radius: 25px;
+    padding: 7px 30px;
+    padding-left: 0;
+}
+.cover_photo .cover {
+    margin-left: 13px;
+}
+.cover_photo .empty_img {
+    text-align: center;
+    margin-left: 26px;
+}
+.cover_photo .upload {
+    float: right;
+}
+.gr_photos > :nth-child(1) > :nth-child(3) {
+    margin-top: 13px;
+    margin-left: 37px;
+}
+.gr_photos > :nth-child(1) > :nth-child(3) .dot {
+    width: 10px;
+    height: 10px;
+}
+.gr_photos .numbertext {
+    padding-top: 0;
+    padding-bottom: 10px;
+}
+.personal_box2 form > :nth-child(5) {
+    height: auto !important;
+    width: 75%;
+    margin: 0 auto !important;
+}
+.personal_box .form .enable_profile_edit {
+    padding: 6px 8px !important;
+    font-size: 14px;
+}
+.personal_box2 .form #about_me {
+    font-size: 14px !important;
+}
+.personal_box2 .form > :nth-child(4) {
+    font-size: 14px !important;
+    padding: 6px 8px !important;
+}
+.personal_box3 .form .enable_business_edit {
+    font-size: 14px !important;
+    padding: 6px 8px !important;
+}
+.personal_box3 .form #all_business_categories {
+    padding: 6px 8px !important;
+    font-size: 14px !important;
+}
+.personal_box3 .form #all_business_services {
+    padding: 6px 8px !important;
+    font-size: 14px !important;
+}
+
+.my_details_popup .gr_photos .mySlides .empty_img {
+    height: 100px;
+}
+.my_details_popup .gr_photos .mySlides .empty_img img {
+    height: 130px;
+}
+
+.personal_box3 .personal .edit_profile3 img {
+    border: 1px solid black;
+    border-radius: 14px;
+}
+
+.modal_2 > :nth-child(1) > :nth-child(1) > :nth-child(1) {
+    transform: scale(0.8);
+    border-radius: 10px;
+}
+
+.modal_3 .media_content .pr-description > :nth-child(2) {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.modal_2 .media_content .pr-description p {
+    font-size: 13px !important;
+    line-height: 1;
+}
+
+.add_creadit_popup .modal_2 p {
+    font-size: 14px;
+}
+
+.get_verified_popup .modal_2 p {
+    font-size: 14px;
+}
+
+.delete_account_popup .modal_2 p {
+    font-size: 14px;
+}
+.delete_account_popup .modal_2 .submit_btn {
+    width: 60% !important;
+}
+
+.label_test label {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 800;
+}
+.label_test p {
+    font-size: 15px !important;
+}
+.item_sell_popup .item_modal .text_fields input {
+    font-size: 14px !important;
+}
+.item_sell_popup .item_modal .text_fields .name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #666161 !important;
+}
+.item_sell_popup .light_text p {
+    font-size: 14px;
+}
+.item_sell_popup #item-description {
+    font-size: 14px;
+}
+.item_sell_popup .cover_photo > :nth-child(3) .dot {
+    height: 10px;
+    width: 10px;
+}
+
+#buisness_property .item_modal .label_test label {
+    font-size: 16px;
+    font-weight: 900;
+}
+#buisness_property .item_modal .details {
+    font-size: 14px;
+}
+#buisness_property .item_modal .property_info {
+    font-size: 14px;
+}
+#buisness_property .item_modal .fields input {
+    font-size: 14px;
+}
+#buisness_property .item_modal label {
+    font-size: 16px;
+    font-weight: 700;
+}
+#buisness_property .item_modal .text_area textarea {
+    font-size: 15px;
+}
+#buisness_property .item_modal .text_area2 textarea {
+    font-size: 15px;
+}
+#buisness_property .item_modal .cover_photo > :nth-child(3) .dot {
+    height: 10px;
+    width: 10px;
+}
+
+.house_mate_pop .house_modal .label_test .label_divs label {
+    font-size: 16px;
+    font-weight: 400;
+}
+.house_mate_pop .text_fields .text {
+    font-size: 15px;
+}
+.house_mate_pop .details .text_fields input {
+    font-size: 15px !important;
+}
+.house_mate_pop .text-area-custom textarea {
+    font-size: 14px;
+}
+.house_mate_pop .cover_photo > :nth-child(3) .dot {
+    width: 10px;
+    height: 10px;
+}
+
+.house_mate_pop .house_modal .person img {
+    border-radius: 10px;
+}
+
+.postmessage .item_modal .cover_photo > :nth-child(3) .dot {
+    width: 10px;
+    height: 10px;
+}
+.postmessage .item_modal .person img {
+    border-radius: 10px;
+}
+.postmessage .item_modal .label_divs label {
+    font-size: 16px;
+    font-weight: 400;
+}
+.postmessage .item_modal .text_fields .text {
+    font-size: 14px;
+}
+.postmessage .item_modal .broadcast label {
+    font-size: 16px;
+}
+.cover_photo {
+    border: none !important ;
+}
+
+header
+    .custom_container
+    > :nth-child(3)
+    > :nth-child(1)
+    .language-btn
+    > :nth-child(2)
+    li
+    img {
+    margin-left: 40px !important;
+}
+header
+    .custom_container
+    > :nth-child(3)
+    > :nth-child(1)
+    .language-btn
+    > :nth-child(2)
+    > :nth-child(1) {
+    margin-bottom: 12px !important;
+}

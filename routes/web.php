@@ -8,12 +8,14 @@ use App\Http\Controllers\Backend\BusinessController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AnonymousController;
 use App\Http\Controllers\Frontend\PaymentController;
+use App\Http\Controllers\Backend\PaymentController as BackendPaymentController;
 use App\Http\Controllers\Frontend\ItemController;
 use App\Http\Controllers\Frontend\HousemateController;
 use App\Http\Controllers\Frontend\ProfessionalController;
 use App\Http\Controllers\Frontend\ProjectController;
 use App\Http\Controllers\Frontend\PropertyController;
 use App\Http\Controllers\Frontend\MessageController;
+use App\Http\Controllers\Frontend\ListhubController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\GeneralController;
 
@@ -29,11 +31,14 @@ use App\Http\Controllers\GeneralController;
 */
 
 Route::get('/', [AnonymousController::class, 'index']);
+Route::get('/toggleLanguage', [AnonymousController::class, 'toggleLanguage'])->name('toggleLanguage');
 Route::get('/find-professional', [AnonymousController::class, 'indexProfessional'])->name('indexProfessional');
 Route::get('/buy-sell-item', [AnonymousController::class, 'indexItem'])->name('indexItem');
 Route::get('/find-property', [AnonymousController::class, 'indexProperty'])->name('indexProperty');
 Route::get('/find-housemate', [AnonymousController::class, 'indexHousemate'])->name('indexHousemate');
 Route::get('/share-message', [AnonymousController::class, 'indexMessage'])->name('indexMessage');
+
+Route::get('/getproperty/{id}', [ListhubController::class,'getproperty'])->name('getproperty');
 
 Route::get('/property/{slug}', [AnonymousController::class, 'PropertyDetail'])->name('PropertyDetail');
 Route::get('/message/{slug}', [AnonymousController::class, 'MessageDetail'])->name('MessageDetail');
@@ -75,6 +80,13 @@ Route::group([
             return redirect()->route('chatify');
         })->name('messages');
 
+        Route::group([
+            'prefix' => 'feed',
+        ],function(){
+            Route::feeds();
+        });
+        
+
         Route::post('/addUserInterest', [ProfileController::class,'addUserInterest']);
         Route::post('/addUserBusinessService', [ProfileController::class,'addUserBusinessService']);
         Route::post('/addUserBusinessCategory', [ProfileController::class,'addUserBusinessCategory']);
@@ -96,6 +108,7 @@ Route::group([
         Route::resource('message',MessageController::class);
 
         Route::post('/deletePost', [GeneralController::class,'deletePost']);
+        Route::post('/getPackagePrice', [GeneralController::class,'getPackagePrice']);
         Route::post('/deleteImage', [GeneralController::class,'deleteImage']);
         Route::get('/getPostData', [GeneralController::class,'getPostData']);
         Route::post('/sendMessage', [GeneralController::class,'sendMessage']);
@@ -105,8 +118,9 @@ Route::group([
         Route::post('/Doreply/{id}', [GeneralController::class,'Doreply'])->name('doreply');
         Route::post('/deleteReply/{id}', [GeneralController::class,'deleteReply'])->name('deleteReply');
 
-        Route::post('/postReview', [ProfessionalController::class,'PostReview'])->name('PostReview');
+        Route::post('/reportUser', [GeneralController::class,'reportUser']);
 
+        Route::post('/postReview', [ProfessionalController::class,'PostReview'])->name('PostReview');
 
     });
 
@@ -134,8 +148,25 @@ Route::group([
         Route::resource('projects',ProjectController::class);
         Route::resource('properties',PropertyController::class);
         Route::resource('messages',MessageController::class);
+        Route::resource('payments',BackendPaymentController::class);
+
+        Route::get('header',[CmsController::class,'header'])->name('header');
+        Route::get('pages',[CmsController::class,'pages'])->name('pages');
+        Route::get('menu',[CmsController::class,'menu'])->name('menu');
+        Route::get('translation',[CmsController::class,'translation'])->name('translation');
+        Route::get('privacy-policy',[CmsController::class,'privacypolicy'])->name('privacy-policy');
+        Route::get('about-us',[CmsController::class,'aboutus'])->name('about-us');
+        Route::get('footer',[CmsController::class,'footer'])->name('footer');
+        Route::get('web-content',[CmsController::class,'webcontent'])->name('web-content');
+        Route::get('services',[CmsController::class,'services'])->name('services');
+        Route::get('add-translation',[CmsController::class,'add_translation'])->name('add_translation');
+        Route::post('edit-translation/{id}',[CmsController::class,'edit_translation'])->name('edit_translation');
+        Route::get('edit_show/{id}',[CmsController::class,'edit_show'])->name('edit_show');
+        Route::post('add-translation',[CmsController::class,'add_translation'])->name('post_translation');
+        Route::post('updateService/{id}',[CmsController::class,'updateService'])->name('updateService');
 
         Route::post('import',[CmsController::class,'import'])->name('import');
+        Route::post('editpageCMS/{pageId}',[CmsController::class,'editpageCMS'])->name('editpageCMS');
 
     });
 

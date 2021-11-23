@@ -10,15 +10,22 @@ use App\Models\BusinessItem;
 use App\Models\BusinessHousemate;
 use App\Models\BusinessMessage;
 use App\Models\BusinessClaim;
-
+use App\Models\Translation;
+use App\Models\Page;
+use App\Http\Controllers\Frontend\ListhubController;
+use Spatie\TranslationLoader\LanguageLine;
 use Artesaos\SEOTools\Facades\SEOTools;
 use AppHelper;
 use Route;
 use Schema;
 use Config;
+use Session;
 
 class AnonymousController extends Controller
 {
+    public $pageCms = [];
+
+
     public function index(){
 
         SEOTools::setTitle(AppHelper::SystemConfig('meta_title_home'));
@@ -34,7 +41,6 @@ class AnonymousController extends Controller
         $news = BusinessProperty::publish()->inRandomOrder()->limit(20)->select('id','business_id','title','slug','created_at','views')->get();
 
         $data['news'] = $news;
-
 
         $propertiesForSale = BusinessProperty::publish()->sale()->search()->nearMeOrRadius()->get();
         $propertiesForRent = BusinessProperty::publish()->rent()->search()->nearMeOrRadius()->get();
@@ -81,6 +87,10 @@ class AnonymousController extends Controller
             'all' => $allItems,
             'new' => $newItems,
         ];
+
+                $page = Page::where('slug',Route::getFacadeRoot()->current()->uri())->with('Data')->first();
+        $pageCms= $page->Data->pluck('value','key')->toArray();
+        $data['pageCms'] = $pageCms;
 
         return view('Frontend.pages.home',$data);
 
@@ -155,6 +165,10 @@ class AnonymousController extends Controller
             'top' => $topPro,
         ];
 
+                $page = Page::where('slug',Route::getFacadeRoot()->current()->uri())->with('Data')->first();
+        $pageCms= $page->Data->pluck('value','key')->toArray();
+        $data['pageCms'] = $pageCms;
+
         return view('Frontend.pages.professionalIndex',$data);
 
     }
@@ -179,11 +193,15 @@ class AnonymousController extends Controller
             'new' => $newItems,
         ];
 
+                $page = Page::where('slug',Route::getFacadeRoot()->current()->uri())->with('Data')->first();
+        $pageCms= $page->Data->pluck('value','key')->toArray();
+        $data['pageCms'] = $pageCms;
+
         return view('Frontend.pages.ItemIndex',$data);
 
     }
 
-    public function indexProperty(){
+    public function indexProperty(Request $request){
 
         SEOTools::setTitle(AppHelper::SystemConfig('meta_Property_title_home'));
         SEOTools::setDescription(AppHelper::SystemConfig('meta_Property_description_home'));
@@ -204,6 +222,12 @@ class AnonymousController extends Controller
             'sale' => $propertiesForSale,
             'rent' => $propertiesForRent,
         ];
+
+        $data['listHubProperties'] = (new ListhubController)->getListHubProperties($request);
+
+                $page = Page::where('slug',Route::getFacadeRoot()->current()->uri())->with('Data')->first();
+        $pageCms= $page->Data->pluck('value','key')->toArray();
+        $data['pageCms'] = $pageCms;
 
         return view('Frontend.pages.propertyIndex',$data);
 
@@ -227,6 +251,10 @@ class AnonymousController extends Controller
             'all' => $BusinessHousemate,
         ];
 
+                $page = Page::where('slug',Route::getFacadeRoot()->current()->uri())->with('Data')->first();
+        $pageCms= $page->Data->pluck('value','key')->toArray();
+        $data['pageCms'] = $pageCms;
+
         return view('Frontend.pages.housemateIndex',$data);
 
     }
@@ -248,6 +276,10 @@ class AnonymousController extends Controller
         $data['messages'] = [
             'all' => $BusinessMessage,
         ];
+
+                $page = Page::where('slug',Route::getFacadeRoot()->current()->uri())->with('Data')->first();
+        $pageCms= $page->Data->pluck('value','key')->toArray();
+        $data['pageCms'] = $pageCms;
 
         return view('Frontend.pages.messageIndex',$data);
 
@@ -359,6 +391,21 @@ class AnonymousController extends Controller
         $Upload = $request->all();
 
         BusinessClaim::create($Upload);
+
+        return redirect()->back();
+    }
+
+    public function toggleLanguage(){
+
+        $setLocal = 'en';
+
+        if(app()->getLocale() == 'en'){
+
+            $setLocal = 'fr';
+            
+        }
+
+        Session::put('locale',$setLocal);
 
         return redirect()->back();
     }

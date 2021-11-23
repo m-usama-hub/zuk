@@ -20,17 +20,19 @@
                         <div class="col-lg-12 detail-box mt-3" id="mypost{{ $key }}">
 
                             <strong
-                                class="{{ $post->status == 'Publish' ? 'publish' : 'draft' }}">{{ $post->status }}</strong>
+                                class="{{ $post->status == 'Publish' ? 'publish' : 'draft' }}">{{ $post->status == 'Publish' ? 'Published' : 'Draft' }}</strong>
 
                             <div class="row" style="margin-top: -25px;">
                                 <div class="col-lg-4">
-                                    <img src="{{ asset($post->FristCoverImage->path??$post->cover_image) }}" alt="" class="img-fluid">
+                                    <img src="{{ asset($post->FristCoverImage->path ?? $post->cover_image) }}" alt=""
+                                        class="img-fluid">
                                 </div>
                                 <div class="col-lg-8 media_content">
                                     <div class="media">
-                                        <img class="mr-2" src="{{ asset(Auth::user()->UserDetail->profile_pic) }} "
-                                            width="50" alt="Generic placeholder image">
-                                        <div class="media-body">
+                                        <img class="mr-2"
+                                            src="{{ asset(Auth::user()->UserDetail->profile_pic) }} " width="50"
+                                            alt="Generic placeholder image">
+                                        {{-- <div class="media-body">
                                             <h3 class="mt-0 blue"><a href="{{ $post->link }}">{{ $post->title }}</a></h3>
                                             <div class="web_site_views">
                                                 <i class="fas fa-star orange"></i>
@@ -39,7 +41,7 @@
                                                 <i class="fas fa-star orange"></i>
                                                 <a href="#!" class="views">123 reviews</a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="pr-description">
                                         <h4 class="blue">Description</h4>

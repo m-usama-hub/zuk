@@ -10,12 +10,37 @@
                     <div class="col-lg-12 detail-box mt-3">
                         <div class="row">
                             <div class="col-lg-4">
-                                <img src="{{ asset($item->cover_image) }}" alt="" class="img-fluid">
+                                {{-- <img src="{{ asset($item->cover_image) }}" alt="" class="img-fluid"> --}}
+
+                                <div class="swiper modalSwiper swiper-initialized swiper-horizontal swiper-pointer-events">
+                                    <div class="swiper-wrapper" id="swiper-wrapper-030becf1010c7a5e07" aria-live="polite"
+                                        style="transition-duration: 0ms; transform: translate3d(0px, 0px, 0px);">
+                                        @foreach ($item->CoverImages as $image)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($image->path) }}" alt="" class="pr_photo">
+                                            </div>
+                                        @endforeach
+
+                                        @if (count($item->CoverImages) <= 0)
+
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset($item->cover_image) }}" alt="" class="pr_photo">
+                                            </div>
+
+                                        @endif
+
+                                    </div>
+                                    <div class="swiper-button-next" tabindex="0" role="button" aria-label="undefined"
+                                        aria-controls="Next slide" aria-disabled="false">
+                                    </div>
+                                    <div class="swiper-button-prev swiper-button-disabled" tabindex="-1" role="button"
+                                        aria-label="undefined" aria-controls="Previous slide" aria-disabled="true"></div>
+                                </div>
                             </div>
                             <div class="col-lg-8 media_content">
                                 <div class="media">
-                                    <img class="mr-3"
-                                        src="{{ asset($item->profile_pic) }}"
+                                    <img class="mr-3" src="{{ asset($item->profile_pic) }}"
                                         class="img-fluid" alt="Generic placeholder image" width="100">
                                     <div class="media-body">
                                         <h3 class="mt-0 blue">{{ $item->title }} <span
@@ -52,7 +77,10 @@
 
                                         </a>
                                         @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' => $item->title, 'modal' => 'BusinessDetail','user'  => $item->BusinessDetail->BusinessUser->fullname,'user_id'  => $item->BusinessDetail->User->id])
+                                        @include('Frontend.pages.partials.messageElement',['id' => $item->id, 'title' =>
+                                        $item->title, 'modal' => 'BusinessDetail','user' =>
+                                        $item->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                        $item->BusinessDetail->User->id])
 
                                     </div>
 

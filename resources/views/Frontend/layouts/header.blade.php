@@ -9,25 +9,30 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item {{ Request::url() == route('indexProfessional') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('indexProfessional') }}">Find a Professional <span
-                                class="sr-only">(current)</span></a>
+                        <a class="nav-link"
+                            href="{{ route('indexProfessional') }}">{{ __('Find a Professional') }}
+                            <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item {{ Request::url() == route('indexItem') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('indexItem') }}">Buy & Sell Items</a>
+                        <a class="nav-link" href="{{ route('indexItem') }}">
+                            {{ __('Buy & Sell Items') }}</a>
                     </li>
                     <li class="nav-item {{ Request::url() == route('indexProperty') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('indexProperty') }}">Find a Property</a>
+                        <a class="nav-link" href="{{ route('indexProperty') }}">
+                            {{ __('Find a Property') }}</a>
                     </li>
                     <li class="nav-item {{ Request::url() == route('indexHousemate') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('indexHousemate') }}">Find a Housemate</a>
+                        <a class="nav-link" href="{{ route('indexHousemate') }}">
+                            {{ __('Find a Housemate') }}</a>
                     </li>
                     <li class="nav-item {{ Request::url() == route('indexMessage') ? 'active' : '' }}">
-                        <a class="nav-link" href="{{ route('indexMessage') }}">Share a Message</a>
+                        <a class="nav-link" href="{{ route('indexMessage') }}">
+                            {{ __('Share a Message') }}</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            More
+                            {{ __('More') }}
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
@@ -36,12 +41,12 @@
                                 @if (Auth::user()->UserHasBusinessProfile())
 
                                     <a class="dropdown-item" href="#" data-toggle="modal"
-                                        data-target="#postproject">Post your
-                                        project/job</a>
+                                        data-target="#postproject">{{ __('Post your
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        project/job') }}</a>
                                 @endif
                             @endif
 
-                            <a class="dropdown-item pt-5" href="#">Search projects/jobs</a>
+                            <a class="dropdown-item pt-5" href="#">{{ __('Search projects/jobs') }}</a>
 
                     </li>
                     @if (!Auth::user())
@@ -79,12 +84,33 @@
 
                     @endif
 
-                    <li class="nav-item dropdown language-btn">
+                    {{-- <li class="nav-item dropdown language-btn">
                         <a class="nav-link dropdown-toggle" href="#" id="language-dropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <img
                                 src="{{ asset('Frontend/img/england-flag.png') }}" alt=""> </a>
                         <div class="dropdown-menu" aria-labelledby="language-dropdown"> <a class="dropdown-item"
-                                href="#">French</a> </div>
+                                href="{{ route('toggleLanguage') }}">{{ Config::get('app.locale') == 'en' ? 'French' : 'English' }}</a>
+                        </div>
+                    </li> --}}
+                    <li class="nav-item dropdown language-btn">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button"
+                            aria-haspopup="true" aria-expanded="false"><img
+                                src="{{ asset('Frontend/img/england-flag.png') }}" width="40" alt=""> <span
+                                class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a aria-current="page" href="#" class="spanish translation-links black"
+                                    data-lang="French">French
+                                    <img style="height: 40px" src="{{ asset('Frontend/img/french.png') }}">
+                                </a>
+                            </li>
+                            <li>
+                                <a aria-current="page" href="#" class="English translation-links black"
+                                    data-lang="English">English
+                                    <img style="height: 40px" src="{{ asset('Frontend/img/england-flag.png') }}">
+                                </a>
+                            </li>
+                        </ul>
                     </li>
 
                 </ul>

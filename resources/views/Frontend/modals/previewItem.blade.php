@@ -87,12 +87,12 @@
                          {{-- <a href="#!" class="views">123 reviews</a> --}}
                       </div>
                       <div class="contact-desc">
-                        <a href="tel: {{ Auth::user()->UserBusinessDetail->business_phone }}"><i
+                        <a href="tel: {{ Auth::user()->UserBusinessDetail->business_phone??'' }}"><i
                            class="fas fa-phone-alt l-blue pr-2"></i>
-                       {{ Auth::user()->UserBusinessDetail->business_phone }}</a>
-                   <a href="mailto:{{ Auth::user()->UserDetail->email }}"><i
+                       {{ Auth::user()->UserBusinessDetail->business_phone??'' }}</a>
+                   <a href="mailto:{{ Auth::user()->UserDetail->email??'' }}"><i
                            class="fas fa-envelope l-blue pl-2 pr-2"></i>
-                       {{ Auth::user()->UserDetail->email }}</a>
+                       {{ Auth::user()->UserDetail->email??'' }}</a>
                      </div>
                    </div>
                 </div>

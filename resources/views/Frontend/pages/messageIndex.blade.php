@@ -8,13 +8,14 @@
             <div class="container custom_container">
                 <div class="row no-gutters">
                     <div class="col-md-8 pb-3" data-aos="fade-right" data-aos-duration="1500">
-                        <h2 class="blue mb-0 housemate_heading">Share a message</h2>
+                        <h2 class="blue mb-0 housemate_heading">{{ __('' . $pageCms['Section Title'] ?? '') }}
+                        </h2>
                     </div>
                     <div class="col-md-4">
                         <nav>
                             <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                 <a class="nav-link newest_btn active" id="nav-home-tab" data-toggle="tab" href="#nav-home1"
-                                    role="tab" aria-controls="nav-home" aria-selected="true">Newest</a>
+                                    role="tab" aria-controls="nav-home" aria-selected="true">{{ __('Newest') }}</a>
                             </div>
                         </nav>
                     </div>
@@ -30,7 +31,8 @@
                                         <div class="swiper-wrapper">
                                             @foreach ($messages['all'] as $key => $message)
                                                 <div class="swiper-slide">
-                                                    <div class="card" data-aos="fade-up" data-aos-duration="1500">
+                                                    <div class="card" data-link="{{ $message->link }}"
+                                                        data-aos="fade-up" data-aos-duration="1500">
                                                         <div class="col-md-12 card-in-heart">
                                                             <a href="#!" class="heart"
                                                                 id="message{{ $key }}"
@@ -47,17 +49,24 @@
                                                                 @endif
 
                                                             </a>
-                                                            @include('Frontend.pages.partials.shareElement',['link' => 'google.com'])
-                                                            @include('Frontend.pages.partials.messageElement',['id' => $message->id, 'title' => $message->title, 'modal' => 'Message','user'  => $message->BusinessDetail->BusinessUser->fullname,'user_id'  => $message->BusinessDetail->User->id])
-                                                        
+                                                            @include('Frontend.pages.partials.shareElement',['link' =>
+                                                            'google.com'])
+                                                            @include('Frontend.pages.partials.messageElement',['id' =>
+                                                            $message->id, 'title' => $message->title, 'modal' =>
+                                                            'Message','user' =>
+                                                            $message->BusinessDetail->BusinessUser->fullname,'user_id' =>
+                                                            $message->BusinessDetail->User->id])
+
                                                         </div>
                                                         <div class="card-map col-md-12 d-flex justify-content-between">
                                                             <a href="#!"><i
                                                                     class="fas fa-map-marker-alt"></i>{{ $message->address ?? '' }}</a>
-                                                            <a href="#!" class="camera"><i class="fas fa-camera"></i>
+                                                            <a href="#!" class="camera"><i
+                                                                    class="fas fa-camera"></i>
                                                                 {{ count($message->CoverImages) }}</a>
                                                         </div>
-                                                        <img class="card-img-top" src="{{ asset($message->FristCoverImage->path ?? $message->cover_image) }}"
+                                                        <img class="card-img-top"
+                                                            src="{{ asset($message->FristCoverImage->path ?? $message->cover_image) }}"
                                                             alt="Card image cap">
 
                                                         <div class="card-body">
@@ -66,8 +75,8 @@
                                                                         href="{{ route('MessageDetail', $message->slug) }}">
                                                                         {{ $message->title ?? '' }}</a>
                                                                 </small></h4>
-                                                            <h3> {{ $message->name }} <span
-                                                                    class="person_profession">{{ $message->BusinessDetail->address }}</span>
+                                                            <h3> {{ $message->name }}
+                                                                {{-- <span class="person_profession">{{ $message->BusinessDetail->address }}</span> --}}
                                                             </h3>
                                                             <p class="pb-3 gray">
                                                                 {{ substr($message->message ?? '', 0, 150) . '....' }}

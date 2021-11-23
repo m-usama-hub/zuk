@@ -95,14 +95,33 @@
             margin: 0px;
         }
 
+        iframe#\:2\.container {
+            display: none !important;
+            visibility: hidden !important;
+        }
+
+        .goog-te-gadget span {
+            display: none !important;
+        }
+
+        .goog-te-gadget {
+            color: white !important;
+            height: 30px;
+        }
+
+        body {
+            top: 0 !important;
+        }
+
     </style>
 
 </head>
 
 
 <body class="home">
-
     <div class="loader"></div>
+
+
 
     @include('Frontend.layouts.header')
     @include('Frontend.layouts.header-slider')
@@ -240,7 +259,6 @@
         });
     </script>
     <script>
-
         var swiper = new Swiper(".modalSwiper", {
             loop: false,
             pagination: {
@@ -252,21 +270,73 @@
                 prevEl: ".swiper-button-prev",
             },
         });
-
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCZf3_pkkppQ2yhnjB2Tb9NapQzZV1CVcg&libraries=places"></script>
+    <script type="text/javascript"
+        src="https://maps.google.com/maps/api/js?key=AIzaSyCZf3_pkkppQ2yhnjB2Tb9NapQzZV1CVcg&libraries=places"></script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    {{-- <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                    pageLanguage: 'en',
+                    includedLanguages: 'en,fr'
+                },
+                'google_translate_element'
+            );
+        }
+    </script> --}}
+
+    <div style="display: none" id="google_translate_element"></div>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'en',
+                layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" type="text/javascript">
+    </script>
+
+    <!-- Flag click handler -->
+    <script type="text/javascript">
+        $(document).on('click', '.translation-links', function() {
+            var lang = $(this).data('lang');
+            if (lang == 'English') {
+
+                $('.language-btn').find('.dropdown-toggle img').attr('src',
+                    "{{ asset('Frontend/img/england-flag.png') }}");
+
+            } else {
+
+                $('.language-btn').find('.dropdown-toggle img').attr('src',
+                    "{{ asset('Frontend/img/french.png') }}");
+            }
+            var $frame = $('.goog-te-menu-frame:first');
+
+            if (!$frame) {
+                return false;
+            }
+            $frame.contents().find('.goog-te-menu2-item span.text:contains(' + lang + ')').get(0).click();
+            return false;
+        });
+    </script>
+
+
+
+
 
     <script>
         function AddReadMore() {
             //This limit you can set after how much characters you want to show Read More.
             var carLmt = 400;
             // Text to show when text is collapsed
-            var readMoreTxt = "  Read More";
+            var readMoreTxt = " Read More";
             // Text to show when text is expanded
             var readLessTxt = " Read Less";
 
@@ -281,7 +351,7 @@
                     var firstSet = allstr.substring(0, carLmt);
                     var secdHalf = allstr.substring(carLmt, allstr.length);
                     var strtoadd = firstSet + "<span class='SecSec'>" + secdHalf +
-                        "</span><span class='readMore'  title='Click to Show More'>" + readMoreTxt +
+                        "</span><span class='readMore' title='Click to Show More'>" + readMoreTxt +
                         "</span><span class='readLess' title='Click to Show Less'>" + readLessTxt + "</span>";
                     $(this).html(strtoadd);
                 }
@@ -299,7 +369,7 @@
     </script>
 
     <script
-        src="https://www.paypal.com/sdk/js?client-id=AYARVb6iHq1nmQgiUqe91Jmf_Q53-8QlwA6fc0N3VDAU6oW08VCh4MIJ3bSLq95izIov_8tMPSPbGufs&disable-funding=credit">
+        src="https://www.paypal.com/sdk/js?client-id={{ env('PAYPAL_CLIENT_ID') }}&currency=USD&components=buttons&disable-funding=credit">
     </script>
 
     <script>
